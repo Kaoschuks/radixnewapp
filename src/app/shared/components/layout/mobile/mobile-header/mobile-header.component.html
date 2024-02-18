@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border b-b">
+  <ion-progress-bar *ngIf="refresh" type="indeterminate"></ion-progress-bar>
+  <ion-toolbar [color]="color">
+    <ion-title mode="ios">
+      <span *ngIf="title !== 'home'">{{ title || 'not set' }}</span>
+      <img *ngIf="title === 'home'" [src]="'assets/imgs/logo.png'" />
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false">
+        <i class="ri-menu-2-fill ri-xl fs-22"></i>
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="white" (click)="onclick.emit('notificationmodal')">
+        <ion-icon name="notifications-outline" class="fs-22 text-dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

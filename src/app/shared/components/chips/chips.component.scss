@@ -1,0 +1,18 @@
+:host {
+    .scrollable-chips {
+        display: block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        width: 100%;
+        padding-left: 5px;
+
+        ion-chip {
+            display: inline-block;
+            width: auto;
+            border-radius: 5px !important;
+            span {
+                top: 5px !important;
+            }
+        }
+    }
+}

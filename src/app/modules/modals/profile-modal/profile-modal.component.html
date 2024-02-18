@@ -1,0 +1,20 @@
+<!-- <ng-container>
+
+</ng-container> -->
+
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('profilemodal')" [asPage]="true" [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'profile'" [title]="'profile'">
+  
+
+  <ion-card class="no-shadow ion-no-padding animated fadeIn bg-transparent" align="center">
+    <ion-avatar class="no-shadow bg-medium avatar-lg avatar-border" style="position:relative;z-index:999">
+        <ion-img [src]="'https://ui-avatars.com/api/?name=Chikeluba Chukwuemeka Favour&color=000000&&background=ffffff'"></ion-img>
+    </ion-avatar>
+    <ion-item lines="none" class="bg-white" style="position:relative;top: -30px;margin-bottom: -30px;">
+        <ion-label align="center">
+            <br />
+            <h2>{{ 'Favour Chikleuba Chukwuemeka' | titlecase }}</h2>
+            <p>{{ 'info@kelubaemeka.me' | titlecase }}</p>
+        </ion-label>
+    </ion-item>
+</ion-card>
+</full-modal>

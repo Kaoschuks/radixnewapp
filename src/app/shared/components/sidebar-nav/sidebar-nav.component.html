@@ -1,0 +1,51 @@
+
+<ion-content class="sidebar" style="--background: url('/assets/imgs/bg/1.png') no-repeat center center / cover !important; background-size: cover; background-position: center;">
+  <ion-list style="margin-top: 140px">
+    <ion-menu-toggle auto-hide="false" *ngFor="let p of pages; let i = index">
+      <ion-item style="margin-top: 10px" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
+        <!-- <ion-icon color="primary" style="margin-left: 10px;margin-right: 20px;" slot="start" [md]="p.icon + '-outline'"></ion-icon> -->
+        <ion-label color="primary">
+          <h2>{{ p.title }}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-item style="margin-top: 10px;" (click)="tooglemenu()" detail="false" lines="none">
+      <!-- <ion-icon color="primary" style="margin-left: 10px;margin-right: 20px;" slot="start" md="diamond-outline"></ion-icon> -->
+      <ion-label color="primary" class="ion-text-wrap">
+        <h2 class="bold">Micro Pension</h2>
+      </ion-label>
+      <i slot="end" *ngIf="!toogle" style="margin-right: -10px;margin-top: 5px" class="ri-arrow-right-s-line ri-xl"></i>
+      <i slot="end" *ngIf="toogle" style="margin-right: -10px;margin-top: 5px" class="ri-arrow-down-s-line ri-xl"></i>
+    </ion-item>
+    <ion-menu-toggle autoHide="false">
+      <ion-list *ngIf="toogle" lines="none" class="animated fadeIn">
+        <ion-item *ngFor="let page of micropensionpages" [routerLink]="page.url" routerDirection="forward" routerLinkActive="selected bg-light-overlay" detail="false" lines="none">
+          <!-- <i slot="start" [ngClass]="page?.icon"></i> -->
+          <ion-label color="primary" style="padding-left: 55px;">
+            <h2 class="bold">{{page?.title}}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-menu-toggle>
+    <!-- <br /> -->
+    <ion-menu-toggle auto-hide="false" *ngFor="let p of subpages; let i = index">
+      <ion-item style="margin-top: 10px" [routerLink]="p.url" routerDirection="forward" lines="none" detail="false">
+        <!-- <ion-icon color="primary" style="margin-left: 10px;margin-right: 20px;" slot="start" [md]="p.icon + '-outline'"></ion-icon> -->
+        <ion-label color="primary">
+          <h2>{{ p.title }}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <br />
+    <ion-menu-toggle auto-hide="false">
+      <ion-item style="margin-top: 10px" (click)="logout()" detail="false" lines="none">
+        <i color="danger" style="margin-left: 10px;margin-right: 20px;" slot="start" class="ri-logout-box-line ri-xl text-danger"></i>
+        <ion-label color="danger">
+          <h2>Logout</h2>
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <br />
+    <br />
+  </ion-list>
+</ion-content>

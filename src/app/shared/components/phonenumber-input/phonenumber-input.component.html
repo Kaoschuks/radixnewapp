@@ -1,0 +1,4 @@
+
+<input aria-label="phone" (keyup)="onInputChange()" [id]="id+'phone'" type="tel" maxlength="15">
+<span *ngIf="iti && iti.isValidNumber() == false && phone != ''" class="text-danger fs-12">{{getError(iti?.getValidationError()) || "Phone Number isn't valid" | titlecase }}</span>
+    

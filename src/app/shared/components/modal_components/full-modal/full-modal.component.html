@@ -1,0 +1,34 @@
+
+<!-- <ion-button class="hidden" [id]="id+'-modal'"></ion-button> -->
+<ion-modal [isOpen]="open" [showBackdrop]="true" [keepContentsMounted]="true" (didDismiss)="closeModal.emit(true)" [ngClass]="modalClass" [backdropDismiss]="backDropDismiss">
+  <ng-template>
+    <ion-header *ngIf="hasHeader" class="ion-no-border" [ngClass]="headerClass" slot="fixed">
+      <ion-toolbar [color]="headerColor">
+        <ion-buttons slot="start">
+          <ion-button color="dark" fill="clear" class="no-shadow back" size="small" routerDirection="back"
+            (click)="open = false; closeModal.emit(true)" slot="start">
+            <ion-icon *ngIf="asPage" name="chevron-back-outline" class="fs-25"></ion-icon>
+            <ion-icon *ngIf="!asPage" name="chevron-down-outline" class="fs-25"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button>
+            <i class="fi fi-rr-search fs-18"></i>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>
+          <span class="fw-4">{{ title | titlecase }}</span>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content [fullscreen]="true" [color]="bodyColor" [scrollX]="true">
+      <ng-content *ngIf="!isLoading"></ng-content>
+      <loading [text]="loadingText" *ngIf="isLoading"></loading>
+    </ion-content>
+
+    <ion-footer [ngClass]="footerClass">
+      <ng-content select="[modal-footer]"></ng-content>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

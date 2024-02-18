@@ -1,0 +1,10 @@
+
+<!-- <ion-button class="hidden" [id]="id+'-modal'"></ion-button> -->
+<ion-modal class="half modal" [isOpen]="open" [backdropDismiss]="true" [initialBreakpoint]="initialBreakpoint" [breakpoints]="[initialBreakpoint, endBreakpoint]"
+  animated="true" (didDismiss)="closeModal.emit(true)">
+  <ng-template>
+    <ion-content [scrollX]="true" [color]="bodyColor">
+      <ng-content></ng-content>
+    </ion-content>
+  </ng-template>
+</ion-modal>

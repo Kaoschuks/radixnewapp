@@ -1,0 +1,17 @@
+:host {
+    .bottom {
+        position: fixed !important;
+        bottom: 0px !important;
+    }
+    ion-content {
+        height: 90vh !important;
+    }
+    ion-header {
+        ion-item {
+            img {
+                margin-left: -2px !important;
+                border-radius: 5px !important;
+            }
+        }
+    }
+}

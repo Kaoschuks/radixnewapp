@@ -1,0 +1,33 @@
+
+<!-- <ion-button class="hidden" [id]="'success'+id+'-modal'"></ion-button> -->
+<ion-modal [isOpen]="isOpen" [ngClass]="class" class="modal-center" [backdropDismiss]="false">
+  <ng-template>
+    <ion-content class="ion-padding justify-content-center" [scrollX]="true">
+      <div style="margin-top: 20px;" *ngIf="data.buttons.length == 1"></div>
+      <div align="center">
+        <img *ngIf="data.icon" [src]="data.icon" [width]="data.iconWidth || 240" [height]="data.iconHeight || 240" />
+        <ion-icon *ngIf="data.iconName" [color]="activeColor" class="fs-60" [name]="data.iconName"></ion-icon>
+      </div>
+      <ion-label class="ion-text-wrap ion-text-center">
+        <h2 class="fs-20 fw-500" [innerHTML]="data.title"></h2>
+        <p class="fs-14" [innerHTML]="data.description"></p>
+      </ion-label>
+    </ion-content>
+
+    <ion-footer class="ion-no-padding ion-no-border" *ngIf="data.buttons">
+      <div align="center" *ngIf="data.buttonText">
+        <ion-button expand="block" mode="ios" class="no-shadow ion-margin-top"
+          [ngClass]="data.buttonClass" size="default" (click)="continue.emit('close')">
+          <span class="fs-14 text-white" [innerHTML]="data.buttonText"></span>
+        </ion-button>
+      </div>
+      <ng-container>
+        <ion-button *ngFor="let button of data.buttons;let i = index" [color]="(data.buttons.length - 1 == i && button.color) ? button.color : (data.buttons.length - 1 == i && !button.color) ? 'danger' : 'dark'" [fill]="(button.color) ? 'default' : 'clear'" expand="block"
+          class="no-shadow b-b" size="default" (click)="continue.emit(button.action)">
+          <span class="fs-14 fw-500">{{button.text | titlecase}}</span>
+        </ion-button>
+        <div style="margin-bottom: 20px;" *ngIf="data.buttons.length == 1"></div>
+      </ng-container>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,13 @@
+
+
+<full-modal [open]="isOpen" [backDropDismiss]="false" [id]="'walkthrough'" [bodyColor]="'white'" [headerClass]="'hidden'" [footerClass]="'bg-white ion-no-border'">
+  
+  <div modal-footer class="ion-padding">
+    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/login" (click)="globals.closeModal('walkthroughmodal')" size="large">
+      <span class="fs-12 bold">Existing User? (Sign In)</span>
+    </ion-button>  
+    <ion-button style="margin-top: 10px" class="no-shadow" color ="light" mode="md" expand="block" routerLink="/supports/faqs">
+      <span class="fs-12 bold">Before you begin, Read Our FAQS</span>
+    </ion-button>  
+  </div>
+</full-modal>

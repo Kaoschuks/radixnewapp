@@ -1,0 +1,594 @@
+body {
+    -webkit-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+}
+
+* ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none !important;
+}
+
+.h-70 {
+    --height: 70vh !important;
+    height: 70vh !important;
+}
+
+.h-80 {
+    --height: 80vh !important;
+    height: 80vh !important;
+}
+
+.fs-10 {
+    font-size: 10px !important;
+}
+
+.fs-12 {
+    font-size: 12px !important;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+
+.fs-16 {
+    font-size: 16px !important;
+}
+
+.fs-18 {
+    font-size: 18px !important;
+}
+
+.fs-20 {
+    font-size: 20px !important;
+}
+
+.fs-22 {
+    font-size: 22px !important;
+}
+
+.fs-25 {
+    font-size: 25px !important;
+}
+
+.fs-30 {
+    font-size: 30px !important;
+}
+
+.fs-40 {
+    font-size: 40px !important;
+}
+
+.fs-50 {
+    font-size: 50px !important;
+}
+
+.fs-60 {
+    font-size: 60px !important;
+}
+
+.fs-70 {
+    font-size: 70px !important;
+}
+
+/* Theme Font Weight */
+.fw-4 {
+    font-weight: 400 !important;
+}
+
+.fw-5 {
+    font-weight: 500 !important;
+}
+
+.fw-6 {
+    font-weight: 600 !important;
+}
+
+.fw-7 {
+    font-weight: 700 !important;
+}
+
+
+.text-light {
+    color: var(--ion-color-light) !important;
+    --color: var(--ion-color-light) !important;
+}
+
+.text-success {
+    color: var(--ion-color-success) !important;
+    --color: var(--ion-color-success) !important;
+}
+
+.text-secondary {
+    color: var(--ion-color-secondary) !important;
+    --color: var(--ion-color-secondary) !important;
+}
+
+.text-primary {
+    color: var(--ion-color-primary) !important;
+    --color: var(--ion-color-primary) !important;
+}
+
+.text-warning {
+    color: var(--ion-color-warning) !important;
+    --color: var(--ion-color-warning) !important;
+}
+
+.text-danger {
+    color: var(--ion-color-danger) !important;
+    --color: var(--ion-color-danger) !important;
+}
+
+.text-tertiary {
+    color: var(--ion-color-tertiary) !important;
+    --color: var(--ion-color-tertiary) !important;
+}
+
+.text-dark {
+    color: var(--ion-color-dark) !important;
+    --color: var(--ion-color-dark) !important;
+}
+
+.text-medium {
+    color: var(--ion-color-medium) !important;
+    --color: var(--ion-color-medium) !important;
+}
+
+.text-white {
+    color: var(--ion-color-white) !important;
+    --color: var(--ion-color-white) !important;
+}
+
+.bold {
+    font-weight: 600 !important;
+}
+
+.bl-primary {
+    border-left: 3px solid var(--ion-color-primary) !important;
+    --border-left: 3px solid var(--ion-color-primary) !important;
+}
+
+.bl-secondary {
+    border-left: 3px solid var(--ion-color-secondary) !important;
+    --border-left: 3px solid var(--ion-color-secondary) !important;
+}
+
+.bl-success {
+    border-left: 3px solid var(--ion-color-success) !important;
+    --border-left: 3px solid var(--ion-color-success) !important;
+}
+
+.bl-warning {
+    border-left: 3px solid var(--ion-color-warning) !important;
+    --border-left: 3px solid var(--ion-color-warning) !important;
+}
+
+.bl-danger {
+    border-left: 3px solid var(--ion-color-danger) !important;
+}
+
+.bl-dark {
+    border-left: 3px solid var(--ion-color-dark) !important;
+}
+
+.br-primary {
+    border-right: 3px solid var(--ion-color-primary) !important;
+}
+
+.br-success {
+    border-right: 3px solid var(--ion-color-success) !important;
+}
+
+.br-danger {
+    border-right: 3px solid var(--ion-color-danger) !important;
+}
+
+.br-dark {
+    border-right: 3px solid var(--ion-color-dark) !important;
+}
+
+.br-medium {
+    border-right: 3px solid var(--ion-color-medium) !important;
+}
+
+.bg-transparent,
+.bg-transparent * {
+    background: transparent !important;
+    --background: transparent !important;
+}
+
+.bg-primary {
+    --background: var(--ion-color-primary) !important;
+    background: var(--ion-color-primary) !important;
+}
+
+.bg-success {
+    --background: var(--ion-color-success) !important;
+    background: var(--ion-color-success) !important;
+}
+
+.bg-secondary {
+    --background: var(--ion-color-secondary) !important;
+    background: var(--ion-color-secondary) !important;
+}
+
+.bg-tertiary {
+    --background: var(--ion-color-tertiary) !important;
+    background: var(--ion-color-tertiary) !important;
+}
+
+.bg-warning {
+    --background: var(--ion-color-warning) !important;
+    background: var(--ion-color-warning) !important;
+}
+
+.bg-danger {
+    --background: var(--ion-color-danger) !important;
+    background: var(--ion-color-danger) !important;
+}
+
+.bg-dark {
+    --background: var(--ion-color-dark) !important;
+    background: var(--ion-color-dark) !important;
+}
+
+.bg-light {
+    --background: var(--ion-color-light) !important;
+    background: var(--ion-color-light) !important;
+}
+
+.bg-medium {
+    --background: var(--ion-color-medium) !important;
+    background: var(--ion-color-medium) !important;
+}
+
+.bg-white {
+    --background: var(--ion-color-white) !important;
+    background: var(--ion-color-white) !important;
+}
+
+.bg-danger-overlay {
+    --background: #f7c1c1 !important;
+    background: #f7cdc1 !important;
+    // color: #d93025; 
+}
+
+.bg-primary-overlay {
+    --background: #9cd9fe !important;
+    background: #9cd9fe !important;
+    // color: #213e6c !important;
+}
+
+.bg-secondary-overlay,
+.bg-secondary-overlay * {
+    --background: #9ddbf8 !important;
+    background: #9ddbf8 !important;
+    // color: #213e6c !important;
+}
+
+.bg-tertiary-overlay,
+.bg-tertiary-overlay * {
+    --background: #aeb5ff !important;
+    background: #aeb5ff !important;
+    // color: #213e6c !important;
+}
+
+.bg-success-overlay,
+.bg-success-overlay * {
+    --background: #c7facd !important;
+    background: #c7facd !important;
+    // color: #186541 !important;
+}
+
+.bg-warning-overlay {
+    --background: #f5f0df !important;
+    background: #f5f0df !important;
+    // color: #186541 !important;
+}
+
+.toast-primary {
+    --background: var(--ion-color-primary) !important;
+    --color: var(--ion-color-light) !important;
+}
+
+.toast-light {
+    --background: var(--ion-color-light) !important;
+    --color: var(--ion-color-primary) !important;
+}
+
+.toast-danger {
+    --background: var(--ion-color-danger) !important;
+    --color: var(--ion-color-light) !important;
+}
+
+
+
+.b-b {
+    border-bottom: 1px solid var(--ion-color-light) !important;
+    --border-bottom: 1px solid var(--ion-color-light) !important;
+}
+
+.ion-border {
+    border: 1.5px solid var(--ion-color-light) !important;
+    --border: 1.5px solid var(--ion-color-light) !important;
+}
+
+.no-shadow {
+    box-shadow: none !important;
+    --box-shadow: none !important;
+}
+
+.modal-center {
+    --height: 67%;
+    --width: 90%;
+    --margin: 1rem !important;
+    --border-radius: 10px;
+    --backdrop-opacity: 0.71;
+
+    &.modal-center-sm {
+        --height: 320px !important;
+    }
+
+    &.modal-h80 {
+        --height: 80vh !important;
+    }
+
+    &.modal-h70 {
+        --height: 70vh !important;
+    }
+
+    &.modal-h60 {
+        --height: 60vh !important;
+    }
+
+    &.modal-h50 {
+        --height: 50vh !important;
+    }
+
+    &.modal-w50 {
+        --width: 50% !important;
+    }
+
+    &.modal-w70 {
+        --width: 70% !important;
+    }
+
+    &.modal-w80 {
+        --width: 80% !important;
+    }
+
+    &.modal-w95 {
+        --width: 95% !important;
+    }
+
+    &.modal-w100 {
+        --width: 100% !important;
+    }
+}
+
+.modal-full {
+    --height: 100% !important;
+    --width: 100% !important;
+    --backdrop-opacity: 0.71;
+}
+
+.iti {
+    display: block !important;
+    width: 100% !important;
+    background-color: transparent !important;
+    border: 0px solid var(--ion-color-medium) !important;
+    --border: 0px solid var(--ion-color-medium) !important;
+    --border-radius: 10px !important;
+    border-radius: 10px !important;
+  }
+  .iti__country-name {
+    color: var(--ion-color-dark) !important;
+    --color: var(--ion-color-dark) !important;
+  }
+  .iti--container {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background-color: transparent !important;
+    width: 330px !important;
+    height: 600px !important;
+    margin-top: 50px !important;
+    position: sticky !important;
+  }
+  .iti__selected-flag {
+    background-color: transparent !important;
+  }
+  input[type="tel"] {
+    margin-left: 0px !important;
+    height: 45px !important;
+    width: 100% !important;
+    border: 0px solid var(--ion-color-dark) !important;
+    --border: 0px solid var(--ion-color-dark) !important;
+    --border-radius: 10px !important;
+    border-radius: 10px !important;
+    background-color: transparent !important;
+  }
+
+.scroll-horizontal {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    margin-top: -5px !important;
+
+    .scroll-item {
+        position: relative;
+        display: inline-block;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+ion-button[size="default"] {
+    height: 50px !important;
+}
+
+ion-fab-button {
+    --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .3), 0px 1px 3px 1px rgba(0, 0, 0, .15);
+
+    &.round {
+        --border-radius: 100% !important;
+    }
+}
+
+ion-item {
+    ion-fab-button {
+        &.round {
+            border-radius: 100% !important;
+        }
+
+        &[size="small"] {
+            height: 35px !important;
+            width: 35px !important;
+        }
+        margin-left: 0px !important;
+        margin-right: 12px !important;
+    }
+
+    &.ion-item-border-radius {
+        border-radius: 5px !important;
+        --border-radius: 5px !important;
+    }
+
+    circle-progress {
+        &[slot="start"] {
+            margin-left: -5px !important;
+        }
+
+        margin: 0px 10px !important;
+    }
+
+    &.has-icon {
+        >ion-input {
+            padding-left: 10px !important;
+
+            &.has-focus {
+                label.input-wrapper {
+                    margin-top: -33px !important;
+
+                    div.label-text-wrapper {
+                        background: var(--ion-color-white) !important;
+                        --background: var(--ion-color-white) !important;
+                        padding: 10px !important;
+                    }
+
+                    div.native-wrapper {
+                        input.native-input {
+                            margin-top: 13px !important
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+}
+
+.avatar-md {
+    width: 56px;
+    height: 56px;
+}
+
+.avatar-xs {
+    width: 24px;
+    height: 24px;
+}
+
+.avatar-md {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+}
+
+.avatar-lg {
+    display: inline-block;
+    width: 88px;
+    height: 88px;
+}
+
+.avatar-status {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+
+ion-footer {
+    &[slot="bottom"] {
+        position: fixed !important;
+        bottom: 0px !important;
+        width: 100% !important;
+    }
+}
+
+ion-card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tabs-inner {
+    margin-top: 55px !important;
+}
+
+
+ion-segment[mode=ios] {
+    width: 95% !important;
+    height: 32px !important;
+    margin: 0px auto !important;
+    margin-bottom: -10px !important;
+    margin-top: -10px !important;
+    // background: var(--ion-color-light-tint) !important;
+    // --background: var(--ion-color-light-tint) !important;
+    ion-segment-button {
+        &.segment-button-checked {
+                ion-label {
+                    color: var(--ion-color-white) !important;
+                    --color: var(--ion-color-white) !important;
+                }
+        }
+        &::part(indicator-background) {
+            background: var(--ion-color-primary) !important;
+        }
+    }
+}
+
+
+ion-img {
+    object-fit: fill !important;
+    object-position: center !important;
+}
+
+
+code-input {
+  margin-top: 10px !important;
+  margin-left: -10px !important;
+  span {
+      height: 50px !important;
+      width: 50px !important;
+      margin: 5px !important;
+      flex: 0 !important;
+      input[type="tel"] {
+        background-color: var(--ion-color-white) !important;
+        font-size: 25px !important;
+        height: 50px !important;
+        width: 50px !important;
+        font-weight: 900 !important;
+      }
+  }
+}

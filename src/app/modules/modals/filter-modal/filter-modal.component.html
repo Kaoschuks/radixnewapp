@@ -1,0 +1,43 @@
+
+
+<half-modal [open]="isOpen" [initialBreakpoint]="0.3" [endBreakpoint]="0.3"  [id]="type+'filter'" [bodyColor]="'white'" [footerClass]="'bg-white ion-no-border'">
+  <ion-toolbar slot="fixed" style="margin-top: 10px !important;" color="white">
+    <ion-title mode="md">
+      <span class="fs-18">Filter</span>
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-content color="white" class="ion-padding">
+    <br />
+    <br />
+    <br />
+    <ion-row>
+      <ion-col size="8">
+        <ion-item lines="none" class="ion-item-border-radius" color="light">
+          <ion-label aria-label="month label" position="stacked">Months</ion-label>
+          <ion-select aria-label="month label" [interface]="'action-sheet'">
+            <ion-select-option [value]="i+1" *ngFor="let month of months;let i = index">{{month}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="4">
+        <ion-item lines="none" class="ion-item-border-radius" color="light">
+          <ion-label aria-label="year label" position="stacked">Years</ion-label>
+          <ion-select aria-label="year label" [interface]="'action-sheet'">
+            <ion-select-option [value]="year" *ngFor="let year of years;let i = index">{{year}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <br />
+        <ion-button class="no-shadow" (click)="applyFilter()" size="default" color="primary" expand="block">
+          <span class="fs-14 bold">Apply Filter</span>
+        </ion-button>
+        <div *ngIf="plt.is('ios')">
+          <br />
+          <br />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</half-modal>

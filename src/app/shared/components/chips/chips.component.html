@@ -1,0 +1,7 @@
+
+<div class="scrollable-chips">
+  <ion-chip (click)="chipClickedAction(i, data)" [id]="'id_'+i" [ngClass]="(active == i) ? activeColor : defaultColor" [outline]="hasBorder" mode="md" *ngFor="let data of collections; let i = index">
+    <span *ngIf="active != i">{{data | titlecase | slice:0:abbrev}}</span>
+    <span *ngIf="active == i">{{data | titlecase }}</span>
+  </ion-chip>
+</div>
