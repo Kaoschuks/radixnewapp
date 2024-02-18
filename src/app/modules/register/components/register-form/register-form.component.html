@@ -1,37 +1,91 @@
 
-<form class="ion-margin-top ion-padding-start ion-padding-end">
+<form [formGroup]="registerForm" (ngSubmit)="onsubmit.emit(registerForm.value)" role="form"class="ion-margin-top ion-padding-start ion-padding-end">
 
   <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
     <ion-label aria-label="surname" position="stacked">Surname</ion-label>
     <ion-input aria-label="surname" type="text" placeholder="Your surname"></ion-input>
   </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.surname">
+      <div class="error-message" *ngIf="registerForm.get('surname')?.hasError(validation.type) &&
+                      registerForm.get('surname')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
     <ion-label aria-label="firstname" position="stacked">Firstname</ion-label>
     <ion-input aria-label="firstname" type="text" placeholder="Your Firstname"></ion-input>
   </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.firstname">
+      <div class="error-message" *ngIf="registerForm.get('firstname')?.hasError(validation.type) &&
+                      registerForm.get('firstname')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
     <ion-label aria-label="middlename" position="stacked">Middlename</ion-label>
     <ion-input aria-label="middlename" type="text" placeholder="Your Middle Name"></ion-input>
   </ion-item>
-
-  <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
-    <ion-label aria-label="phone number" position="stacked" class="fs-14 text-medium" style="margin-bottom: 0px;margin-top: -5px;">Phone Number</ion-label>
-    <phonenumber-input></phonenumber-input>
-  </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.middlename">
+      <div class="error-message" *ngIf="registerForm.get('middlename')?.hasError(validation.type) &&
+                      registerForm.get('middlename')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
     <ion-label aria-label="email" position="stacked">Email</ion-label>
     <ion-input aria-label="email" type="text" placeholder="Your email"></ion-input>
   </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.email" class="error">
+      <div *ngIf="registerForm.get('email')?.hasError(validation.type) &&
+                registerForm.get('email')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
-    <ion-label aria-label="address" position="stacked">Address</ion-label>
-    <ion-textarea rows="5" aria-label="address" type="text" placeholder="Your address"></ion-textarea>
+    <ion-label aria-label="phone number" position="stacked" class="fs-14 text-medium" style="margin-bottom: 0px;margin-top: -5px;">Phone Number</ion-label>
+    <phonenumber-input></phonenumber-input>
+  </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.phonenumber" class="error">
+      <div *ngIf="registerForm.get('phonenumber')?.hasError(validation.type) &&
+                registerForm.get('phonenumber')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-item class="ion-no-border" detail="false" lines="none">
+    <ion-label position="stacked">Pension Type</ion-label>
+    <ion-select formControlName="pensiontype" interface="action-sheet">
+      <ion-select-option value="">Choose a Pension Type</ion-select-option>
+      <ion-select-option value="RSA PENSION">RSA Pension</ion-select-option>
+      <ion-select-option value="MICRO PENSION">Micro Pension</ion-select-option>
+    </ion-select>
   </ion-item>
   
-  <ion-button expand="full" size="large" color="primary" class="ion-no-border">
+  <ion-button expand="full" size="large" color="primary" [disabled]="registerForm.invalid" class="ion-no-border">
     <span class="fs-14">Create Account</span>
   </ion-button>
 </form>
