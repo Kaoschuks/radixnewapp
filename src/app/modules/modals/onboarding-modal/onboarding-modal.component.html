@@ -1,13 +1,29 @@
 
 
 <full-modal [open]="isOpen" [backDropDismiss]="false" [id]="'walkthrough'" [bodyColor]="'white'" [headerClass]="'hidden'" [footerClass]="'bg-white ion-no-border'">
+
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title mode="md">
+        <img [src]="'assets/imgs/logo.png'" />
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
   
   <div modal-footer class="ion-padding">
-    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/login" (click)="globals.closeModal('walkthroughmodal')" size="large">
-      <span class="fs-12 bold">Existing User? (Sign In)</span>
+    <!-- <onboarding></onboarding> -->
+    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/register" (click)="globals.closeModal('walkthroughmodal')" size="large">
+      <span class="fs-14">Get Started</span>
     </ion-button>  
-    <ion-button style="margin-top: 10px" class="no-shadow" color ="light" mode="md" expand="block" routerLink="/supports/faqs">
-      <span class="fs-12 bold">Before you begin, Read Our FAQS</span>
+    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" fill="clear" routerLink="/login" (click)="globals.closeModal('walkthroughmodal')" size="large">
+      <span class="fs-14 bold">Existing User? (Sign In)</span>
     </ion-button>  
+
+    <ion-item lines="none" class="bottom">
+      <i class="ri-safe-2-line ri-xl fs-30" style="margin-right: 10px;" slot="start"></i>
+      <ion-label>
+        <p><b>Never share your Passcode or pin</b> with anybody to keep your account safe and secured</p>
+      </ion-label>
+    </ion-item>
   </div>
 </full-modal>

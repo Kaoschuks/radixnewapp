@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>forgot</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="white">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/login">
+        <i class="ri-arrow-left-line ri-xl fs-20"></i>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">forgot</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content color="white">
+  <ion-list-header class="ion-margin-bottom">
+    <ion-label>
+      <h2 class="fs-20 bold">Recover your account</h2>
+      <p class="ion-text-wrap fs-14">By continuning, you agree to Radix terms of service and acknolwedge our privacy policy</p>
+    </ion-label>
+  </ion-list-header>
+
 </ion-content>
