@@ -21,13 +21,15 @@ export class LoginPage {
   globals: GlobalsServices = inject(GlobalsServices);
   uData: UserService = inject(UserService);
 
-  login(form: authModel) {
-    console.log(form)
-    // this.uData.login(form).then(async (res: any) => {
-    //   await this.uData.get_user_profile()
-    //   this.globals.navigate('/app/overview', false)
-    // }).catch((ex: any) => {
-    //   this.globals.notifyAlert("Error", ex)
-    // })
+  async login(form: authModel) {
+    try {
+      await this.uData.login(form);
+      await this.uData.get_user_profile()
+      this.globals.navigate('/app/overview', false)
+    } catch (error: any) {
+      this.globals.toastAlert(error.message || error.error || error, {
+        cssClass: 'toast-danger'
+      })
+    }
   }
 }

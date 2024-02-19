@@ -12,7 +12,7 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { GlobalErrorHandlerService , CachingInterceptor, GlobalsServices, RequestInterceptorService, NetworkInterceptor, RequestService, StorageService } from './app/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 
-import 'remixicon/fonts/remixicon.css'
+// import 'remixicon/fonts/remixicon.css'
 
 
 if (environment.production) {

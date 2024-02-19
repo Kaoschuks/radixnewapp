@@ -1,7 +1,7 @@
 import { NgIf, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IonToolbar, IonButton, IonItem, IonLabel, IonHeader, IonTitle } from '@ionic/angular/standalone';
+import { IonToolbar, IonButton, IonItem, IonLabel, IonHeader, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { FullModalComponent, OnboardingComponent } from 'src/app/shared/components';
 import { GlobalsServices } from 'src/app/shared/services';
 
@@ -14,7 +14,7 @@ import { GlobalsServices } from 'src/app/shared/services';
   imports: [
     NgIf, NgClass,
     FullModalComponent, OnboardingComponent,
-    IonToolbar, IonHeader, IonTitle, IonButton, IonItem, IonLabel, RouterModule
+    IonContent, IonToolbar, IonHeader, IonTitle, IonButton, IonItem, IonLabel, RouterModule
   ]
 })
 export class OnboardingModalComponent {

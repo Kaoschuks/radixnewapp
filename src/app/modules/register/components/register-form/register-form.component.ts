@@ -1,6 +1,7 @@
+import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonItem, IonInput, IonLabel, IonButton, IonTextarea } from '@ionic/angular/standalone';
+import { IonItem, IonInput, IonLabel, IonButton, IonTextarea, IonSelect, IonSelectOption, IonRow, IonCol } from '@ionic/angular/standalone';
 import { PhonenumberInputComponent } from 'src/app/shared/components';
 
 @Component({
@@ -10,8 +11,8 @@ import { PhonenumberInputComponent } from 'src/app/shared/components';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    IonItem, IonInput, IonLabel, IonTextarea, IonButton, FormsModule, PhonenumberInputComponent,
-    ReactiveFormsModule
+    IonItem, IonInput, IonLabel, IonTextarea, IonButton, FormsModule, PhonenumberInputComponent, IonSelect, IonSelectOption, IonRow, IonCol,
+    ReactiveFormsModule, NgIf, NgFor
   ]
 })
 export class RegisterFormComponent {

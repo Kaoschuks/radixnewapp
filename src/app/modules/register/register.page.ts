@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IonButton, IonButtons, IonHeader, IonItem, IonLabel, IonListHeader, IonToolbar, IonContent, IonFooter } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { registerModel } from 'src/app/core';
+import { GlobalsServices, registerModel } from 'src/app/core';
+import { UserService } from '../providers/users/user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,13 +17,17 @@ import { registerModel } from 'src/app/core';
   ]
 })
 export class RegisterPage {
+  globals: GlobalsServices = inject(GlobalsServices);
+  uData: UserService = inject(UserService);
 
-  register(form: registerModel) {
-
-    // this.uData.register(form).then((res: any) => {
-    //   this.globals.navigate('/login', false)
-    // }).catch((ex: any) => {
-    //   this.globals.notifyAlert("Error", ex)
-    // })
+  async register(form: registerModel) {
+    try {
+      await this.uData.register(form);
+      this.globals.navigate('/login', false)
+    } catch (error: any) {
+      this.globals.toastAlert(error.message || error.error || error, {
+        cssClass: 'toast-danger'
+      })
+    }
   }
 }

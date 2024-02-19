@@ -38,7 +38,7 @@
     </ion-menu-toggle>
     <br />
     <ion-menu-toggle auto-hide="false">
-      <ion-item style="margin-top: 10px" (click)="logout()" detail="false" lines="none">
+      <ion-item style="margin-top: 10px" (click)="loggedOut.emit()" detail="false" lines="none">
         <i color="danger" style="margin-left: 10px;margin-right: 20px;" slot="start" class="ri-logout-box-line ri-xl text-danger"></i>
         <ion-label color="danger">
           <h2>Logout</h2>

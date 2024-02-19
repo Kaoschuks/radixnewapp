@@ -600,3 +600,17 @@ ion-title {
         margin-top: 5px !important;
     }
 }
+
+.onboard {
+    margin-top: -10px !important;
+    img {
+        width: 100% !important;
+        height: 60vh !important;
+        margin-top: 90px !important;
+    }
+}
+.onboard-button {
+    position: fixed !important;
+    top: 150px;
+    z-index: 99999 !important;
+}

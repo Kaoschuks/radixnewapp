@@ -30,7 +30,12 @@ export const routes: Routes = [
           title: 'accounts'
         },
         loadComponent: () => import('../accounts/accounts.page').then((m) => m.AccountsPage),
-      }
+      },
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
     ],
   },
   {
@@ -44,10 +49,5 @@ export const routes: Routes = [
   {
     path: 'forgot',
     loadComponent: () => import('../forgot/forgot.page').then( m => m.ForgotPage)
-  },
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
   },
 ];

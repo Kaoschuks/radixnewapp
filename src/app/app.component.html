@@ -4,7 +4,7 @@
   <faq-modal [isOpen]="globals.modalData?.faqmodal || false"></faq-modal>
   <ion-split-pane contentId="main">
     <ion-menu contentId="main">
-      <sidebar-nav></sidebar-nav>
+      <sidebar-nav (loggedOut)="globals.loggedOut()"></sidebar-nav>
     </ion-menu>
     <ion-router-outlet id="main"></ion-router-outlet>
   </ion-split-pane>

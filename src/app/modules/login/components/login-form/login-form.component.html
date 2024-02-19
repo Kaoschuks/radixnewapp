@@ -1,35 +1,42 @@
-<form [formGroup]="loginForm" (ngSubmit)="onsubmit.emit(loginForm.value)" class="ion-margin-top ion-padding-start ion-padding-end">
-  <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
-    <ion-label aria-label="radix pin" position="stacked">Radix Pin</ion-label>
-    <ion-input aria-label="radix pin" type="text" placeholder="Your PIN / Phone Number"></ion-input>
-  </ion-item>
-  <div class="validation-errors fs-12">
-    <div *ngFor="let validation of validation_messages.pin">
-      <div class="error-message" *ngIf="loginForm.get('pin')?.hasError(validation.type) && loginForm.get('pin')?.touched">
-        <div>
-          {{" "+validation.message}}
+<form [formGroup]="loginForm" (ngSubmit)="onsubmit.emit(loginForm.value)" class="ion-margin-top">
+  <ion-row class="ion-no-margin">
+    <ion-col size="12">
+      <ion-item lines="none" detail="false" color="white" class="ion-border">
+        <ion-label aria-label="radix pin" position="stacked">Radix Pin</ion-label>
+        <ion-input formControlName="pin" aria-label="radix pin" type="text" placeholder="Your PIN / Phone Number"></ion-input>
+      </ion-item>
+      <div class="validation-errors fs-12 text-danger ion-padding-start">
+        <div *ngFor="let validation of validation_messages.pin">
+          <div class="error-message" *ngIf="loginForm.get('pin')?.hasError(validation.type) && loginForm.get('pin')?.touched">
+            <div>
+              {{" "+validation.message}}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </ion-col>
+    <ion-col size="12">
+      <ion-item lines="none" detail="false" color="white" class="ion-border">
+        <ion-label aria-label="radix passcode" position="stacked">Passcode</ion-label>
+        <ion-input formControlName="password" [type]="hide ? 'text' : 'password'" aria-label="radix passcode" placeholder="XXXXXXX"></ion-input>
+        <ion-button slot="end" (click)="togglePasswordFieldType()" color="dark" fill="clear" style="margin-top: 20px;">
+          <i *ngIf="hide" class="ri-eye-close-line ri-xl fs-20"></i>
+          <i *ngIf="!hide" class="ri-eye-fill ri-xl fs-20"></i>
+        </ion-button>
+      </ion-item>
+      <div class="validation-errors fs-12 text-danger ion-padding-start">
+        <div *ngFor="let validation of validation_messages.password" class="error">
+          <div *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.touched">
+            <div>
+              {{" "+validation.message}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
 
-  <ion-item lines="none" detail="false" color="white" class="ion-margin-bottom ion-border">
-    <ion-label aria-label="radix passcode" position="stacked">Passcode</ion-label>
-    <ion-input [type]="hide ? 'text' : 'password'" aria-label="radix passcode" placeholder="XXXXXXX"></ion-input>
-    <ion-button slot="end" (click)="togglePasswordFieldType()" color="dark" fill="clear" style="margin-top: 20px;">
-      <i *ngIf="hide" class="ri-eye-close-line ri-xl fs-20"></i>
-      <i *ngIf="!hide" class="ri-eye-fill ri-xl fs-20"></i>
-    </ion-button>
-  </ion-item>
-  <div class="validation-errors fs-12">
-    <div *ngFor="let validation of validation_messages.password" class="error">
-      <div *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.touched">
-        <div>
-          {{" "+validation.message}}
-        </div>
-      </div>
-    </div>
-  </div>
+  <br />
 
   <ion-button type="submit" class="ion-no-border" expand="full" size="large" [disabled]="loginForm.invalid" color="primary">
     <span class="fs-14">Continue</span>

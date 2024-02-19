@@ -15,7 +15,8 @@ export class AuthGuardsService implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
      return new Promise(async (resolve, reject) => {
        try {
-         await this._accountServices.isLoggedOn()
+         const resp = await this._accountServices.isLoggedOn()
+         console.log(resp)
          this.globals.menuCtrl.enable(true)
          resolve(true)
        } catch(ex) {

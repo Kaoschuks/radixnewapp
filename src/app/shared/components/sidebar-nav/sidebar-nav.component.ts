@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicModule, Platform } from '@ionic/angular';
 import { micropensionpages, pages, subpages } from 'src/app/core';
@@ -14,6 +14,7 @@ import { micropensionpages, pages, subpages } from 'src/app/core';
 })
 export class SidebarNavComponent {
   platform: Platform = inject(Platform);
+  @Output() loggedOut = new EventEmitter();
 
   public pages: any = pages
   public micropensionpages: any = micropensionpages
@@ -23,8 +24,5 @@ export class SidebarNavComponent {
 
   tooglemenu() {
     this.toogle = (this.toogle) ? false : true ;
-  }
-
-  logout() {
   }
 }

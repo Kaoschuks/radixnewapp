@@ -19,8 +19,7 @@ export class UserService {
       try {
         const config: any = await this.storage.getItem('appconfig');
         const user: any = await this.storage.getItem('userdata');
-
-        // this._api.setJwt(jwt)
+        
         this.globals.config = (!config) ? this.globals.config : config;
         if(!this.globals.config.login) reject(false);
         this.user = user;

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Radix Pension</string>
+    <string name="title_activity_main">Radix Pension</string>
+    <string name="package_name">com.Radix.RadixMobile2</string>
+    <string name="custom_url_scheme">com.Radix.RadixMobile2</string>
+</resources>

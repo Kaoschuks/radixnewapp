@@ -149,7 +149,7 @@ export class GlobalsServices {
     this.config.login = false;
     await storageService.clear();
     this.menuCtrl.enable(false);
-    this.navigate("/auth/login", false);
+    this.navigate("/", false);
   }
 
   async changeNavigatorbarColor(color: string, isDark: boolean = true) {

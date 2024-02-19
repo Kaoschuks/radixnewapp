@@ -1,7 +1,8 @@
+import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { IonButton, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'login-form',
@@ -9,8 +10,9 @@ import { IonButton, IonInput, IonItem, IonLabel } from '@ionic/angular/standalon
   styleUrls: ['./login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [IonItem, IonInput, IonLabel, IonButton, FormsModule, ReactiveFormsModule,
-    RouterModule]
+  imports: [IonItem, IonInput, IonLabel, IonButton, FormsModule, ReactiveFormsModule, IonRow, IonCol,
+    RouterModule, NgIf, NgFor
+  ]
 })
 export class LoginFormComponent {
   @Output() onsubmit = new EventEmitter();

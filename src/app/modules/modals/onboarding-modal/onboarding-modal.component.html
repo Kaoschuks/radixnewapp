@@ -3,24 +3,29 @@
 <full-modal [open]="isOpen" [backDropDismiss]="false" [id]="'walkthrough'" [bodyColor]="'white'" [headerClass]="'hidden'" [footerClass]="'bg-white ion-no-border'">
 
   <ion-header class="ion-no-border">
-    <ion-toolbar>
+    <ion-toolbar slot="fixed">
       <ion-title mode="md">
         <img [src]="'assets/imgs/logo.png'" />
       </ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <onboarding></onboarding>
+  <ion-button (click)="globals.closeModal('walkthroughmodal')" routerLink="/login" size="default" color="primary" class="no-shadow ion-margin onboard-button">
+    <span class="fs-14 bold ion-padding-end ion-padding-start">Get Started</span>
+    <i class="ri-arrow-right-s-line ri-xl fs-30 fs-16 animated pulse infinite" slot="end"></i>
+  </ion-button>
   
   <div modal-footer class="ion-padding">
-    <!-- <onboarding></onboarding> -->
-    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/register" (click)="globals.closeModal('walkthroughmodal')" size="large">
+    <!-- <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/register" (click)="globals.closeModal('walkthroughmodal')" size="large">
       <span class="fs-14">Get Started</span>
     </ion-button>  
     <ion-button class="no-shadow" color ="primary" mode="md" expand="block" fill="clear" routerLink="/login" (click)="globals.closeModal('walkthroughmodal')" size="large">
       <span class="fs-14 bold">Existing User? (Sign In)</span>
-    </ion-button>  
+    </ion-button>   -->
 
     <ion-item lines="none" class="bottom">
-      <i class="ri-safe-2-line ri-xl fs-30" style="margin-right: 10px;" slot="start"></i>
+      <i class="ri-safe-2-fill ri-xl fs-30" style="margin-right: 10px;" slot="start"></i>
       <ion-label>
         <p><b>Never share your Passcode or pin</b> with anybody to keep your account safe and secured</p>
       </ion-label>
