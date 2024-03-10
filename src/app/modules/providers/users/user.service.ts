@@ -33,28 +33,21 @@ export class UserService {
   }
 
   async login(form: any) {
-    return await new Promise((resolve, reject) => {
+    return await new Promise(async (resolve, reject) => {
       try{
-        this.globals.loading.show()
-        this._api.get(`S_WEBUSER/GetUsers_Login/${form.pin}/${form.password}`)
-        .then((res: any) => {
-          if(!res || res.length == 0 || res[0]['USERPIN'] <= 0) reject("User information not found in database");
-          this.user = res[0]
+        const res: any = await this._api.get(`S_WEBUSER/GetUsers_Login/${form.pin}/${form.password}`);
+        if(!res || res.length == 0 || res[0]['USERPIN'] <= 0) reject("User information not found in database");
+        this.user = res[0]
 
-          this.globals.config.login = true
-          this.globals.config.pin = form.pin
+        this.globals.config.login = true
+        this.globals.config.pin = form.pin
 
-          this.storage.saveItem("userdata", this.user)
-          this.storage.saveItem("appconfig", this.globals.config)
-          this.globals.loading.hide()
-          resolve("user logged in")
-        }).catch((ex: any) => {
-          this.globals.loading.hide()
-          reject(ex.message || ex.error || ex)
-        })
+        this.storage.saveItem("appconfig", this.globals.config)
+        this.storage.saveItem("userdata", this.user)
+        resolve("user logged in")
       }catch(ex: any) {
         this.globals.loading.hide()
-        reject(ex.message || ex.error || ex)
+        this.globals.toastAlert(ex.message || ex.error || ex || 'Verification Error')
       }
     })
   }
@@ -103,21 +96,16 @@ export class UserService {
   }
 
   async get_user_profile() {
-    return await new Promise((resolve, reject) => {
+    return await new Promise(async (resolve, reject) => {
       try{
-        this.globals.loading.show()
-        this._api.get(`AccountsTrans/GetCustProfile/${this.globals.config.pin}`)
-        .then((res: any) => {
-          if(!res || res.length == 0 ) reject("User information not found in database");
-          this.user =  res[0]
-          this.storage.saveItem("userdata", this.user)
-          
-          this.globals.loading.hide()
-          resolve(this.user)
-        }).catch((ex: any) => {
-          this.globals.loading.hide()
-          reject(ex.message || ex.error || ex)
-        })
+        this.globals.loading.show("Getting user information")
+        const res: any = await this._api.get(`AccountsTrans/GetCustProfile/${this.globals.config.pin}`)
+        if(!res || res.length == 0 ) reject("User information not found in database");
+        this.user =  res[0]
+        this.storage.saveItem("userdata", this.user)
+        
+        this.globals.loading.hide()
+        resolve(this.user)
       }catch(ex: any) {
         this.globals.loading.hide()
         reject(ex.message || ex.error || ex)

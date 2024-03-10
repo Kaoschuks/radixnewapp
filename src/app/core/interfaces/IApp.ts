@@ -5,7 +5,6 @@ export enum ConnectionStatus {
 
 export interface configModel {
   pin: string,
-  walkthrough: boolean,
   login: boolean
 }
 

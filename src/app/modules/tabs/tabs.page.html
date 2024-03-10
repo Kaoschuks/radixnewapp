@@ -2,7 +2,6 @@
 <!-- <mobile-header (onclick)="globals.openModal($event)" [refresh]="globals.pageRefresh" [color]="'white'" [title]="globals.pageData?.title | lowercase"></mobile-header> -->
 <mobile-layout (onHeaderButtonClicked)="globals.openModal($event)" [refresh]="globals.pageRefresh" [title]="globals.pageData?.title | lowercase"></mobile-layout>
 
-<filter-modal [type]="''" [isOpen]="globals.modalData?.filtermodal || false"></filter-modal>
 <profile-modal [isOpen]="globals.modalData?.profilemodal || false"></profile-modal>
 <language-modal [isOpen]="globals.modalData?.languagemodal || false"></language-modal>
 <notification-modal [isOpen]="globals.modalData?.notificationmodal|| false"></notification-modal>

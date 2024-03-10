@@ -21,7 +21,7 @@ export class RegisterFormComponent {
   registerForm: FormGroup = new FormGroup({
     email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
     pensiontype: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-    phonenumber: new FormControl('', Validators.compose([Validators.required, Validators.minLength(5)])),
+    phonenumber: new FormControl(''),
     firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.+-]+$')])),
     middlename: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.+-]+$')])),
     surname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(1), Validators.pattern('^[a-zA-Z0-9_.+-]+$')]))
@@ -51,4 +51,10 @@ export class RegisterFormComponent {
       { type: "minlength", message: "Phone Number must be at least 1 characters long."}
     ]
   };
+
+  phonenumberChange(data: any) {
+    this.registerForm.patchValue({
+      phonenumber: data.phoneNumber
+    })
+  }
 }

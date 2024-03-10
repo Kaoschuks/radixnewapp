@@ -25,6 +25,13 @@ export const routes: Routes = [
           import('../settings/settings.page').then((m) => m.SettingsPage),
       },
       {
+        path: 'transactions',
+        data: {
+          title: 'Transactions'
+        },
+        loadComponent: () => import('../transactions/transactions.page').then( m => m.TransactionsPage)
+      },
+      {
         path: 'accounts',
         data: {
           title: 'accounts'

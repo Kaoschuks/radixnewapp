@@ -6,6 +6,9 @@ const config: CapacitorConfig = {
 	loggingBehavior: 'none',
 	webDir: 'www/browser',
 	plugins: {
+		CapacitorCookies: {
+			enabled: false
+		},
 		SplashScreen: {
 			launchShowDuration: 1500,
 			launchAutoHide: true,
@@ -22,11 +25,12 @@ const config: CapacitorConfig = {
 	},
 	android: {
 		minWebViewVersion: 55,
-		allowMixedContent: false
+		allowMixedContent: true
 	},
 	server: {
 		cleartext: true,
-		androidScheme: 'https'
+		androidScheme: 'https',
+		iosScheme: 'capacitor'
 	}
 };
 

@@ -20,8 +20,7 @@ export class AppComponent implements AfterViewInit {
   async ngAfterViewInit() {
     try {
       await this.globals.platform.ready();
-      await this.globals.changeStatusBarColor('#ffffff', true, false);
-      await this.globals.changeNavigatorbarColor('#ffffff', true);
+      await this.globals.changeTheme()
       this.globals.appLoading = false;
     } catch (error) {
       console.log(error)

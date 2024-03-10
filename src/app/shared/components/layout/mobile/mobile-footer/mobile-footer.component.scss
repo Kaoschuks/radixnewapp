@@ -33,6 +33,10 @@
             span {
                 font-size: 10px !important;
             }
+            img {
+                height: 20px !important;
+                margin-bottom: 5px !important;
+            }
             ion-icon, i, img {
                 transition: all .3s;
                 &.after {

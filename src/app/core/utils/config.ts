@@ -2,7 +2,8 @@ export const firebaseConfig: any = {
   serverkey: ""
 };
 
-export const url: string = 'https://thingproxy.freeboard.io/fetch/http://41.86.150.243/RadixWebAPI/api/'
+// export const url: string = 'https://thingproxy.freeboard.io/fetch/http://41.86.150.243/RadixWebAPI/api/'
+export const url: string = 'https://online.radixpension.com/RadixWebAPI/api/'
 // export const url: string = 'http://41.86.150.243/RadixWebAPI/api/'
 
 export const STORAGE_REQ_KEY: string =  "radixstorage"

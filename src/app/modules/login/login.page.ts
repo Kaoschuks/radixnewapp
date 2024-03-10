@@ -23,10 +23,12 @@ export class LoginPage {
 
   async login(form: authModel) {
     try {
+      this.globals.loading.show('verifying credentials')
       await this.uData.login(form);
       await this.uData.get_user_profile()
-      this.globals.navigate('/app/overview', false)
+      this.globals.navigate('/', false)
     } catch (error: any) {
+      this.globals.loading.hide()
       this.globals.toastAlert(error.message || error.error || error, {
         cssClass: 'toast-danger'
       })

@@ -2,7 +2,7 @@
   <ion-progress-bar *ngIf="refresh" type="indeterminate"></ion-progress-bar>
   <ion-toolbar [color]="color">
     <ion-title mode="ios">
-      <span *ngIf="title !== 'home'">{{ title || 'not set' }}</span>
+      <span *ngIf="title !== 'home'">{{ title || 'not set' | titlecase }}</span>
       <img *ngIf="title === 'home'" [src]="'assets/imgs/logo.png'" />
     </ion-title>
 
@@ -13,8 +13,8 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button fill="clear" color="white" (click)="onclick.emit('notificationmodal')">
-        <ion-icon name="notifications-outline" class="fs-22 text-dark"></ion-icon>
+      <ion-button fill="clear" color="dark" (click)="onclick.emit('notificationmodal')">
+        <ion-icon name="notifications-outline" class="fs-22"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

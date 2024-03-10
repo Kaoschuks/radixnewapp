@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { GlobalsServices } from 'src/app/core';
 import { FullModalComponent } from 'src/app/shared/components';
+import { FaqsListsComponent } from './components/faqs-lists/faqs-lists.component';
 
 @Component({
   selector: 'faq-modal',
@@ -8,7 +9,7 @@ import { FullModalComponent } from 'src/app/shared/components';
   styleUrls: ['./faq-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FullModalComponent]
+  imports: [FullModalComponent, FaqsListsComponent]
 })
 export class FaqModalComponent  implements OnInit {
 

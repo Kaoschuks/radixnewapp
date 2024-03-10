@@ -1,9 +1,9 @@
 
-<form [formGroup]="registerForm" (ngSubmit)="onsubmit.emit(registerForm.value)" role="form"class="ion-margin-top">
+<form [formGroup]="registerForm" (submit)="onsubmit.emit(registerForm.value)" role="form"class="ion-margin-top">
 
   <ion-row class="ion-no-margin">
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="surname" position="stacked">Surname</ion-label>
         <ion-input formControlName="surname" aria-label="surname" type="text" placeholder="Your surname"></ion-input>
       </ion-item>
@@ -20,7 +20,7 @@
     </ion-col>
     
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="firstname" position="stacked">Firstname</ion-label>
         <ion-input formControlName="firstname" aria-label="firstname" type="text" placeholder="Your Firstname"></ion-input>
       </ion-item>
@@ -37,7 +37,7 @@
     </ion-col>
     
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="middlename" position="stacked">Middlename</ion-label>
         <ion-input formControlName="middlename" aria-label="middlename" type="text" placeholder="Your Middle Name"></ion-input>
       </ion-item>
@@ -54,7 +54,7 @@
     </ion-col>
     
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="email" position="stacked">Email</ion-label>
         <ion-input formControlName="email" aria-label="email" type="text" placeholder="Your email"></ion-input>
       </ion-item>
@@ -71,23 +71,13 @@
     </ion-col>
 
     <ion-col size="7">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="phone number" position="stacked" style="margin-bottom: 5px;margin-top: -5px;">Phone Number</ion-label>
-        <phonenumber-input></phonenumber-input>
+        <phonenumber-input [id]="'register'" (oninput)="phonenumberChange($event)"></phonenumber-input>
       </ion-item>
-      <div class="validation-errors fs-12 text-danger ion-padding-start">
-        <div *ngFor="let validation of validation_messages.phonenumber" class="error">
-          <div *ngIf="registerForm.get('phonenumber')?.hasError(validation.type) &&
-                    registerForm.get('phonenumber')?.touched">
-            <div>
-              {{" "+validation.message}}
-            </div>
-          </div>
-        </div>
-      </div>
     </ion-col>
     <ion-col size="5">
-      <ion-item class="ion-border" detail="false" lines="none">
+      <ion-item class="ion-border" detail="false" lines="none" color="light">
         <ion-label aria-label="pension type" position="stacked">Pension Type</ion-label>
         <ion-select aria-label="pension type" formControlName="pensiontype" interface="action-sheet">
           <ion-select-option value="">Choose a Pension Type</ion-select-option>
@@ -96,12 +86,15 @@
         </ion-select>
       </ion-item>
     </ion-col>
+
+    <ion-col size="12">
+      <br />
+      <ion-button type="submit" expand="full" size="large" color="primary" [disabled]="registerForm.invalid" class="ion-no-border">
+        <span class="fs-14">Create Account</span>
+      </ion-button>
+    </ion-col>
   </ion-row>
 
 
   
-  <br />
-  <ion-button expand="full" size="large" color="primary" [disabled]="registerForm.invalid" class="ion-no-border">
-    <span class="fs-14">Create Account</span>
-  </ion-button>
 </form>

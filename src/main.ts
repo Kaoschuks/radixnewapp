@@ -9,7 +9,7 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { GlobalErrorHandlerService , CachingInterceptor, GlobalsServices, RequestInterceptorService, NetworkInterceptor, RequestService, StorageService } from './app/core';
+import { GlobalErrorHandlerService , GlobalsServices, RequestInterceptorService, RequestService, StorageService } from './app/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 
 // import 'remixicon/fonts/remixicon.css'
@@ -26,7 +26,6 @@ export function initializeApp(
   return async () => { 
     try {
       globals.setUrlTitle();
-
       if(globals.platform.is('capacitor')) await SplashScreen.hide({fadeOutDuration: 400});
     } catch (error) {
       console.log(error)
@@ -61,19 +60,9 @@ bootstrapApplication(AppComponent, {
       deps: [ GlobalsServices ], 
       multi: true
     },
-    { 
-      provide: HTTP_INTERCEPTORS, 
-      useClass: NetworkInterceptor, 
-      multi: true 
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptorService,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CachingInterceptor,
       multi: true,
     },
     {

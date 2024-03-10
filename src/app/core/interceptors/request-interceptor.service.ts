@@ -29,8 +29,8 @@ export class RequestInterceptorService implements HttpInterceptor {
                 return event;
             }),
             catchError(requestError => {
-                if (requestError instanceof HttpErrorResponse) this.errorProcessing(requestError);
-                return throwError(requestError.error);
+                // if (requestError instanceof HttpErrorResponse) this.errorProcessing(requestError);
+                return throwError(requestError.error.Message || requestError.error || 'Request cannot be completed.');
             }));
     }
 

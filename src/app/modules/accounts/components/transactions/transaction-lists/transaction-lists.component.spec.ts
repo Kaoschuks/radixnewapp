@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FilterModalComponent } from './filter-modal.component';
+import { TransactionListsComponent } from './transaction-lists.component';
 
-describe('FilterModalComponent', () => {
-  let component: FilterModalComponent;
-  let fixture: ComponentFixture<FilterModalComponent>;
+describe('TransactionListsComponent', () => {
+  let component: TransactionListsComponent;
+  let fixture: ComponentFixture<TransactionListsComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterModalComponent ],
+      declarations: [ TransactionListsComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FilterModalComponent);
+    fixture = TestBed.createComponent(TransactionListsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

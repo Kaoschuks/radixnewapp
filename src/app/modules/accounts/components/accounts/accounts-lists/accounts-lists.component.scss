@@ -1,0 +1,26 @@
+:host {
+    ion-item {
+        --background: transparent !important;
+        background: transparent !important;
+        --background-color: transparent !important;
+        background-color: transparent !important;
+        ion-avatar {
+            margin-left: -5px !important;
+        }
+    }
+    div.ion-border {
+        border-radius: 7px !important;
+        border: 1px solid #ccc !important;
+        margin: 0 auto !important;
+        width: 93% !important;
+        ion-item {
+            ion-avatar {
+                margin-left: -5px !important;
+                // margin-right: 5px;
+                img {
+                    margin-top: -10px !important;
+                }
+            }
+        }
+    }
+}

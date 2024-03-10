@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MobileLayoutComponent, SuccessModalComponent } from 'src/app/shared/components';
 import { GlobalsServices } from 'src/app/shared/services';
 import { LowerCasePipe, NgIf } from '@angular/common';
-import { FilterModalComponent, LanguageModalComponent, NotificationModalComponent, ProfileModalComponent } from '../modals';
+import { LanguageModalComponent, NotificationModalComponent, ProfileModalComponent } from '../modals';
 
 @Component({
   selector: 'app-tabs',
@@ -11,7 +11,7 @@ import { FilterModalComponent, LanguageModalComponent, NotificationModalComponen
   standalone: true,
   imports: [
     NgIf, LowerCasePipe,
-    LanguageModalComponent, FilterModalComponent, NotificationModalComponent, ProfileModalComponent,
+    LanguageModalComponent, NotificationModalComponent, ProfileModalComponent,
     MobileLayoutComponent, SuccessModalComponent
   ],
 })

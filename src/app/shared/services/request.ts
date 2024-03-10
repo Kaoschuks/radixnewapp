@@ -1,20 +1,24 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { url } from 'src/app/core';
+
 
 @Injectable()
 export class RequestService {
   url: string = url;
-
-  constructor(private http: HttpClient) {}
+  private http: HttpClient = inject(HttpClient)
+  headers: any = {
+    responseType: "json",
+  };
 
   async get(routes: string, custom_url: boolean = false) {
     const url = custom_url ? routes : this.url + routes;
-    return await new Promise((resolve, reject) => {
-      this.http.get(url).subscribe(
-        (response) => resolve(response),
-        (error) => reject(error)
-      );
+    return await new Promise(async (resolve, reject) => {
+      this.http.get(url, this.headers).subscribe((res: any) => {
+        resolve(res)
+      }, (err: any) => {
+        reject(err);
+      })
     });
   }
 

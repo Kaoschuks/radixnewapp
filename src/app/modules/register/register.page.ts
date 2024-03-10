@@ -20,7 +20,7 @@ export class RegisterPage {
   globals: GlobalsServices = inject(GlobalsServices);
   uData: UserService = inject(UserService);
 
-  async register(form: registerModel) {
+  async register(form: any) {
     try {
       await this.uData.register(form);
       this.globals.navigate('/login', false)

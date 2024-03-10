@@ -1,7 +1,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="onsubmit.emit(loginForm.value)" class="ion-margin-top">
   <ion-row class="ion-no-margin">
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="radix pin" position="stacked">Radix Pin</ion-label>
         <ion-input formControlName="pin" aria-label="radix pin" type="text" placeholder="Your PIN / Phone Number"></ion-input>
       </ion-item>
@@ -16,9 +16,9 @@
       </div>
     </ion-col>
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="white" class="ion-border">
+      <ion-item lines="none" detail="false" color="light" class="ion-border">
         <ion-label aria-label="radix passcode" position="stacked">Passcode</ion-label>
-        <ion-input formControlName="password" [type]="hide ? 'text' : 'password'" aria-label="radix passcode" placeholder="XXXXXXX"></ion-input>
+        <ion-input formControlName="password" [type]="!hide ? 'text' : 'password'" aria-label="radix passcode" placeholder="XXXXXXX"></ion-input>
         <ion-button slot="end" (click)="togglePasswordFieldType()" color="dark" fill="clear" style="margin-top: 20px;">
           <i *ngIf="hide" class="ri-eye-close-line ri-xl fs-20"></i>
           <i *ngIf="!hide" class="ri-eye-fill ri-xl fs-20"></i>
@@ -34,14 +34,13 @@
         </div>
       </div>
     </ion-col>
+    <ion-col size="12">
+      <ion-button type="submit" class="ion-no-border" expand="full" size="large" [disabled]="loginForm.invalid" color="primary">
+        <span class="fs-14">Continue</span>
+      </ion-button>
+      <ion-button expand="full" size="large" fill="clear" mode="ios" color="dark" routerLink="/register">
+        <span class="fs-16">Dont have an account? Create account</span>
+      </ion-button>
+    </ion-col>
   </ion-row>
-
-  <br />
-
-  <ion-button type="submit" class="ion-no-border" expand="full" size="large" [disabled]="loginForm.invalid" color="primary">
-    <span class="fs-14">Continue</span>
-  </ion-button>
-  <ion-button expand="full" size="large" fill="clear" mode="ios" color="dark" routerLink="/register">
-    <span class="fs-16">Dont have an account? Create account</span>
-  </ion-button>
 </form>

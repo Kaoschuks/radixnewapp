@@ -17,6 +17,7 @@ import { StorageService } from "./storage";
 import { configModel } from "src/app/core";
 import { App } from "@capacitor/app";
 import { NavigationBar, NavigationBarPluginEvents } from '@hugotomazi/capacitor-navigation-bar';
+import { BehaviorSubject } from "rxjs";
 
 const LOGTAG = '[GlobalErrorHandlerService]';
 
@@ -39,7 +40,10 @@ export class GlobalsServices {
   public location: Location = inject(Location)
 
 
-  config!: configModel
+  config: configModel = {
+    login: false,
+    pin: ''
+  }
   modalData: any = {
     buttons: null,
     color: null,
@@ -48,6 +52,7 @@ export class GlobalsServices {
   }
   pageData: any
   appLoading: boolean = true;
+  refresh = new BehaviorSubject<boolean>(false);
   pageRefresh: boolean = false;
   loading: any = {
     hide: async () => {
@@ -174,6 +179,28 @@ export class GlobalsServices {
     this.platform.backButton.subscribeWithPriority(-1, () => {
       if (this.router.url === '/home') App.exitApp();
     });
+  }
+
+  get isLight(): boolean {
+    const body: any = document.getElementById('body');
+    return body.classList.contains("light")
+  }
+
+  async changeTheme() {
+    const body: any = document.getElementById('body');
+    
+    switch (this.isLight) {
+      case true:
+        body?.classList.add('dark'); body?.classList.remove('light');
+        await this.changeStatusBarColor('#1e2023', true, false)
+        // await this.changeNavigatorbarColor('#1e2023', false)
+        break;
+      case false:
+        body?.classList.add('light'); body?.classList.remove('dark')
+        await this.changeStatusBarColor('#ffffff', false, false)
+        // await this.changeNavigatorbarColor('#000000', true)
+        break;
+    }
   }
 }
 

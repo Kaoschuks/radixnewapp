@@ -1,0 +1,47 @@
+<div *ngIf="loader">
+  <ion-item lines="none" *ngFor="let msg of [0,1,2,3]">
+    <ion-avatar slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-label>
+      <h2><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></h2>
+      <p><ion-skeleton-text animated style="width: 70%"></ion-skeleton-text></p>
+      <p><ion-skeleton-text animated style="width: 70%"></ion-skeleton-text></p>
+    </ion-label>
+  </ion-item>
+</div>
+
+<div *ngIf="!loader && accounts?.length" style="margin-top: 10px">
+  <ion-card class="ion-no-padding no-shadow ion-border" *ngFor="let acct of accounts;let i = index">
+    <ion-item lines="none" detail="false" (click)="toogle(i)">
+      <ion-avatar slot="start" size="small" style="margin-right: 10px">
+        <img 
+        [src]="
+          'https://ui-avatars.com/api/?name=' + cat +
+            '&color=ffffff&&background=21205c'
+        " >
+      </ion-avatar>
+      <ion-label>
+        <h2 class="fs-18">{{toNumber(acct?.RSABAL || acct?.VOLBAL) | currency: '₦ ' : 'symbol' : '1.0-0'}}</h2>
+      </ion-label>
+      <ion-note slot="end" align="right">
+      <!-- <ion-note slot="end" align="right" *ngIf="!toogle_arr[i]"> -->
+        <span class="fs-12 bold" color="success">+ {{acct?.GROWTH}}</span><br />
+        <span class="fs-10 bold">{{acct?.BID_PRICE}}</span>
+      </ion-note>
+    </ion-item>
+    <ion-item class="animated fadeIn" style="margin-top: -20px;" lines="none" detail="false">
+    <!-- <ion-item class="animated fadeIn" style="margin-top: -20px;" lines="none" detail="false" *ngIf="toogle_arr[i]"> -->
+      <ion-avatar slot="start" style="margin-right: 10px">
+      </ion-avatar>
+      <ion-label>
+        <p>Bid Price NGN {{acct?.BID_PRICE}}</p>
+        <p>Total Contribution {{acct?.RSACONTRIBUTION || acct?.OTHER_CONTRIBUTION}}</p>
+      </ion-label>
+    </ion-item>
+    <div class="ion-padding animated fadeIn" style="margin-top: -20px;margin-bottom: -10px;">
+    <!-- <div class="ion-padding animated fadeIn" style="margin-top: -20px;margin-bottom: -10px;" *ngIf="toogle_arr[i]"> -->
+      <ion-button (click)="view_details(acct, type)" expand="block" color="primary" fill="outline">View Transactions</ion-button>
+    </div>
+  </ion-card>
+</div>
