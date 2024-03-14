@@ -4,4 +4,6 @@
     <ion-refresher slot="fixed" (ionRefresh)="getAccounts($event, true)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
+
+    <account-portfolio [balance]="0" [currency]="'NGN '"></account-portfolio>
 </ion-content>

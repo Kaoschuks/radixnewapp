@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonListHeader, IonToolbar } from '@ionic/angular/standalone';
 import { ForgotpasswordFormComponent } from './components/forgotpassword-form/forgotpassword-form.component';
 import { GlobalsServices } from 'src/app/core';
-import { UserService } from '../providers/users/user.service';
+import { UserService } from '../../shared/services/users/user.service';
 
 @Component({
   selector: 'app-forgot',

@@ -3,7 +3,7 @@ import { IonButton, IonButtons, IonHeader, IonItem, IonLabel, IonListHeader, Ion
 import { RouterModule } from '@angular/router';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { GlobalsServices, registerModel } from 'src/app/core';
-import { UserService } from '../providers/users/user.service';
+import { UserService } from '../../shared/services/users/user.service';
 
 @Component({
   selector: 'app-register',

@@ -4,7 +4,7 @@ import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonItem, IonLa
 import { GlobalsServices, authModel } from 'src/app/core';
 import { OnboardingModalComponent } from '../modals';
 import { RouterModule } from '@angular/router';
-import { UserService } from '../providers/users/user.service';
+import { UserService } from '../../shared/services/users/user.service';
 
 @Component({
   selector: 'app-login',

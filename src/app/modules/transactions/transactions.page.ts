@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
 import { GlobalsServices } from 'src/app/core';
-import { AccountsService } from '../accounts/services/accounts/accounts.service';
+import { AccountsService } from '../../shared/services/accounts/accounts.service';
 
 @Component({
   selector: 'app-transactions',

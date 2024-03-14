@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, Platform } from '@ionic/angular';
 import { GlobalsServices } from 'src/app/core';
-import { AccountsService } from '../accounts/services/accounts/accounts.service';
+import { AccountsService } from '../../shared/services/accounts/accounts.service';
 import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
+import { AccountPortfolioComponent } from './components/account-portfolio/account-portfolio.component';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,10 @@ import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/st
   styleUrls: ['./home.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [IonContent, IonRefresher, IonRefresherContent]
+  imports: [
+    IonContent, IonRefresher, IonRefresherContent,
+    AccountPortfolioComponent
+  ]
 })
 export class HomePage implements OnInit {
   globals: GlobalsServices = inject(GlobalsServices);
