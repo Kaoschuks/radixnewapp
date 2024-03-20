@@ -1,0 +1,17 @@
+<!-- <ng-container>
+
+</ng-container> -->
+
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('feedbackmodal')" [asPage]="false" [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'feedback'" [title]="'Feedback'">
+  <ion-content color="light">
+    <ion-list-header>
+      <ion-label>
+          <p class="fs-14 text-medium">
+              We are available in these countries please<br />
+              choose one
+          </p>
+      </ion-label>
+    </ion-list-header>
+  </ion-content>
+  <!-- <feedback-form (onSubmit)="userService.send_feedback($event)"></feedback-form> -->
+</full-modal>

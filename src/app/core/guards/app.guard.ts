@@ -16,10 +16,8 @@ export class AuthGuardsService implements CanActivate {
      return new Promise(async (resolve, reject) => {
        try {
          await this._accountServices.isLoggedOn()
-         this.globals.menuCtrl.enable(true)
          resolve(true)
        } catch(ex) {
-        this.globals.menuCtrl.enable(false)
         this.globals.openModal('walkthroughmodal');
         this.router.navigateByUrl('/login')
         reject(false);

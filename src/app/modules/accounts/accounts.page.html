@@ -1,3 +1,24 @@
-<ion-content>
-  
+
+<ion-content color="light">
+    <ion-refresher slot="fixed" (ionRefresh)="getAccounts($event, true)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <loading [text]="'Fetching all accounts'" *ngIf="loading | async"></loading>
+
+    <ng-container *ngIf="(loading | async) == false">
+        <ion-card class="bg-white no-shadow" *ngIf="accounts.volaccounts?.length == 0 && accounts.rsaaccounts?.length == 0">
+            <no-content [useImage]="false">
+                <img height="150px" src="assets/img/gif/nocontent.gif" />
+                <ion-label>
+                    <h2 class="fs-16">No Transaction Found</h2>
+                    <p>Create a new chat application with data <br />and functions to manage everything</p>
+                </ion-label>
+            </no-content>
+        </ion-card>
+    
+        <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [accounts]="accounts.rsaaccounts || []" [currency]="globals.config.currency"></accounts-cards>
+        <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [accounts]="accounts.volaccounts || []" [currency]="globals.config.currency"></accounts-cards>
+    </ng-container>
+
 </ion-content>

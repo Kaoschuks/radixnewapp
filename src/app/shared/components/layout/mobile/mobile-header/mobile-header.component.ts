@@ -16,6 +16,7 @@ export class MobileHeaderComponent{
   @Input() title!: string
   @Input() refresh!: boolean
   @Input() color!: string;
+  @Input() username: string = "Chikeluba Chukwuemeka Favour";
   @Output() onclick = new EventEmitter();
 
   constructor() {

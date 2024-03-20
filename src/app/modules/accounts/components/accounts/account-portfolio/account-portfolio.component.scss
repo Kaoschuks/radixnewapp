@@ -1,0 +1,21 @@
+:host {
+    ion-badge {
+        margin-top: 15px !important;
+        margin-left: 10px;
+    }
+    ion-card {
+        border-radius: 7px !important;
+        ion-item {
+            ion-label {
+                h2 {
+                    margin-top: -3px !important;
+                    margin-bottom: -2px !important;
+                }
+            }
+        }
+    }
+    ion-button.transactions {
+        border-radius: 7px !important;
+        --border-radius: 7px !important;
+    }
+}

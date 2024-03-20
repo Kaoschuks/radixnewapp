@@ -38,6 +38,7 @@ export class UserService {
         const res: any = await this._api.get(`S_WEBUSER/GetUsers_Login/${form.pin}/${form.password}`);
         if(!res || res.length == 0 || res[0]['USERPIN'] <= 0) reject("User information not found in database");
         this.user = res[0]
+        this.user['PIN'] = form.pin
 
         this.globals.config.login = true
         this.globals.config.pin = form.pin
@@ -74,7 +75,6 @@ export class UserService {
   }
 
   async register(form: registerModel) {
-    console.log(form)
     return await new Promise((resolve, reject) => {
       this.globals.loading.show()
       try{

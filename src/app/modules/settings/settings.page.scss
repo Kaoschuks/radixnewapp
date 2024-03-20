@@ -3,5 +3,8 @@
     ion-fab-button {
         margin-left: -15px;
         border-radius: 100%;
+        i {
+            margin-bottom: -3px !important;
+        }
     }
 }

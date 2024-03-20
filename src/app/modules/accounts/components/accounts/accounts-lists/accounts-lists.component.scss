@@ -7,6 +7,12 @@
         ion-avatar {
             margin-left: -5px !important;
         }
+        ion-fab-button {
+            border-radius: 7px !important;
+            --border-radius: 7px !important;
+            width: 35px !important;
+            height: 35px !important;
+        }
     }
     div.ion-border {
         border-radius: 7px !important;

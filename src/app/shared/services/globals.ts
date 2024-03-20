@@ -14,7 +14,7 @@ import {
 import { ActivatedRoute, ActivationStart, Router } from "@angular/router";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { StorageService } from "./storage";
-import { configModel } from "src/app/core";
+import { configModel, currency } from "src/app/core";
 import { App } from "@capacitor/app";
 import { NavigationBar, NavigationBarPluginEvents } from '@hugotomazi/capacitor-navigation-bar';
 import { BehaviorSubject } from "rxjs";
@@ -42,7 +42,8 @@ export class GlobalsServices {
 
   config: configModel = {
     login: false,
-    pin: ''
+    pin: '',
+    currency: currency
   }
   modalData: any = {
     buttons: null,
@@ -125,7 +126,7 @@ export class GlobalsServices {
         position == "top" ? "top" : position == "middle" ? "middle" : "bottom",
       cssClass: cssClass,
     });
-    toast.present();
+    await toast.present();
   }
 
   navigate(path: string, subpage: boolean = true) {
@@ -153,25 +154,25 @@ export class GlobalsServices {
 
     this.config.login = false;
     await storageService.clear();
-    this.menuCtrl.enable(false);
-    this.navigate("/", false);
+    window.location.href = "/"
   }
 
   async changeNavigatorbarColor(color: string, isDark: boolean = true) {
     if(this.platform.is('capacitor')) await NavigationBar.setColor({
       color: color,
       darkButtons: isDark
-    });await NavigationBar.show()
+    });
+    await NavigationBar.show()
   }
 
-  async changeStatusBarColor(color: string = '', isLight: boolean = true, noStatus: boolean = true) {
+  async changeStatusBarColor(color: string = '', isLight: boolean = false, noStatus: boolean = true) {
     if(this.platform.is('capacitor')) {
       setTimeout(async () => {
         await StatusBar.setStyle({
           style: (isLight == false) ? Style.Light : Style.Dark
         })
         await StatusBar.setBackgroundColor({ color: color });
-      }, 100);
+      }, 500);
     }
   }
 
@@ -187,20 +188,23 @@ export class GlobalsServices {
   }
 
   async changeTheme() {
-    const body: any = document.getElementById('body');
+
+    await this.changeStatusBarColor('#ffffff', false, false)
+    // const body: any = document.getElementById('body');
     
-    switch (this.isLight) {
-      case true:
-        body?.classList.add('dark'); body?.classList.remove('light');
-        await this.changeStatusBarColor('#1e2023', true, false)
-        // await this.changeNavigatorbarColor('#1e2023', false)
-        break;
-      case false:
-        body?.classList.add('light'); body?.classList.remove('dark')
-        await this.changeStatusBarColor('#ffffff', false, false)
-        // await this.changeNavigatorbarColor('#000000', true)
-        break;
-    }
+    // switch (this.isLight) {
+    //   case true:
+    //     body?.classList.add('dark'); body?.classList.remove('light');
+    //     await this.changeStatusBarColor('#ffffff', false, false)
+    //     // await this.changeStatusBarColor('#f4f5f8', false, false)
+    //     // await this.changeNavigatorbarColor('#1e2023', false)
+    //     break;
+    //   case false:
+    //     body?.classList.add('light'); body?.classList.remove('dark')
+    //     await this.changeStatusBarColor('#1e2023', true, false)
+    //     // await this.changeNavigatorbarColor('#000000', true)
+    //     break;
+    // }
   }
 }
 
@@ -238,7 +242,6 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   private async showErrorAlert(message: string): Promise<void> {
     const globalService: GlobalsServices =
       this.injector.get<GlobalsServices>(GlobalsServices);
-    console.log(message);
-    // await globalService.toastAlert(message);
+    await globalService.toastAlert(message);
   }
 }

@@ -1,7 +1,7 @@
 :host {
-    ion-tab-button {
-        height: 55px !important;
-    }
+    // ion-tab-button {
+    //     height: 50px !important;
+    // }
     ion-toolbar, ion-tab-bar {
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         // position: absolute;
@@ -28,7 +28,7 @@
             }
             i, img {
                 margin-top: 2px !important;
-                margin-bottom: 0px !important;
+                margin-bottom: 3px !important;
             }
             span {
                 font-size: 10px !important;

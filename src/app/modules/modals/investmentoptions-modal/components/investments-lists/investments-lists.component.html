@@ -1,0 +1,18 @@
+
+<ion-accordion-group value="1option" class="bg-light">
+  <ion-accordion style="margin-top: 3px;" [value]="i+1+'option'" *ngFor="let invest of investments; let i = index">
+    <ion-item slot="header" class="bg-white" color="white" lines="none" mode="ios">
+      <ion-label>
+        <h2 class="ion-text-wrap fs-14 text-dark">{{invest?.name}}</h2>
+      </ion-label>
+    </ion-item>
+    <div class="bg-white" slot="content">
+      <ion-item lines="none" detail="false">
+        <ion-label>
+          <p>{{invest?.information}}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-accordion>
+
+</ion-accordion-group>

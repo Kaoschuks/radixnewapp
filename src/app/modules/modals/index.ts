@@ -4,3 +4,4 @@ export * from './notification-modal/notification-modal.component';
 export * from './onboarding-modal/onboarding-modal.component';
 export * from './profile-modal/profile-modal.component';
 export * from './faq-modal/faq-modal.component';
+export * from './actions-modal/actions-modal.component';

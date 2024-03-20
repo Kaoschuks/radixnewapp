@@ -8,15 +8,15 @@
           <ion-button color="dark" fill="clear" class="no-shadow back" size="small" routerDirection="back"
             (click)="open = false; closeModal.emit(true)" slot="start">
             <ion-icon *ngIf="asPage" name="chevron-back-outline" class="fs-25"></ion-icon>
-            <ion-icon *ngIf="!asPage" name="chevron-down-outline" class="fs-25"></ion-icon>
+            <ion-icon *ngIf="!asPage" name="chevron-down-outline" class="fs-18"></ion-icon>
           </ion-button>
         </ion-buttons>
-        <ion-buttons slot="end">
+        <!-- <ion-buttons slot="end">
           <ion-button>
             <i class="fi fi-rr-search fs-18"></i>
           </ion-button>
-        </ion-buttons>
-        <ion-title>
+        </ion-buttons> -->
+        <ion-title mode="ios">
           <span class="fw-4">{{ title | titlecase }}</span>
         </ion-title>
       </ion-toolbar>

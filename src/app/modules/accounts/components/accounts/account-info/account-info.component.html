@@ -1,0 +1,50 @@
+
+<ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">
+  <ion-avatar class="no-shadow bg-white avatar-md avatar-border" style="position:relative;z-index:999">
+    <img [src]=" 'https://ui-avatars.com/api/?name=' + account?.ACCOUNTTYPE + '&color=000000&&background=f4f5f8' " >
+  </ion-avatar>
+  <ion-item lines="none" class="bg-white" style="position:relative;top: -20px;margin-bottom: -30px;">
+      <ion-label align="center">
+          <br />
+          <h2 class="fs-14">{{ account?.PIN | titlecase }}</h2>
+          <h2 class="fs-20 bold text-dark">{{ account?.RSABAL | currency : currency }}</h2>
+          <p class="ion-text-wrap">{{ account?.ACCOUNTTYPE }}</p>
+      </ion-label>
+  </ion-item>
+</ion-card>
+
+<ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">
+  <ion-list lines="none">
+
+    <ion-item mode="ios" detail="false" lines="none">
+      <ion-label>
+        <p class="fs-12">PIN Number</p>
+        <h2>{{account?.PIN  }}</h2>
+      </ion-label>
+      <ion-label>
+        <p class="fs-12">Account Type</p>
+        <h2>{{ account?.ACCOUNTTYPE | titlecase }}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item mode="ios" detail="false" lines="none">
+      <ion-label>
+        <p class="fs-12">Amount</p>
+        <h2>{{ account?.RSABAL | currency : currency  }}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item mode="ios" detail="false" lines="none">
+      <ion-label>
+        <p class="fs-12">Bid Price</p>
+        <h2>
+          {{account?.BID_PRICE || 0 | currency : currency }}
+        </h2>
+      </ion-label>
+      <ion-label>
+        <p class="fs-12">Contribution</p>
+        <h2>{{ account?.RSACONTRIBUTION || 0 | currency : currency }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-card>

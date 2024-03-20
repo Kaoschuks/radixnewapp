@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { IonApp, IonMenu, IonRouterOutlet, IonSplitPane } from '@ionic/angular/standalone';
-import { SplashScreen } from '@capacitor/splash-screen';
 import { GlobalsServices } from './shared/services';
 import { register } from 'swiper/element/bundle';
 import { OnloadingComponent, SidebarNavComponent } from './shared/components';

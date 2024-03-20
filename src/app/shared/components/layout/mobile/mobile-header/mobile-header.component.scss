@@ -1,3 +1,11 @@
 :host {
-
+    ion-avatar, ion-fab-button {
+        height: 30px !important;
+        width: 30px !important;
+        --border-radius: 7px !important;
+        margin-left: 0px !important;
+    }
+    ion-avatar {
+        margin-left: 10px !important;
+    }
 }

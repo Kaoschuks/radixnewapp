@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule, Platform } from '@ionic/angular';
-import { GlobalsServices } from 'src/app/core';
-import { AccountsService } from '../../shared/services/accounts/accounts.service';
-import { IonContent, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
-import { AccountPortfolioComponent } from './components/account-portfolio/account-portfolio.component';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { AccountPortfolioComponent } from '../accounts/components/accounts/account-portfolio/account-portfolio.component';
+import { QuickActionsComponent } from './components/quick-actions/quick-actions.component';
+import { HomeService } from './services/home.service';
+import { TransactionListsComponent } from '../accounts/components';
+import { AccountsListsComponent } from '../accounts/components/accounts/accounts-lists/accounts-lists.component';
 
 @Component({
   selector: 'app-home',
@@ -14,44 +14,17 @@ import { AccountPortfolioComponent } from './components/account-portfolio/accoun
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    IonContent, IonRefresher, IonRefresherContent,
-    AccountPortfolioComponent
+    IonicModule, CommonModule, AsyncPipe,
+    AccountPortfolioComponent, QuickActionsComponent, TransactionListsComponent, AccountsListsComponent
   ]
 })
-export class HomePage implements OnInit {
-  globals: GlobalsServices = inject(GlobalsServices);
-  _accountservice: AccountsService = inject(AccountsService);
-
-  loading: boolean = false;
-
-  accounts: any = {
-    rsaaccounts: [],
-    volaccounts: []
-  }
+export class HomePage extends HomeService implements OnInit {
   
   async ngOnInit() {
-    this.loading = true;
+    console.log(this._userservice.user)
+    this.loading.next(true)
     await this.getAccounts(null);
   }
 
-  async getAccounts(event: any, pageRefresh: boolean = false) {
-    try {
-      this.globals.pageRefresh = pageRefresh;
-      event?.target?.complete();
-      const [rsaaccounts, volaccounts] = await Promise.all([
-        await this._accountservice.get_accounts(),
-        await this._accountservice.get_accounts('GetVolBal'),
-      ])
-
-      this.accounts.rsaaccounts = rsaaccounts
-      this.accounts.volaccounts = volaccounts
-      this.loading = this.globals.pageRefresh = false
-
-    } catch (error: any) {
-      this.loading = this.globals.pageRefresh = false
-      this.globals.toastAlert(error, {
-        cssClass: 'toast-danger'
-      })
-    }
-  }
+  
 }

@@ -13,24 +13,10 @@ import { icons } from 'src/app/core/utils/assets';
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
 })
 export class MobileFooterComponent {
-  homeActiveIcon: string = icons.homeActive
-  homeIcon: string = icons.homeOutline
-  personActiveIcon: string = icons.personActive
-  personIcon: string = icons.personOutline
-  accountActiveIcon: string = icons.accountActive
-  accountIcon: string = icons.accountOutline
-  transactionsActiveIcon: string = icons.transactionsActive
-  transactionsIcon: string = icons.transactionsOutline
-
 
   public environmentInjector = inject(EnvironmentInjector);
 
   constructor() {
-    addIcons({ 
-      triangle, ellipse, square,
-      homeactive: icons.homeBlue,
-      home: icons.homeOutline
-    });
   }
 
 }

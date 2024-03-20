@@ -17,19 +17,20 @@ export const routes: Routes = [
           import('../home/home.page').then((m) => m.HomePage),
       },
       {
+        path: 'calculator',
+        data: {
+          title: 'Calculator'
+        },
+        loadComponent: () =>
+          import('../calculator/calculator.page').then((m) => m.CalculatorPage),
+      },
+      {
         path: 'settings',
         data: {
-          title: 'my account'
+          title: 'Settings'
         },
         loadComponent: () =>
           import('../settings/settings.page').then((m) => m.SettingsPage),
-      },
-      {
-        path: 'transactions',
-        data: {
-          title: 'Transactions'
-        },
-        loadComponent: () => import('../transactions/transactions.page').then( m => m.TransactionsPage)
       },
       {
         path: 'accounts',
@@ -37,6 +38,13 @@ export const routes: Routes = [
           title: 'accounts'
         },
         loadComponent: () => import('../accounts/accounts.page').then((m) => m.AccountsPage),
+      },
+      {
+        path: 'micropensions',
+        data: {
+          title: 'Micro Pensions'
+        },
+        loadComponent: () => import('../micropension/micropension.page').then(m => m.MicropensionPage)
       },
       {
         path: '',
@@ -47,14 +55,14 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('../login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('../login/login.page').then(m => m.LoginPage)
   },
   {
     path: 'register',
-    loadComponent: () => import('../register/register.page').then( m => m.RegisterPage)
+    loadComponent: () => import('../register/register.page').then(m => m.RegisterPage)
   },
   {
     path: 'forgot',
-    loadComponent: () => import('../forgot/forgot.page').then( m => m.ForgotPage)
+    loadComponent: () => import('../forgot/forgot.page').then(m => m.ForgotPage)
   },
 ];

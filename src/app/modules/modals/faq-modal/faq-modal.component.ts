@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { GlobalsServices } from 'src/app/core';
 import { FullModalComponent } from 'src/app/shared/components';
-import { FaqsListsComponent } from './components/faqs-lists/faqs-lists.component';
+import { FaqsListsComponent } from '../../micropension/components/faqs-lists/faqs-lists.component';
 
 @Component({
   selector: 'faq-modal',

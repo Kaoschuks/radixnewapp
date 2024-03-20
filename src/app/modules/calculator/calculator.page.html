@@ -1,0 +1,34 @@
+
+<ion-content [fullscreen]="true" color="light">
+
+    <!-- <ion-card class="no-shadow ion-no-margin" style="padding-top:10px;padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;">
+        <ion-list-header>
+          <ion-label>
+            <h2>
+                Pension Result
+            </h2>
+          </ion-label>
+        </ion-list-header>
+        <ion-row>
+            <ion-col size="4">
+                <img src="assets/img/payment.png" />
+            </ion-col>
+            <ion-col size="8">
+                <ion-item mode="ios" lines="none" detail="false">
+                    <ion-label>
+                        <p class="fs-14 fw-4">10 years Plan</p>
+                        <h2 class="fs-18 text-primary">{{0 | currency : '₦ '}}</h2>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <calculator-form (onsubmit)="showAlert($event)"></calculator-form>
+    </ion-card> -->
+</ion-content>
+
+<ion-footer class="ion-padding-start ion-padding-end ion-no-border bg-transparent">
+    <ion-button color="primary" expand="block" size="default" (click)="showAlert('Calcutor feature not activated yet on the version')">
+        <span class="fs-14">Calculate Pensions</span>
+    </ion-button>
+    <br />
+</ion-footer>

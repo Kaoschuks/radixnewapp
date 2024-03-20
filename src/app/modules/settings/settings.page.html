@@ -1,109 +1,173 @@
+<ion-content color="light">
 
-<ion-content color="white">
-
-    <!-- <ion-card class="no-shadow ion-no-padding animated fadeIn bg-transparent" align="center">
-        <ion-avatar class="no-shadow bg-medium avatar-lg avatar-border" style="position:relative;z-index:999">
-            <ion-img [src]="'https://ui-avatars.com/api/?name=Chikeluba Chukwuemeka Favour&color=000000&&background=ffffff'"></ion-img>
-        </ion-avatar>
-        <ion-item lines="none" class="bg-white" style="position:relative;top: -30px;margin-bottom: -30px;">
-            <ion-label align="center">
-                <br />
-                <h2>{{ 'Favour Chikleuba Chukwuemeka' | titlecase }}</h2>
-                <p>{{ 'info@kelubaemeka.me' | titlecase }}</p>
-            </ion-label>
-        </ion-item>
-    </ion-card> -->
-
-    <ion-list color="white">
-        <ion-item lines="none" color="white">
+    <ion-card class="no-shadow ion-no-margin" style="padding-top:10px;margin-top: 10px;margin-bottom: 10px;">
+        <ion-item detail="true" lines="full" color="white" (click)="globals.openModal('profilemodal')">
             <ion-avatar class="no-shadow" slot="start">
-                <ion-img [src]="'https://ui-avatars.com/api/?name=Chikeluba Chukwuemeka Favour&color=000000&&background=ffffff'"></ion-img>
+                <ion-img
+                    [src]="'https://ui-avatars.com/api/?name='+_userservice.user?.NAME || _userservice.user?.FIRSTNAME  + ' ' + _userservice.user?.SURNAME+'&color=ffffff&&background=000000'"></ion-img>
             </ion-avatar>
             <ion-label>
-                <h2>{{ 'Favour Chikleuba Chukwuemeka' | titlecase }}</h2>
-                <p>{{ 'info@kelubaemeka.me' | titlecase }}</p>
+                <h2 class="fs-16">{{_userservice.user?.NAME || _userservice.user?.FIRSTNAME  + ' ' + _userservice.user?.SURNAME || 'not set' | titlecase}}</h2>
+                <p class="text-medium fs-12">{{ _userservice.user?.EMAIL || 'not set' | titlecase }}</p>
             </ion-label>
         </ion-item>
-        <br />
 
-        <ion-list-header color="white">
+        <ion-item mode="ios" color="white" detail="true" (click)="globals.openModal('profilemodal')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-portrait text-dark fs-18"></i>
+            </ion-fab-button>
             <ion-label>
-                <h2 class="fs-14">Account Preference</h2>
+                <h2 class="fs-14">Employer Information</h2>
             </ion-label>
-        </ion-list-header>
-        <ion-item mode="ios" color="white" class="mt-1">
-            <ion-fab-button size="small" class="bg-light no-shadow" slot="start">
-                <ion-icon class="bx bx-palette fs-18 text-dark"></ion-icon>
+        </ion-item>
+
+        <ion-item mode="ios" color="white" detail="true" (click)="globals.openModal('nokmodal')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-users text-dark fs-18"></i>
+            </ion-fab-button>
+            <ion-label>
+                <h2 class="fs-14">Next Of KIN</h2>
+            </ion-label>
+        </ion-item>
+
+        <ion-item mode="ios" lines="none" detail="false">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-palette fs-18 text-dark"></i>
             </ion-fab-button>
             <ion-label>
                 <h2 class="fs-14">Dark mode</h2>
             </ion-label>
-            <ion-toggle mode="md" aria-label="mode" slot="end" [checked]="!globals.isLight" (ionChange)="globals.changeTheme()" color="primary"></ion-toggle>
+            <ion-toggle mode="md" aria-label="mode" slot="end" [checked]="!globals.isLight"
+                (ionChange)="globals.changeTheme()" color="primary"></ion-toggle>
         </ion-item>
 
-        <ion-item mode="ios" color="white" lines="none" (click)="globals.openModal('languagemodal')">
-            <ion-fab-button size="small" class="bg-light no-shadow" slot="start">
-                <ion-icon name="language-outline" class="fs-18 text-dark"></ion-icon>
+        <ion-item mode="ios" lines="none" (click)="globals.openModal('languagemodal')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-language text-dark fs-18"></i>
             </ion-fab-button>
             <ion-label>
                 <h2 class="fs-14">Change Language</h2>
             </ion-label>
             <ion-button class="no-shadow" color="dark" fill="clear" shape="round" slot="end">
-                <span class="fs-12 text-medium">English</span>
+                <span class="fs-14 text-dark">English</span>
             </ion-button>
         </ion-item>
 
-        <ion-list-header color="white" class="ion-margin-top">
-            <ion-label>
-                <h2 class="fs-14">Support & Help</h2>
-            </ion-label>
-        </ion-list-header>
-        <ion-item mode="ios" color="white" detail="true">
-            <ion-fab-button size="small" class="bg-light no-shadow" slot="start">
-                <ion-icon class="bx bx-bug fs-18 text-dark"></ion-icon>
+        <ion-item mode="ios" color="white" lines="none" detail="true"
+            (click)="globals.openModal('investmentoptionsmodal')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-coin-up-arrow text-dark fs-18"></i>
             </ion-fab-button>
             <ion-label>
-                <h2 class="fs-14">Report a bug</h2>
+                <h2 class="fs-14">Investment Options</h2>
             </ion-label>
         </ion-item>
 
-        <ion-item mode="ios" color="white" detail="true">
-            <ion-fab-button size="small" class="bg-light no-shadow" slot="start">
-                <ion-icon class="bx bx-question-mark fs-18 text-dark"></ion-icon>
+        <ion-accordion-group class="bg-white">
+            <ion-accordion [value]="'paymentmethod'" toggleIcon="">
+                <ion-item slot="header" color="white" lines="none" mode="ios" detail="true">
+                    <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                        <i class="fi fi-rr-money-bills-simple text-dark fs-18"></i>
+                    </ion-fab-button>
+                    <ion-label>
+                        <h2 class="fs-14">Payment Method</h2>
+                    </ion-label>
+                </ion-item>
+                <div class="ion-padding-start ion-padding-end bg-white" slot="content">
+                    <ion-radio-group value="paystack">
+                        <ion-item color="white" lines="none" detail="false" mode="ios">
+                            <ion-radio value="paystack" justify="start" labelPlacement="start" class="fs-14">Using Debit Card or Bank Transfer (Paystack)</ion-radio>
+                        </ion-item>
+                        <ion-item color="white" lines="none" detail="false" mode="ios">
+                            <ion-radio value="ussd" justify="start" labelPlacement="start" class="fs-14">Using USSD</ion-radio>
+                        </ion-item>
+                        <ion-item color="white" lines="none" detail="false" mode="ios">
+                            <ion-radio value="shortcode" justify="start" labelPlacement="start" class="fs-14">SMS short code</ion-radio>
+                        </ion-item>
+                        <ion-item color="white" lines="none" detail="false" mode="ios">
+                            <ion-radio value="call" justify="start" labelPlacement="start" class="fs-14">Call (Interactive Voice Response)</ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                    <br />
+                </div>
+            </ion-accordion>
+        </ion-accordion-group>
+
+        <!-- <ion-item mode="ios" color="white" lines="none" detail="true">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-money-bills-simple text-dark fs-18"></i>
+            </ion-fab-button>
+            <ion-label>
+                <h2 class="fs-14">Payment Method</h2>
+            </ion-label>
+        </ion-item> -->
+        <!-- </ion-card>
+
+
+    <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;"> -->
+        <!-- <ion-list-header class="b-b">
+          <ion-label>
+            <h2 class="fs-14">Support & Help</h2>
+          </ion-label>
+        </ion-list-header> -->
+
+        <ion-item mode="ios" color="white" detail="true" (click)="globals.openModal('faqmodal')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-question-square text-dark fs-18"></i>
             </ion-fab-button>
             <ion-label>
                 <h2 class="fs-14">Frequently Asked Questions</h2>
             </ion-label>
         </ion-item>
 
-        <ion-item mode="ios" color="white" detail="true">
-            <ion-fab-button size="small" class="bg-light no-shadow" slot="start">
-                <ion-icon class="bx bx-support fs-18 text-dark"></ion-icon>
+        <ion-item mode="ios" color="white" detail="true" (click)="globals.openModal('livechatmodal')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-comment text-dark fs-18"></i>
             </ion-fab-button>
             <ion-label>
                 <h2 class="fs-14">Live Chat</h2>
             </ion-label>
         </ion-item>
 
-        <ion-item mode="ios" color="white" detail="true" lines="none" class="ion-margin-bottom">
-            <ion-fab-button size="small" class="bg-light no-shadow" slot="start">
-                <ion-icon class="bx bx-phone fs-18 text-dark"></ion-icon>
+        <ion-item mode="ios" color="white" detail="true" lines="none" (click)="openSupportPage('terms & condition')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-handshake text-dark fs-18"></i>
             </ion-fab-button>
             <ion-label>
-                <h2 class="fs-14">Contact Us</h2>
-            </ion-label>
-        </ion-item>
-        <ion-item (click)="onDeleteAccount()" mode="ios" color="white" detail="true" class="ion-margin-top">
-            <ion-label>
-                <h2 class="text-danger fs-14">Delete Account</h2>
+                <h2 class="fs-14">Terms & Condition</h2>
             </ion-label>
         </ion-item>
 
-        <ion-item (click)="onLogout()" mode="ios" color="white" detail="true"  lines="none">
+        <ion-item mode="ios" color="white" detail="true" lines="none" (click)="openSupportPage('privacy policy')">
+            <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
+                <i class="fi fi-rr-incognito text-dark fs-18"></i>
+            </ion-fab-button>
             <ion-label>
-                <h2 class="text-danger fs-14">Logout</h2>
+                <h2 class="fs-14">Privacy Policy</h2>
             </ion-label>
         </ion-item>
-    </ion-list>
-    
+    </ion-card>
+
+
+    <ion-item (click)="onDeleteAccount()" mode="ios" color="white" detail="true" class="ion-margin-top">
+        <ion-label>
+            <h2 class="text-danger fs-14">Delete Account</h2>
+        </ion-label>
+    </ion-item>
+
+    <ion-item (click)="onLogout()" mode="ios" color="white" detail="true" lines="none">
+        <ion-label>
+            <h2 class="text-danger fs-14">Logout</h2>
+        </ion-label>
+    </ion-item>
+    <br />
+    <br />
+
+
+    <p class="text-medium ion-text-center fs-12 ion-padding">
+        BY providing your information, you will allow Aide Finance to create budget
+        under user information and manage your finance which take less than 24 hours
+        to process it
+    </p>
+
 </ion-content>

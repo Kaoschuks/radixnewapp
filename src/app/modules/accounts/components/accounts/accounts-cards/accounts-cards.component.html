@@ -1,0 +1,28 @@
+<ion-card color="white" class="ion-no-padding ion-no-margin no-shadow" style="margin-top: 10px;margin-bottom: 10px;" *ngFor="let acct of accounts">
+  <ion-item color="white" lines="none" detail="false">
+    <ion-label>
+      <p class="fs-14 fw-4">{{acct?.ACCOUNTTYPE | titlecase}}</p>
+      <h2 class="fs-20 text-primary">{{ acct?.RSABAL || 0 | currency: currency}} <span class="fs-12 text-dark">/ {{ acct?.RSACONTRIBUTION || 0 | currency: currency}}</span></h2>
+      <!-- <p class="fs-14 text-dark">{{acct?.PIN}} - {{acct?.SCHEMENAME | titlecase}}</p> -->
+    </ion-label>
+    <ion-note slot="end">
+      <!-- <span class="fs-14 text-dark">{{acct?.transactions.length || 0}} Transactions</span><br /> -->
+      <!-- <span class="fs-12">{{acct?.SCHEMENAME | titlecase}}</span> -->
+    </ion-note>
+  </ion-item>
+
+  <div style="margin-top: -20px;">
+    <ion-item mode="ios" detail="false" lines="none" class="bg-transparent" style="margin-bottom: -10px;">
+      <ion-label>
+        <h2 class="fs-14 text-medium">Bid Price {{ acct?.BID_PRICE || 0 | currency: currency }}</h2>
+      </ion-label>
+    </ion-item>
+    <transaction-lists [loader]="loader" [transactions]="acct?.transactions.slice(0,limit)" [currency]="currency"></transaction-lists>
+    <ion-item mode="ios" detail="false" lines="none" (click)="selectedAccount.emit(acct)" *ngIf="acct?.transactions.length > 0">
+      <ion-label>
+        <h2 class="fs-14 text-primary">View This Account Information</h2>
+      </ion-label>
+    </ion-item>
+  </div>
+
+</ion-card>

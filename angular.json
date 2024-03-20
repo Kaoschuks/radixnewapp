@@ -25,7 +25,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "allowedCommonJsDependencies": [
-              "crypto-js"
+              "crypto-js", "intlTelInput"
             ],
             "assets": [
               {
@@ -35,6 +35,7 @@
               }
             ],
             "styles": [
+              "./node_modules/@flaticon/flaticon-uicons/css/all/all.css",
               "./node_modules/intl-tel-input/build/css/intlTelInput.css",
               "./node_modules/remixicon/fonts/remixicon.css",
               "src/assets/css/animate.css",

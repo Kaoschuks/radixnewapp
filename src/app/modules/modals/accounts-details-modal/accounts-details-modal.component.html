@@ -1,0 +1,17 @@
+
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('accountsdetailsmodal')" [asPage]="false"
+    [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'accountsdetails'" [title]="_accountservice.accountInfo?.ACCOUNTTYPE">
+
+    <account-info [currency]="globals.config.currency" [account]="_accountservice.accountInfo"></account-info>
+
+    <ion-card class="no-shadow ion-no-margin"
+        style="padding-bottom: 10px;padding-top: 10px;margin-top: 10px;margin-bottom: 10px;">
+        <ion-list-header style="margin-bottom: 0px;">
+            <ion-label>
+                <h2>Account Transactions</h2>
+                <p class="fs-12 text-medium" style="margin-top: 0px;">November 2021 - Now</p>
+            </ion-label>
+        </ion-list-header>
+        <transaction-lists [currency]="globals.config.currency" [transactions]="_accountservice.accountInfo?.transactions || []"></transaction-lists>
+    </ion-card>
+</full-modal>

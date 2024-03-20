@@ -1,0 +1,10 @@
+
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('supportmodal')" [asPage]="false" [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'support'" [title]="globals.modalData?.title">
+  <ion-content color="light">
+
+    <ion-card class="no-shadow ion-no-margin" style="padding-top:10px;margin-top: 10px;margin-bottom: 10px;">
+      <privacy *ngIf="globals.modalData?.title == 'privacy policy'"></privacy>
+      <terms *ngIf="globals.modalData?.title == 'terms & condition'"></terms>
+    </ion-card>
+  </ion-content>
+</full-modal>

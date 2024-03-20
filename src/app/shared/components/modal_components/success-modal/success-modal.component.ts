@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { alertCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'success-modal',
@@ -20,4 +22,9 @@ export class SuccessModalComponent {
   @Output() continue = new EventEmitter();
   @Output() closeModal = new EventEmitter();
   
+  constructor() {
+    addIcons({
+      "alert-circle-outline": alertCircleOutline
+    })
+  }
 }

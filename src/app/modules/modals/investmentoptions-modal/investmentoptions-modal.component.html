@@ -1,0 +1,7 @@
+<!-- <ng-container>
+
+</ng-container> -->
+
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('investmentoptionsmodal')" [asPage]="false" [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'investmentoptions'" [title]="'Investment Options'">
+  <investments-lists></investments-lists>
+</full-modal>

@@ -1,0 +1,53 @@
+:host {
+    ion-fab-button {
+        margin: 0px auto !important;
+        // margin-bottom: 7px !important;
+        height: 40px !important;
+        width: 40px !important;
+        i {
+            font-size: 22px !important;
+            color: var(--ion-color-dark) !important;
+        }
+    }
+    .scrollable-chips {
+        display: block;
+        overflow-x: scroll;
+        white-space: nowrap;
+        width: 100%;
+        padding-left: 10px;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+
+        .product {
+            display: inline-block;
+            width: 65px !important;
+            text-align: center !important;
+            margin-right: 10px !important;
+            padding-top: 5px;
+            padding-bottom: 7px;
+            border-radius: 5px !important;
+            --background: #21205c6a !important;
+            --background-color: #21205c6a !important;
+            &.fb {
+                width: 60px !important;
+                ion-fab-button {
+                    // --border-radius: 5px !important;
+                    // border-radius: 5px !important;
+                    margin-bottom: 7px !important;
+                    height: 45px !important;
+                    width: 45px !important;
+                    i {
+                        font-size: 18px !important;
+                        color: var(--ion-color-primary) !important;
+                    }
+                }
+            }
+
+            ion-label {
+                h2 {
+                    font-size: 11px !important;
+                }
+            }
+        }
+    }
+}

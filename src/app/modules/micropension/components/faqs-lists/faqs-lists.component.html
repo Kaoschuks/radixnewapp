@@ -1,0 +1,18 @@
+
+<ion-accordion-group value="1faq" class="bg-light">
+  <ion-accordion style="margin-top: 3px;" [value]="i+1+'faq'" *ngFor="let faq of faqs[type]; let i = index">
+    <ion-item slot="header" class="bg-white" color="white" lines="none" mode="ios">
+      <ion-label>
+        <h2 class="ion-text-wrap fs-14 text-dark">{{faq?.name}}</h2>
+      </ion-label>
+    </ion-item>
+    <div class="bg-white" slot="content">
+      <ion-item lines="none" detail="false">
+        <ion-label>
+          <p>{{faq?.children[0]?.children[0]?.information}}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-accordion>
+
+</ion-accordion-group>

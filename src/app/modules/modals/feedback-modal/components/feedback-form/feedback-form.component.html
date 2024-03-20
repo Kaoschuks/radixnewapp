@@ -1,0 +1,71 @@
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit.emit(feedbackForm.value)" role="form">
+  <ion-item class="ion-no-border" detail="false" lines="none">
+    <ion-label position="stacked">Fullname</ion-label>
+    <ion-input type="text" placeholder="Enter Your Fullname" formControlName="fullname"
+      [class.invalid]="true"></ion-input>
+  </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.fullname">
+      <div class="error-message" *ngIf="feedbackForm.get('fullname')?.hasError(validation.type) &&
+                      feedbackForm.get('fullname')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-item class="ion-no-border" detail="false" lines="none">
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input type="email" placeholder="Enter Your Email" formControlName="email" [class.invalid]="true"></ion-input>
+  </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.email">
+      <div class="error-message" *ngIf="feedbackForm.get('email')?.hasError(validation.type) &&
+                      feedbackForm.get('email')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-item class="ion-no-border" detail="false" lines="none">
+    <ion-label position="stacked">PhoneNumber</ion-label>
+    <ion-input type="text" placeholder="Enter Your Phone Number" formControlName="phonenumber"
+      [class.invalid]="true"></ion-input>
+  </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.phonenumber">
+      <div class="error-message" *ngIf="feedbackForm.get('phonenumber')?.hasError(validation.type) &&
+                      feedbackForm.get('phonenumber')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-item class="ion-no-border" detail="false" lines="none">
+    <ion-label position="stacked">Message</ion-label>
+    <ion-textarea rows="5" type="text" placeholder="Enter Your Message" formControlName="message"
+      [class.invalid]="true"></ion-textarea>
+  </ion-item>
+  <div class="validation-errors fs-12">
+    <div *ngFor="let validation of validation_messages.message">
+      <div class="error-message" *ngIf="feedbackForm.get('message')?.hasError(validation.type) &&
+                      feedbackForm.get('message')?.touched">
+        <div>
+          {{" "+validation.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ion-padding">
+    <ion-button id="feedback" type="submit" [disabled]="feedbackForm.invalid" expand="block">
+      Send Feedback Reuqest
+    </ion-button>
+  </div>
+  <br />
+</form>

@@ -2,20 +2,32 @@
   <ion-progress-bar *ngIf="refresh" type="indeterminate"></ion-progress-bar>
   <ion-toolbar [color]="color">
     <ion-title mode="ios">
-      <span *ngIf="title !== 'home'">{{ title || 'not set' | titlecase }}</span>
-      <img *ngIf="title === 'home'" [src]="'assets/imgs/logo.png'" />
+      <span *ngIf="title !== 'home'" class="fs-18">{{ title || 'not set' | titlecase }}</span>
+      <img *ngIf="title === 'home'" [src]="'assets/img/logo.png'" />
     </ion-title>
 
-    <ion-buttons slot="start">
-      <ion-menu-button auto-hide="false">
-        <i class="ri-menu-2-fill ri-xl fs-22"></i>
-      </ion-menu-button>
+    <ion-buttons slot="end">
+      <!-- <ion-button class="no-shadow" (click)="onclick.emit('notificationmodal')">
+        <ion-icon name="notifications-outline" class="fs-18"></ion-icon>
+      </ion-button> -->
+      <!-- <ion-button class="no-shadow">
+        <i class="fi fi-rr-search fs-20"></i>
+      </ion-button> -->
+      <!-- <ion-avatar class="no-shadow">
+        <ion-img [src]="'https://ui-avatars.com/api/?name='+username+'&color=ffffff&&background=21205c'"></ion-img>
+      </ion-avatar> -->
+      <ion-button class="no-shadow" (click)="onclick.emit('livechatmodal')">
+        <i class="fi fi-rr-comment fs-18"></i>
+      </ion-button>
     </ion-buttons>
 
-    <ion-buttons slot="end">
-      <ion-button fill="clear" color="dark" (click)="onclick.emit('notificationmodal')">
-        <ion-icon name="notifications-outline" class="fs-22"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button class="no-shadow" (click)="onclick.emit('feedbackmodal')">
+        <i class="fi fi-rr-interrogation fs-18"></i>
       </ion-button>
+      <!-- <ion-avatar class="no-shadow" (click)="onclick.emit('profilemodal')">
+        <ion-img [src]="'https://ui-avatars.com/api/?name='+username+'&color=000000&&background=f4f5f8'"></ion-img>
+      </ion-avatar> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

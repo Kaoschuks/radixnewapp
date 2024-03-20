@@ -327,7 +327,7 @@ body {
     --backdrop-opacity: 0.71;
 
     &.modal-center-sm {
-        --height: 320px !important;
+        --height: 270px !important;
     }
 
     &.modal-h80 {
@@ -427,7 +427,7 @@ body {
 }
 
 ion-button[size="default"] {
-    height: 50px !important;
+    height: 45px !important;
 }
 
 ion-fab-button {
@@ -435,6 +435,20 @@ ion-fab-button {
 
     &.round {
         --border-radius: 100% !important;
+    }
+    &.services {
+        border-radius: 10px !important;
+        --border-radius: 10px!important;
+        width: 50px !important;
+        height: 50px !important;
+      
+        i {
+            margin-bottom: -5px !important;
+        }
+        img {
+            height: 22px !important;
+            width: 22px !important;
+        }
     }
 }
 
@@ -547,14 +561,14 @@ ion-card {
 }
 
 
+
 ion-segment[mode=ios] {
     width: 95% !important;
-    height: 32px !important;
+    height: 35px !important;
     margin: 0px auto !important;
     margin-bottom: -10px !important;
-    margin-top: -10px !important;
-    // background: var(--ion-color-light-tint) !important;
-    // --background: var(--ion-color-light-tint) !important;
+    background: var(--ion-color-white) !important;
+    --background: var(--ion-color-white) !important;
     ion-segment-button {
         &.segment-button-checked {
                 ion-label {
@@ -613,4 +627,16 @@ ion-title {
     position: fixed !important;
     top: 150px;
     z-index: 99999 !important;
+}
+
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* Creates a circular shape */
+  }
+  iframe {
+    height: 100% !important;
+    width: 100vw !important;
+    border: 0px solid var(--ion-color-white) !important;
 }

@@ -13,7 +13,6 @@ import { FullModalComponent, OnboardingComponent } from 'src/app/shared/componen
     NgIf, NgClass, TitleCasePipe,
     FullModalComponent, OnboardingComponent,
     IonToolbar, IonSearchbar, IonButton, IonRouterLink, IonRow, IonCol, IonFabButton, IonCard, IonAvatar, IonLabel, IonImg, IonItem,
-
   ]
 })
 export class ProfileModalComponent  implements OnInit {

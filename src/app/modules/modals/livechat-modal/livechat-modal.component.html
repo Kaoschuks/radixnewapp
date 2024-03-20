@@ -1,0 +1,6 @@
+
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('livechatmodal')" [asPage]="false" [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'livechat'" [title]="'Live Chat'">
+  <ion-content color="light">
+    <iframe #livechat src="https://tawk.to/chat/5d35d4a39b94cd38bbe8ab9b/default" (load)="onIframeLoad()"></iframe>
+  </ion-content>
+</full-modal>

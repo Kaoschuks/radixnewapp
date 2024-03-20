@@ -1,13 +1,18 @@
 :host {
-
-    nz-avatar {
-        padding: 10px !important;
-        // border: 1px solid #ddd;
-        font-size: 14px;
-        border-radius: 100% !important;
-        color: #fff !important;
+    > div {
+        margin-top: 10px !important;
     }
     ion-item {
+        // margin-bottom: 5px !important;
+        ion-fab-button {
+            border-radius: 7px !important;
+            --border-radius: 7px !important;
+            width: 35px !important;
+            height: 35px !important;
+            i {
+                margin-bottom: -5px !important;
+            }
+        }
         p {
             color: #999 !important;
         }

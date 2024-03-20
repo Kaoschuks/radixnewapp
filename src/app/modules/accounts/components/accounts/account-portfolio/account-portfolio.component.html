@@ -1,0 +1,40 @@
+<ion-card color="white" class="ion-no-padding ion-no-margin no-shadow" style="margin-top: 10px;margin-bottom: 10px;">
+  <!-- <ion-badge class="bg-primary-overlay" mode="ios">
+    <span class="text-dark">Radix Pension Managers</span>
+  </ion-badge>
+  <br /> -->
+  <ion-item color="white" lines="none" detail="false">
+    <ion-label>
+      <p class="fs-14">{{ source | titlecase }}</p>
+      <h2 class="fs-20 text-primary">{{ balance | currency : ' '+currency}}</h2>
+      <p class="fs-12 text-medium">Made up of all your investments</p>
+    </ion-label>
+    <ion-note slot="end">
+      <span class="fs-14">{{ accountNumber | uppercase }}</span>
+      <!-- <span class="fs-14">{{accounts.rsaaccounts.length + accounts.volaccounts.length}} Accounts</span> -->
+    </ion-note>
+  </ion-item>
+
+  <!-- <div class="ion-padding-start ion-padding-end">
+    <ion-button color="medium" class=" no-shadow" expand="block" (click)="onViewTransaction.emit()">
+      <span mode="ios" class="fs-12">View All Transactions</span>
+    </ion-button>
+  </div> -->
+
+  <ng-content></ng-content>
+
+  <!-- <ion-list-header>
+    <ion-label>
+      <h2 class="fs-14">Pension Accounts</h2>
+    </ion-label>
+  </ion-list-header> -->
+  <accounts-lists (onclick)="selectedAccount.emit($event)" [currency]="currency" [accounts]="accounts.rsaaccounts.slice(0, 2) || []" [loader]="loader"></accounts-lists>
+  <accounts-lists (onclick)="selectedAccount.emit($event)" [currency]="currency" [accounts]="accounts.volaccounts.slice(0, 1) || []" [loader]="loader"></accounts-lists>
+
+  <ion-item class="bg-transparent" routerDirection="forward" routerLink="/accounts" mode="ios" detail="true" lines="none" style="padding-top: 5px;" *ngIf="accounts.rsaaccounts.length > 0 || accounts.volaccounts.length > 0">
+  <!-- <ion-item (click)="onViewTransaction.emit()" mode="ios" detail="false" lines="none" style="padding-top: 10px;" *ngIf="accounts.rsaaccounts.length > 0 || accounts.volaccounts.length > 0"> -->
+    <ion-label>
+      <h2 class="fs-14 text-dark">View All Your Radix Accounts</h2>
+    </ion-label>
+  </ion-item>
+</ion-card>

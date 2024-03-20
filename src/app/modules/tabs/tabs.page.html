@@ -5,4 +5,11 @@
 <profile-modal [isOpen]="globals.modalData?.profilemodal || false"></profile-modal>
 <language-modal [isOpen]="globals.modalData?.languagemodal || false"></language-modal>
 <notification-modal [isOpen]="globals.modalData?.notificationmodal|| false"></notification-modal>
+<actions-modal [isOpen]="globals.modalData?.actionmodal|| false"></actions-modal>
+<transaction-modal [isOpen]="globals.modalData?.transactionsmodal || false"></transaction-modal>
+<livechat-modal [isOpen]="globals.modalData?.livechatmodal || false"></livechat-modal>
+<feedback-modal [isOpen]="globals.modalData?.feedbackmodal || false"></feedback-modal>
+<support-modal [isOpen]="globals.modalData?.supportmodal || false"></support-modal>
+<investmentoptions-modal [isOpen]="globals.modalData?.investmentoptionsmodal || false"></investmentoptions-modal>
+<accounts-details-modal [isOpen]="globals.modalData?.accountsdetailsmodal|| false"></accounts-details-modal>
 <success-modal [isOpen]="globals.modalData?.successmodal || false" (continue)="onModalClosed($event);globals.closeModal('successmodal')" [data]="globals.modalData || {}" [activeColor]="globals.modalData.color || 'primary'" [class]="'modal-center modal-center-sm modal-w70'"></success-modal>

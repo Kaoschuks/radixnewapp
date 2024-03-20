@@ -1,0 +1,84 @@
+
+
+<ion-accordion-group value="firstbank" class="bg-light">
+  <ion-accordion [value]="'firstbank'">
+    <ion-item slot="header" color="white" lines="none" mode="ios">
+      <ion-thumbnail slot="start" class="avatar-md">
+        <img src="../assets/img/firstbank.png" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="ion-text-wrap fs-14 text-primary">First Bank Payment (USSD)</h2>
+        <p class="text-medium fs-12">Read Instructions if you want to make contribution using First Bank</p>
+      </ion-label>
+    </ion-item>
+    <div class="ion-padding-start ion-padding-end bg-white" slot="content">
+      <ul class="fs-14">
+        <li>Use the phone number registered on your First Bank Account details for First Bank Account holders. </li>
+        <li>Dial *894*MERCHANT CODE*AMOUNT# or click the button labelled First Bank </li>
+        <li>Select the funding account number  </li>
+        <li>Input your registered phone number with the PFA  </li>
+        <li>Input your 5-digit ATM PIN  </li>
+      </ul>
+      <br />
+      <ion-button (click)="proccess_contribution('firstbank')" expand="block" color="dark" size="default" class="no-shadow">
+        <span>Pay using Firstbank USSD</span>
+      </ion-button>
+      <br />
+    </div>
+  </ion-accordion>
+
+  <ion-accordion [value]="'otherbanks'">
+    <ion-item slot="header" color="white" lines="none" mode="ios">
+      <ion-thumbnail slot="start" class="avatar-md">
+        <img src="../assets/img/otherbanks.png" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="ion-text-wrap fs-14 text-primary">Other Banks Users Payment (USSD)</h2>
+        <p class="text-medium fs-12">Read Instructions if you want to make contribution using Other Banks</p>
+      </ion-label>
+    </ion-item>
+    <div class="ion-padding-start ion-padding-end bg-white" slot="content">
+      <ul class="fs-14">
+        <li>For other banks account holders; Dial *402*MERCHANT CODE*AMOUNT# and processed with selecting your desired bank to transact the same. </li>
+        <li>Then select the funding account for the transaction  </li>
+        <li>And input your registered phone number with the PFA </li>
+        <li>Input your 5-digit ATM PIN </li>
+      </ul>
+      <br />
+      <ion-button (click)="proccess_contribution('otherbanks')" expand="block" color="dark" size="default" class="no-shadow">
+        <span>Pay using USSD</span>
+      </ion-button>
+      <br />
+    </div>
+  </ion-accordion>
+
+  <ion-accordion [value]="'paystack'">
+    <ion-item slot="header" color="white" lines="none" mode="ios">
+      <ion-thumbnail slot="start" class="avatar-md">
+        <img src="../assets/img/paystack-logo.png" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2 class="ion-text-wrap fs-14 text-primary">Using Debit Card or Bank Transfer</h2>
+        <p class="text-medium fs-12">Read Instructions if you want to make contribution using Other Banks</p>
+      </ion-label>
+    </ion-item>
+    <div class="ion-padding-start ion-padding-end bg-white" slot="content">
+      <br />
+      <!-- <ion-button class="fab animated fadeInUp" angular4-paystack
+      [key]="paystack?.public_key"
+      [email]="'test@example.com'"
+      [amount]="1000 * 100"
+      (paymentInit)="paymentInit()"
+      (close)="paymentCancel()"
+      (callback)="paymentDone($event)"
+      [ref]="ref_no">
+    <span class="fs-12 bold">Make contribution using paystack</span>
+  </ion-button> -->
+      <ion-button (click)="paystackDeactivated()" expand="block" color="dark" size="default" class="no-shadow">
+        <span>Pay Using Card</span>
+      </ion-button>
+      <br />
+    </div>
+  </ion-accordion>
+
+</ion-accordion-group>
