@@ -1,14 +1,10 @@
-<form [formGroup]="calculatorForm" (ngSubmit)="onsubmit.emit(calculatorForm.value)" class="ion-margin-top">
-
+<form [formGroup]="calculatorForm" (ngSubmit)="onsubmit.emit(calculatorForm.value)" style="margin-top: 3px;padding-left: 10px;padding-right:10px;">
   <ion-row>
     <ion-col size="12">
-      <ion-item color="light" lines="none" detail="false" class="no-shadow">
-          <ion-label aria-label="investment amount" position="stacked" class="fs-14 text-medium">Investment Amount</ion-label>
-          <ion-input aria-label="investment amount" formControlName="investmentAmount" type="number" placeholder="0.00" style="margin-top: -5px;margin-bottom: -5px"></ion-input>
-      </ion-item>
+      <ion-input label="RSA Balance" label-placement="floating" fill="outline" formControlName="balance" type="number" placeholder="0.00"></ion-input>
       <div class="validation-errors fs-12 text-danger ion-padding-start">
-        <div *ngFor="let validation of validation_messages.investmentAmount">
-          <div class="error-message" *ngIf="calculatorForm.get('pin')?.hasError(validation.type) && calculatorForm.get('pin')?.touched">
+        <div *ngFor="let validation of validation_messages.balance">
+          <div class="error-message" *ngIf="calculatorForm.get('balance')?.hasError(validation.type) && calculatorForm.get('balance')?.touched">
             <div>
               {{" "+validation.message}}
             </div>
@@ -16,30 +12,22 @@
         </div>
       </div>
     </ion-col>
-    <ion-col size="7">
-      <ion-item color="light" lines="none" detail="false" class="no-shadow">
-        <ion-label aria-label="investment period" position="stacked" class="fs-14 text-medium">Investment Period</ion-label>
-        <ion-input aria-label="investment period" formControlName="investmentPeriod" type="number" placeholder="0.00" style="margin-top: -5px;margin-bottom: -5px"></ion-input>
-      </ion-item>
-    </ion-col>
-    <ion-col size="5">
-    </ion-col>
     <ion-col size="12">
-      <ion-item color="light" lines="none" detail="false" class="no-shadow">
-        <ion-label aria-label="annual contribution" position="stacked" class="fs-14 text-medium">Annual Contribution</ion-label>
-        <ion-input aria-label="annual contribution" formControlName="annualContribution" type="number" placeholder="0.00" style="margin-top: -5px;margin-bottom: -5px"></ion-input>
-      </ion-item>
+      <ion-input label="RSA Contribution" label-placement="floating" fill="outline" type="number" formControlName="contribution" placeholder="0.00"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+      <ion-input label="Current Age" label-placement="floating" fill="outline" type="number" formControlName="currentage" placeholder="0.00"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+      <ion-input label="Retired Age" label-placement="floating" fill="outline" type="number" formControlName="retireage" placeholder="0.00"></ion-input>
     </ion-col>
   </ion-row>
-<br />
-<br />
-<div class="ion-padding-start ion-padding-end">
-  <!-- <ion-button expand="block" size="large" (click)="onsubmit.emit('Calcutor feature not activated yet on the version')">
-      <span class="fs-14">Calculate Pensions</span>
-  </ion-button> -->
-  <p class="text-medium ion-text-center ion-margin fs-12">
+  <ion-button color="dark" expand="block" size="large" type="submit">
+      <span class="fs-14 bold">Calculate Pensions</span>
+  </ion-button>
+  <p class="text-medium ion-text-center fs-12 ion-padding">
       BY providing your information, you will allow Aide Finance to create budget
-      under user information
+      under user information and manage your finance which take less than 24 hours
+      to process it
   </p>
-</div>
 </form>

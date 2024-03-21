@@ -24,7 +24,7 @@
       <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
     </ion-card>
 
-    <account-portfolio (onViewTransaction)="openTransactions()" (onclick)="globals.openModal($event)" (selectedAccount)="_accountservice.openAccount($event)" [source]="_userservice.user?.EMPLOYER_NAME || 'not set'" [accountNumber]="_userservice.user?.PIN || 'not set'" [loader]="loading | async" [accounts]="accounts" [balance]="_accountservice.bal" [currency]="globals.config.currency">
+    <account-portfolio (onViewTransaction)="openTransactions()" (onclick)="globals.openModal($event)" (selectedAccount)="_accountservice.openAccount($event)" [source]="_userservice.user?.EMPLOYER_NAME || 'not set'" [accountNumber]="globals.config.pin || 'not set'" [loader]="loading | async" [accounts]="accounts" [balance]="_accountservice.bal" [currency]="globals.config.currency">
       <!-- <quick-actions (onSelect)="openQuickAction($event)"></quick-actions> -->
     </account-portfolio>
     
