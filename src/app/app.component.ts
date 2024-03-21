@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { IonApp, IonMenu, IonRouterOutlet, IonSplitPane } from '@ionic/angular/standalone';
 import { GlobalsServices } from './shared/services';
 import { register } from 'swiper/element/bundle';
-import { OnloadingComponent, SidebarNavComponent } from './shared/components';
+import { NativeLoaderComponent, OnloadingComponent, SidebarNavComponent, ToastMessageComponent } from './shared/components';
 import { NgIf } from '@angular/common';
 import { FaqModalComponent } from './modules/modals';
 register();
@@ -11,7 +11,7 @@ register();
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet, OnloadingComponent, IonSplitPane, IonMenu, NgIf, SidebarNavComponent, FaqModalComponent],
+  imports: [IonApp, IonRouterOutlet, OnloadingComponent, IonSplitPane, IonMenu, NgIf, SidebarNavComponent, FaqModalComponent, ToastMessageComponent, NativeLoaderComponent],
 })
 export class AppComponent implements AfterViewInit {
   globals: GlobalsServices = inject(GlobalsServices)

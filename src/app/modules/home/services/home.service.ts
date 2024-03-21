@@ -57,10 +57,9 @@ export class HomeService {
   async openQuickAction(product: any) {
     const name: string = product.label.replace('<br />', '');
     this.globals.modalData.title = name
-    alert(`${name} feature not activated yet`)
-    // await this.globals.toastAlert(`${name} feature not activated yet`, {
-    //   duration: 10000
-    // })
+    await this.globals.toastAlert(`${name} feature not activated yet`, {
+      duration: 10000
+    })
     // this.globals.openModal('actionmodal');
   }
 

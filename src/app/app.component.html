@@ -1,11 +1,13 @@
 <onloading *ngIf="globals.appLoading"></onloading>
 
 <ion-app>
+  <toast-message [isOpen]="globals.toast.open" [position]="globals.toast.position" [cssClass]="globals.toast.cssClass" [message]="globals.toast.message" [duration]="globals.toast.duration"></toast-message>
+  <native-loader [isOpen]="globals.loading.open" [message]="globals.loading.message" [duration]="globals.loading.duration"></native-loader>
   <faq-modal [isOpen]="globals.modalData?.faqmodal || false"></faq-modal>
   <!-- <ion-split-pane contentId="main">
     <ion-menu contentId="main" *ngIf="globals.menuCtrl.isEnabled">
       <sidebar-nav (loggedOut)="globals.loggedOut()"></sidebar-nav>
     </ion-menu> -->
-    <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-router-outlet id="main"></ion-router-outlet>
   <!-- </ion-split-pane> -->
 </ion-app>

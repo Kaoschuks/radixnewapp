@@ -32,7 +32,6 @@ export class GlobalsServices {
   public navCtrl: NavController = inject(NavController)
   public loadingCtrl: LoadingController = inject(LoadingController)
   public alertCtrl: AlertController = inject(AlertController)
-  public toastCtrl: ToastController = inject(ToastController)
   public actionSheetCtrl: ActionSheetController = inject(ActionSheetController)
   public router: Router = inject(Router)
   public menuCtrl: MenuController = inject(MenuController)
@@ -51,11 +50,22 @@ export class GlobalsServices {
     description: null,
     title: null
   }
+
   pageData: any
   appLoading: boolean = true;
   refresh = new BehaviorSubject<boolean>(false);
   pageRefresh: boolean = false;
+  toast = {
+    open: false,
+    message: '',
+    cssClass: 'toast-default',
+    position: 'bottom',
+    duration: 3000
+  }
   loading: any = {
+    open: false,
+    duration: 0,
+    message: '',
     hide: async () => {
       await this.loadingCtrl.dismiss();
     },
@@ -65,14 +75,15 @@ export class GlobalsServices {
   }
 
   private async showLoader(message: string, duration: number) {
-    const loading = await this.loadingCtrl.create({
-      message: message,
-      backdropDismiss: false,
-      keyboardClose: true,
-      showBackdrop: true,
-      duration: duration,
-    });
-    await loading.present();
+    this.loading.open = true;
+    this.loading.duration = duration;
+    this.loading.message = message;
+
+    setTimeout(() => {
+      this.loading.open = false;
+      this.loading.duration = 0;
+      this.loading.message = '';
+    }, duration)
   }
 
   setUrlTitle() {
@@ -119,14 +130,22 @@ export class GlobalsServices {
     message: string,
     { duration = 3000, cssClass = "toast-deafult", position = "bottom" } = {}
   ) {
-    const toast = await this.toastCtrl.create({
-      message: message,
+    this.toast = {
+      open: true,
       duration: duration,
-      position:
-        position == "top" ? "top" : position == "middle" ? "middle" : "bottom",
+      message: message,
       cssClass: cssClass,
-    });
-    await toast.present();
+      position: position || "bottom",
+    };
+    setTimeout(() => {
+      this.toast = {
+        open: false,
+        message: '',
+        cssClass: '',
+        position: '',
+        duration: 0
+      };
+    }, duration)
   }
 
   navigate(path: string, subpage: boolean = true) {
@@ -242,6 +261,6 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   private async showErrorAlert(message: string): Promise<void> {
     const globalService: GlobalsServices =
       this.injector.get<GlobalsServices>(GlobalsServices);
-    await globalService.toastAlert(message);
+    console.error(message);
   }
 }

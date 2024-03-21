@@ -1,5 +1,5 @@
 import { NgIf, TitleCasePipe } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as intlTelInput from 'intl-tel-input';
 
 @Component({
@@ -11,16 +11,14 @@ import * as intlTelInput from 'intl-tel-input';
   imports: [TitleCasePipe, NgIf]
 })
 
-export class PhonenumberInputComponent implements  AfterViewInit, OnDestroy {
+export class PhonenumberInputComponent implements OnChanges {
 	@Input() phone: string = '';
 	@Input() id: string = '';
 	@Output() oninput = new EventEmitter();
 	public iti: any;
 	private input: any;
 
-  constructor() {}
-
-	ngAfterViewInit() {
+  ngOnChanges(changes: SimpleChanges): void {
 		this.input = document.querySelector("#"+this.id+"phone");
 		if(this.input) {
 			this.iti = intlTelInput(this.input, {
@@ -28,10 +26,6 @@ export class PhonenumberInputComponent implements  AfterViewInit, OnDestroy {
 			});
 			if(this.phone != '' && this.phone != null) this.iti.setNumber(this.phone)
 		}
-	}
-
-	ngOnDestroy() {
-		this.iti.destroy();
 	}
 
   getError(errorNumber: number): string {

@@ -7,3 +7,4 @@ export * from "./chips/chips.component";
 export * from "./layout";
 export * from "./loaders";
 export * from "./modal_components";
+export * from "./toast-message/toast-message.component"

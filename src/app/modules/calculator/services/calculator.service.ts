@@ -8,9 +8,8 @@ export class CalculatorService {
   globals: GlobalsServices = inject(GlobalsServices);
 
   async showAlert(msg: string) {
-    alert(msg)
-    // await this.globals.toastAlert(msg, {
-    //   duration: 3000
-    // });
+    await this.globals.toastAlert(msg, {
+      duration: 3000
+    });
   }
 }

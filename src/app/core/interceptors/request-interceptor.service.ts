@@ -18,8 +18,6 @@ export class RequestInterceptorService implements HttpInterceptor {
         let headers: any = {
             'content-type': 'application/json',
         }
-        // if(this.globals.config.token) headers["Authorization"] = `${this.globals.config.token}`;
-
         const modifiedReq = request.clone({
             setHeaders: headers
         });

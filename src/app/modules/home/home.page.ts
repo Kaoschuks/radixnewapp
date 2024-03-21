@@ -21,7 +21,6 @@ import { AccountsListsComponent } from '../accounts/components/accounts/accounts
 export class HomePage extends HomeService implements OnInit {
   
   async ngOnInit() {
-    console.log(this._userservice.user)
     this.loading.next(true)
     await this.getAccounts(null);
   }
