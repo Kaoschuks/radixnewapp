@@ -128,7 +128,7 @@ export class GlobalsServices {
 
   async toastAlert(
     message: string,
-    { duration = 3000, cssClass = "toast-deafult", position = "bottom" } = {}
+    { duration = 1000, cssClass = "toast-deafult", position = "bottom" } = {}
   ) {
     this.toast = {
       open: true,
@@ -137,15 +137,6 @@ export class GlobalsServices {
       cssClass: cssClass,
       position: position || "bottom",
     };
-    setTimeout(() => {
-      this.toast = {
-        open: false,
-        message: '',
-        cssClass: '',
-        position: '',
-        duration: 0
-      };
-    }, duration)
   }
 
   navigate(path: string, subpage: boolean = true) {

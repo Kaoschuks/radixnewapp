@@ -14,7 +14,7 @@ import { IonToast } from '@ionic/angular/standalone';
 export class ToastMessageComponent  implements OnChanges {
 
   @Input() isOpen: boolean = false;
-  @Input() duration: number = 3000;
+  @Input() duration: number = 1000;
   @Input() message!: string;
   @Input() position!: string;
   @Input() cssClass!: string;
@@ -27,9 +27,18 @@ export class ToastMessageComponent  implements OnChanges {
   ];
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.close()
   }
 
   setRoleMessage(ev: any) {
-    this.isOpen = false
+    this.close()
+  }
+
+  private close() {
+    setTimeout(() => {
+      this.isOpen = false
+      this.duration = 0
+      this.message = ''
+    }, this.duration)
   }
 }
