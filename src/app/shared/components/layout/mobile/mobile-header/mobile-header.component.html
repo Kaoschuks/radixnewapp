@@ -17,13 +17,16 @@
         <ion-img [src]="'https://ui-avatars.com/api/?name='+username+'&color=ffffff&&background=21205c'"></ion-img>
       </ion-avatar> -->
       <ion-button class="no-shadow" (click)="onclick.emit('livechatmodal')">
-        <i class="fi fi-rr-comment fs-18"></i>
+        <i class="fi fi-rr-comment fs-20"></i>
+      </ion-button>
+      <ion-button class="no-shadow" (click)="onclick.emit('feedbackmodal')">
+        <i class="fi fi-rr-interrogation fs-20"></i>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="start">
-      <ion-button class="no-shadow" (click)="onclick.emit('feedbackmodal')">
-        <i class="fi fi-rr-interrogation fs-18"></i>
+      <ion-button class="no-shadow" routerLink="/settings" routerDirection="forward">
+        <i class="fi fi-rr-settings fs-20"></i>
       </ion-button>
       <!-- <ion-avatar class="no-shadow" (click)="onclick.emit('profilemodal')">
         <ion-img [src]="'https://ui-avatars.com/api/?name='+username+'&color=000000&&background=f4f5f8'"></ion-img>

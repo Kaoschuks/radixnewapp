@@ -1,5 +1,6 @@
 import { NgIf, TitleCasePipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { IonProgressBar, IonHeader, IonToolbar, IonTitle, IonButton, IonRouterLink, IonButtons, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { notificationsOutline, personCircleOutline, searchOutline } from 'ionicons/icons';
@@ -10,7 +11,11 @@ import { notificationsOutline, personCircleOutline, searchOutline } from 'ionico
   styleUrls: ['./mobile-header.component.scss'],  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, IonToolbar, IonTitle , IonProgressBar, IonButton, IonButtons, IonIcon, IonRouterLink, NgIf, TitleCasePipe]
+  imports: [
+    IonHeader, IonToolbar, IonTitle , IonProgressBar, IonButton, IonButtons, IonIcon, 
+    NgIf, TitleCasePipe,
+    RouterModule
+  ]
 })
 export class MobileHeaderComponent{
   @Input() title!: string

@@ -28,4 +28,8 @@ export class ToastMessageComponent  implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
   }
+
+  setRoleMessage(ev: any) {
+    this.isOpen = false
+  }
 }

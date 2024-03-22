@@ -9,10 +9,16 @@
             ion-label {
                 h2 {
                     margin-top: -3px !important;
-                    margin-bottom: -2px !important;
+                    margin-bottom: 0px !important;
                 }
             }
         }
+    }
+    ion-fab-button {
+        border-radius: 7px !important;
+        --border-radius: 7px !important;
+        width: 30px !important;
+        height: 30px !important;
     }
     ion-button.transactions {
         border-radius: 7px !important;

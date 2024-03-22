@@ -1,30 +1,47 @@
 
 <ion-content [fullscreen]="true" color="light">
 
-    <ion-card class="no-shadow ion-no-margin ion-no-padding" style="margin-top: 10px;margin-bottom: 10px;">
-        <ion-item mode="ios" lines="none" detail="false">
-            <ion-thumbnail slot="start">
+    <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">
+    <!-- <ion-card class="no-shadow ion-no-margin" style="padding-top:10px;padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;"> -->
+        <ion-row>
+            <ion-col size="3">
                 <img src="assets/img/payment.png" />
-            </ion-thumbnail>
-            <ion-label>
-                <p class="fs-14 fw-4">Recommended Lumpsum</p>
-                <h2 class="fs-20 text-primary">{{ 0 | currency: globals.config?.currency}}</h2>
-                <p class="fs-14 fw-4">Monthly Down Amount: <span class="text-dark">{{ 0 | currency: globals.config?.currency}}</span></p>
-            </ion-label>
-        </ion-item>
+            </ion-col>
+            <ion-col size="9">
+                <ion-item mode="ios" color="white" lines="none" detail="false">
+                  <ion-label>
+                    <h2 class="fs-14 text-dark">Your Retirement Income</h2>
+                        <h2 class="fs-22 text-primary">{{ 22567 | currency : globals.config?.currency }}</h2>
+                    </ion-label>
+                </ion-item>
+                <ion-item mode="ios" color="white" lines="none" detail="false">
+                  <ion-label>
+                    <h2 class="fs-14 text-dark">{{ 8546 | currency : globals.config?.currency }} RSA Contribution</h2>
+                    <p class="fs-12 text-medium">Only paid after your reach</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item mode="ios" color="white" lines="none" detail="false" style="margin-top: -5px;">
+                  <ion-label>
+                    <h2 class="fs-14 text-dark">{{ 14019 | currency : globals.config?.currency }} monthly down amount</h2>
+                    <p class="fs-12 text-medium">RSA Contribution</p>
+                  </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
     </ion-card>
-    <ion-card class="no-shadow ion-no-margin" style="padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;">
+
+    <!-- <ion-card class="no-shadow ion-no-margin" style="padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;">
         <ion-list-header>
           <ion-label>
             <h2>Pension Calculator</h2>
           </ion-label>
         </ion-list-header>
         <calculator-form (onsubmit)="showAlert($event)"></calculator-form>
-    </ion-card>
+    </ion-card> -->
 </ion-content>
 
-<!-- <ion-footer class="ion-padding-start ion-padding-end ion-no-border bg-transparent">
+<ion-footer class="ion-padding-start ion-padding-end ion-no-border bg-transparent">
     <ion-button class="ion-margin-bottom" color="primary" expand="block" size="default" (click)="showAlert('Calcutor feature not activated yet on the version')">
         <span class="fs-14">Calculate Pensions</span>
     </ion-button>
-</ion-footer> -->
+</ion-footer>
