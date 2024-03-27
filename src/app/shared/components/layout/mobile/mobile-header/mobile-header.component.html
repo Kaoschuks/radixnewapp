@@ -1,9 +1,9 @@
-<ion-header class="ion-no-border b-b">
+<ion-header class="ion-no-border">
   <ion-progress-bar *ngIf="refresh" type="indeterminate"></ion-progress-bar>
   <ion-toolbar [color]="color">
     <ion-title mode="ios">
       <span *ngIf="title !== 'home'" class="fs-18">{{ title || 'not set' | titlecase }}</span>
-      <img *ngIf="title === 'home'" [src]="'assets/img/logo.png'" />
+      <!-- <img *ngIf="title === 'home'" [src]="'assets/img/logo.png'" /> -->
     </ion-title>
 
     <ion-buttons slot="end">
@@ -25,12 +25,18 @@
     </ion-buttons>
 
     <ion-buttons slot="start">
-      <ion-button class="no-shadow" routerLink="/settings" routerDirection="forward">
-        <i class="fi fi-rr-settings fs-20"></i>
-      </ion-button>
-      <!-- <ion-avatar class="no-shadow" (click)="onclick.emit('profilemodal')">
+      <ion-avatar class="no-shadow" (click)="onclick.emit('profilemodal')">
         <ion-img [src]="'https://ui-avatars.com/api/?name='+username+'&color=000000&&background=f4f5f8'"></ion-img>
-      </ion-avatar> -->
+      </ion-avatar>
+      <!-- <ion-label  *ngIf="title == 'home'">
+         <h2 class="fs-14 text-primary">{{greetings | titlecase}}, {{ username | titlecase }}</h2>
+         <p class="fs-12 text-medium">{{ accountnumber | uppercase }}</p>
+      </ion-label> -->
+      <!-- <ion-item *ngIf="title == 'home'" lines="none" [color]="'green'" class="bg-transparent" mode="ios">
+     </ion-item> -->
+      <!-- <ion-button class="no-shadow" routerLink="/settings" routerDirection="forward">
+        <i class="fi fi-rr-settings fs-20"></i>
+      </ion-button> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

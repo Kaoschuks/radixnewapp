@@ -30,6 +30,7 @@ export class FullModalComponent {
   @Input() backDropDismiss: boolean = true;
   @Input() open: boolean = false;
   @Input() bodyColor: string = 'light';
+  @Input() bodyClass: string = 'bg-light';
   @Input() modalClass: string = 'modal-full';
   @Output() closeModal = new EventEmitter();
 

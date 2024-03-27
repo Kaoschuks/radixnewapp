@@ -1,7 +1,7 @@
 <ion-content color="light">
 
     <ion-card class="no-shadow ion-no-margin" style="padding-top:10px;margin-top: 10px;margin-bottom: 10px;">
-        <ion-item detail="true" lines="full" color="white" (click)="globals.openModal('profilemodal')">
+        <ion-item detail="true" lines="full" color="white" (click)="openProfilePage('profile')">
             <ion-avatar class="no-shadow" slot="start">
                 <ion-img
                     [src]="'https://ui-avatars.com/api/?name='+_userservice.user?.NAME || _userservice.user?.FIRSTNAME  + ' ' + _userservice.user?.SURNAME+'&color=ffffff&&background=000000'"></ion-img>
@@ -12,7 +12,7 @@
             </ion-label>
         </ion-item>
 
-        <ion-item mode="ios" color="white" detail="true" (click)="globals.openModal('profilemodal')">
+        <ion-item mode="ios" color="white" detail="true" (click)="openProfilePage('Employer')">
             <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
                 <i class="fi fi-rr-portrait text-dark fs-18"></i>
             </ion-fab-button>
@@ -21,7 +21,7 @@
             </ion-label>
         </ion-item>
 
-        <ion-item mode="ios" color="white" detail="true" (click)="globals.openModal('nokmodal')">
+        <ion-item mode="ios" color="white" detail="true" (click)="openProfilePage('Next Of Kin')">
             <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
                 <i class="fi fi-rr-users text-dark fs-18"></i>
             </ion-fab-button>
@@ -30,7 +30,7 @@
             </ion-label>
         </ion-item>
 
-        <ion-item mode="ios" lines="none" detail="false">
+        <!-- <ion-item mode="ios" lines="none" detail="false">
             <ion-fab-button size="small"color="white" class="no-shadow" slot="start">
                 <i class="fi fi-rr-palette fs-18 text-dark"></i>
             </ion-fab-button>
@@ -51,7 +51,7 @@
             <ion-button class="no-shadow" color="dark" fill="clear" shape="round" slot="end">
                 <span class="fs-14 text-dark">English</span>
             </ion-button>
-        </ion-item>
+        </ion-item> -->
 
         <ion-item mode="ios" color="white" lines="none" detail="true"
             (click)="globals.openModal('investmentoptionsmodal')">
@@ -149,11 +149,11 @@
     </ion-card>
 
 
-    <ion-item (click)="onDeleteAccount()" mode="ios" color="white" detail="true" class="ion-margin-top">
+    <!-- <ion-item (click)="onDeleteAccount()" mode="ios" color="white" detail="true" class="ion-margin-top">
         <ion-label>
             <h2 class="text-danger fs-14">Delete Account</h2>
         </ion-label>
-    </ion-item>
+    </ion-item> -->
 
     <ion-item (click)="onLogout()" mode="ios" color="white" detail="true" lines="none">
         <ion-label>

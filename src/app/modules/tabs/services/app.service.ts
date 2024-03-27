@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { GlobalsServices, AccountsService } from 'src/app/core';
+import { GlobalsServices, AccountsService, UserService } from 'src/app/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import { GlobalsServices, AccountsService } from 'src/app/core';
 export class AppService {
   globals: GlobalsServices = inject(GlobalsServices);
   _accountservice: AccountsService = inject(AccountsService);
+  userService: UserService = inject(UserService);
   
 
   canOnboard: boolean = false;

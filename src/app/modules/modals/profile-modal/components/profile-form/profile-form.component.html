@@ -1,0 +1,56 @@
+
+<form class="form ion-margin-top" [formGroup]="profileForm">
+  <ion-row>
+    <ion-col size="4">
+      <ion-input (ionInput)="inputOnChange()" label="Title" label-placement="stacked" fill="outline" type="text" formControlName="TITLE" placeholder=""></ion-input>
+    </ion-col>
+    <ion-col size="8">
+      <ion-input (ionInput)="inputOnChange()" label="Surnmae" label-placement="stacked" fill="outline" type="text" formControlName="SURNAME" placeholder="Surnmae"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+      <ion-input (ionInput)="inputOnChange()" label="Firstname" label-placement="stacked" fill="outline" type="text" formControlName="FIRSTNAME" placeholder="Firstname"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+      <ion-input (ionInput)="inputOnChange()" label="Othername(s)" label-placement="stacked" fill="outline" type="text" formControlName="OTHERNAMES" placeholder="Other Names"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item details="false" mode="md">
+        <ion-label color="dark" position="stacked">Gender <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select placeholder="Select One" formControlName="GENDER" interface="action-sheet" mode="md">
+          <ion-select-option value="FEMALE">Female</ion-select-option>
+          <ion-select-option value="MALE">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item details="false" mode="md">
+        <ion-label color="dark" position="stacked">Marital Status <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select placeholder="Select One" formControlName="MARITAL_STATUS_CODE" interface="action-sheet" mode="md">
+          <ion-select-option value="MARRIED">Married</ion-select-option>
+          <ion-select-option value="SINGLE">Single</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col size="12">
+      <ion-input (ionInput)="inputOnChange()" label="Date Of Birth" label-placement="stacked" fill="outline" type="date" formControlName="DATE_OF_BIRTH"></ion-input>
+    </ion-col>
+    <br />
+    <br />
+    <ion-col size="12">
+      <ion-input (ionInput)="inputOnChange()" label="Your Email" label-placement="stacked" fill="outline" type="email" formControlName="EMAIL"></ion-input>
+    </ion-col>
+    <ion-col size="12">
+      <ion-input (ionInput)="inputOnChange()" label="Mobile Number" label-placement="stacked" fill="outline" maxlength="11" minlength="10" formControlName="MOBILE_PHONE" type="number" placeholder="Enter your phone number"></ion-input>
+    </ion-col>
+    <ion-col size="12">
+      <ion-textarea (ionInput)="inputOnChange()" label="Permanenet Address" label-placement="stacked" fill="outline" rows="5" formControlName="PERMANENT_ADDRESS"></ion-textarea>
+    </ion-col>
+  </ion-row>
+  <div class="ion-padding">
+    <ion-button type="submit" class="hidden" id="profile-button">Save Profile</ion-button>
+  </div>
+</form>
+
+
+<br />
+<br />

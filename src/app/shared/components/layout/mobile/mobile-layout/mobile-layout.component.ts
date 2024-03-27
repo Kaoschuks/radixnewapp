@@ -12,6 +12,8 @@ import { MobileFooterComponent } from '../mobile-footer/mobile-footer.component'
 })
 export class MobileLayoutComponent {
   @Input() title!: string
+  @Input() username!: string
+  @Input() accountnumber!: string
   @Input() refresh: boolean = false
   @Input() color: string = 'white';
   @Output() onHeaderButtonClicked = new EventEmitter();

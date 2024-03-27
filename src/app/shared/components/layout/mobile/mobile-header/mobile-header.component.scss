@@ -8,7 +8,11 @@
     ion-avatar {
         margin-left: 10px !important;
     }
-    // ion-button {
-    //     margin-bottom: -2px !important;
-    // }
+    ion-label {
+        margin-left: 7px !important;
+        h2 {
+            margin-top: 5px !important;
+            margin-bottom: -2px !important;
+        }
+    }
 }

@@ -26,7 +26,6 @@ export function initializeApp(
   return async () => { 
     try {
       globals.setUrlTitle();
-      if(globals.platform.is('capacitor')) await SplashScreen.hide({fadeOutDuration: 400});
     } catch (error) {
       console.log(error)
     }

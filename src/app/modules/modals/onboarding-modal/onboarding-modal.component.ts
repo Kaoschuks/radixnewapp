@@ -1,5 +1,5 @@
 import { NgIf, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonToolbar, IonButton, IonItem, IonLabel, IonHeader, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { FullModalComponent, OnboardingComponent } from 'src/app/shared/components';
@@ -17,9 +17,13 @@ import { GlobalsServices } from 'src/app/shared/services';
     IonContent, IonToolbar, IonHeader, IonTitle, IonButton, IonItem, IonLabel, RouterModule
   ]
 })
-export class OnboardingModalComponent {
+export class OnboardingModalComponent implements OnChanges {
 
   @Input() isOpen: boolean = false;
   public readonly globals: GlobalsServices = inject(GlobalsServices);
 
+  async ngOnChanges(changes: SimpleChanges) {
+    // alert();
+    // await this.globals.changeStatusBarColor('#ffffff', false, true)
+  }
 }

@@ -5,7 +5,7 @@ describe('MicropensionPage', () => {
   let component: MicropensionPage;
   let fixture: ComponentFixture<MicropensionPage>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     fixture = TestBed.createComponent(MicropensionPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

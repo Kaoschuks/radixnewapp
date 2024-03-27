@@ -1,7 +1,7 @@
-<form [formGroup]="calculatorForm" (ngSubmit)="onsubmit.emit(calculatorForm.value)" style="margin-top: 3px;padding-left: 10px;padding-right:10px;">
+<form [formGroup]="calculatorForm" style="margin-top: 3px;padding-left: 10px;padding-right:10px;">
   <ion-row>
     <ion-col size="12">
-      <ion-input label="RSA Balance" label-placement="floating" fill="outline" formControlName="balance" type="number" placeholder="0.00"></ion-input>
+      <ion-input (ionInput)="inputOnChange()" label="RSA Balance" label-placement="stacked" fill="outline" formControlName="balance" type="number" placeholder="0.00"></ion-input>
       <div class="validation-errors fs-12 text-danger ion-padding-start">
         <div *ngFor="let validation of validation_messages.balance">
           <div class="error-message" *ngIf="calculatorForm.get('balance')?.hasError(validation.type) && calculatorForm.get('balance')?.touched">
@@ -13,21 +13,13 @@
       </div>
     </ion-col>
     <ion-col size="12">
-      <ion-input label="RSA Contribution" label-placement="floating" fill="outline" type="number" formControlName="contribution" placeholder="0.00"></ion-input>
+      <ion-input (ionInput)="inputOnChange()" label="RSA Contribution" label-placement="stacked" fill="outline" type="number" formControlName="contribution" placeholder="0.00"></ion-input>
     </ion-col>
     <ion-col size="6">
-      <ion-input label="Current Age" label-placement="floating" fill="outline" type="number" formControlName="currentage" placeholder="0.00"></ion-input>
+      <ion-input (ionInput)="inputOnChange()" label="Current Age" label-placement="stacked" fill="outline" type="number" formControlName="currentage" placeholder="0.00"></ion-input>
     </ion-col>
     <ion-col size="6">
-      <ion-input label="Retired Age" label-placement="floating" fill="outline" type="number" formControlName="retireage" placeholder="0.00"></ion-input>
+      <ion-input (ionInput)="inputOnChange()" label="Retired Age" label-placement="stacked" fill="outline" type="number" formControlName="retireage" placeholder="0.00"></ion-input>
     </ion-col>
   </ion-row>
-  <ion-button color="dark" expand="block" size="large" type="submit">
-      <span class="fs-14 bold">Calculate Pensions</span>
-  </ion-button>
-  <p class="text-medium ion-text-center fs-12 ion-padding">
-      BY providing your information, you will allow Aide Finance to create budget
-      under user information and manage your finance which take less than 24 hours
-      to process it
-  </p>
 </form>

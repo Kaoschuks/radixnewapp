@@ -70,13 +70,7 @@
       </div>
     </ion-col>
 
-    <ion-col size="7">
-      <ion-item lines="none" detail="false" color="light" class="ion-border">
-        <ion-label aria-label="phone number" position="stacked" style="margin-bottom: 5px;margin-top: -5px;">Phone Number</ion-label>
-        <phonenumber-input [id]="'register'" (oninput)="phonenumberChange($event)"></phonenumber-input>
-      </ion-item>
-    </ion-col>
-    <ion-col size="5">
+    <ion-col size="12">
       <ion-item class="ion-border" detail="false" lines="none" color="light">
         <ion-label aria-label="pension type" position="stacked">Pension Type</ion-label>
         <ion-select aria-label="pension type" formControlName="pensiontype" interface="action-sheet">

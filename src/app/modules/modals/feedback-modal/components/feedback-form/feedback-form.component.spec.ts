@@ -7,7 +7,7 @@ describe('FeedbackFormComponent', () => {
   let component: FeedbackFormComponent;
   let fixture: ComponentFixture<FeedbackFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [ FeedbackFormComponent ],
       imports: [IonicModule.forRoot()]

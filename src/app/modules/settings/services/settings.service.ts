@@ -15,25 +15,9 @@ export class SettingsService {
     this.globals.openModal('supportmodal')
   }
 
-  onDeleteAccount() {
-    this.globals.modalData = {
-      title: 'Are you sure',
-      color: 'danger',
-      iconName: 'alert-circle-outline',
-      description:
-        'Your account will be permanently deleted, do you want to proceed ?',
-      buttons: [
-        {
-          action: 'no',
-          text: 'No, Cancel',
-        },
-        {
-          action: 'deleteaccount',
-          text: 'Yes, Delete Account',
-        },
-      ],
-    };
-    this.globals.openModal('successmodal')
+  openProfilePage(page: string = '') {
+    this.globals.modalData.title = page
+    this.globals.openModal('profilemodal')
   }
 
   onLogout() {

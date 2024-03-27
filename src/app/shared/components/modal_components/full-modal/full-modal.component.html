@@ -22,7 +22,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content [fullscreen]="true" [color]="bodyColor" [scrollX]="true">
+    <ion-content [fullscreen]="true" [color]="bodyColor" [ngClass]="bodyClass" [scrollX]="true">
       <ng-content *ngIf="!isLoading"></ng-content>
       <loading [text]="loadingText" *ngIf="isLoading"></loading>
     </ion-content>

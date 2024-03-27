@@ -2,18 +2,33 @@
 
 </ng-container> -->
 
-<full-modal [open]="isOpen" (closeModal)="globals.closeModal('profilemodal')" [asPage]="false" [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'profile'" [title]="'profile'">
-  
-  <ion-card class="no-shadow ion-no-padding animated fadeIn bg-transparent" align="center">
-    <ion-avatar class="no-shadow bg-medium avatar-lg avatar-border" style="position:relative;z-index:999">
-        <ion-img [src]="'https://ui-avatars.com/api/?name=Chikeluba Chukwuemeka Favour&color=000000&&background=ffffff'"></ion-img>
-    </ion-avatar>
-    <ion-item lines="none" class="bg-white" style="position:relative;top: -30px;margin-bottom: -30px;">
-        <ion-label align="center">
-            <br />
-            <h2>{{ 'Favour Chikleuba Chukwuemeka' | titlecase }}</h2>
-            <p>{{ 'info@kelubaemeka.me' | titlecase }}</p>
-        </ion-label>
-    </ion-item>
-</ion-card>
+<full-modal [open]="isOpen" (closeModal)="globals.closeModal('profilemodal')" [asPage]="false" [headerColor]="'white'"
+    [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'profile'" [title]="globals.modalData?.title || 'Profile'">
+
+    <ion-card class="no-shadow ion-no-padding ion-no-margin animated fadeIn bg-transparent" align="center">
+        <ng-container>
+            <ion-avatar (click)="openOptions(select)" class="no-shadow bg-medium avatar-lg avatar-border" style="position:relative;z-index:999">
+                <ion-img
+                    [src]="'https://ui-avatars.com/api/?name=Chikeluba Chukwuemeka Favour&color=000000&&background=ffffff'"></ion-img>
+            </ion-avatar>
+            <ion-item lines="none" class="bg-white" style="position:relative;top: -30px;margin-bottom: -30px;">
+                <ion-label align="center">
+                    <br />
+                    <h2>{{ 'Favour Chikleuba Chukwuemeka' | titlecase }}</h2>
+                    <p>{{ 'info@kelubaemeka.me' | titlecase }}</p>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+    </ion-card>
+    <ion-card class="ion-no-padding no-shadow">
+        <profile-form></profile-form>
+    </ion-card>
+
+    <!-- <employee-form></employee-form> -->
+
+    <input class="hidden" id="photo" type="file" />
+    <!-- <ion-select (ionChange)="openOptions(select)" id="option-select-profile" class="hidden" interface="action-sheet" mode="md" >
+      <ion-select-option value="camera">Use Camera</ion-select-option>
+      <ion-select-option value="gallery">Select from Gallery</ion-select-option>
+    </ion-select> -->
 </full-modal>

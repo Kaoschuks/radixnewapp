@@ -1,0 +1,68 @@
+<!-- <div class="profile_img">
+  <div class="img_box center_img">
+    <img [src]="profileForm?.controls?.image?.value || 'assets/imgs/profile.png'" class="img_box" loading="lazy" /> 
+  </div>
+  <input class="hidden" id="photo" type="file" />
+  <h2 class="ion-text-center">Change Profile Picture</h2>
+</div> -->
+
+<form class="form" [formGroup]="otherinfoForm">
+  <ion-list color="light" lines="none">
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">NIN <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input type="text" formControlName="NIN"></ion-input>
+    </ion-item>
+
+    <br />
+    <ion-list-header color="light">
+      <ion-label class="fs-12 bold">Next Of Kin Information</ion-label>
+    </ion-list-header>
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">Name</ion-label>
+      <ion-input type="text" formControlName="NOK_NAME" placeholder="John Doe"></ion-input>
+    </ion-item>
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">Surname</ion-label>
+      <ion-input type="text" formControlName="NOK_SURNAME" placeholder="John Doe"></ion-input>
+    </ion-item>
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">Othername(s)</ion-label>
+      <ion-input type="text" formControlName="NOK_OTHERNAME" placeholder="John Doe"></ion-input>
+    </ion-item>
+    <ion-item details="false" mode="md">
+      <ion-label color="dark" position="stacked">Gender <ion-text color="danger">*</ion-text></ion-label>
+      <ion-select placeholder="Select One" formControlName="NOK_GENDER" interface="action-sheet" mode="md">
+        <ion-select-option value="FEMALE">Female</ion-select-option>
+        <ion-select-option value="MALE">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">Relationship</ion-label>
+      <ion-input type="text" formControlName="NOK_RELATIONSHIP" placeholder="John Doe"></ion-input>
+    </ion-item>
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">Local Government</ion-label>
+      <ion-input type="text" formControlName="NOK_LGA" placeholder="John Doe"></ion-input>
+    </ion-item>
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">State</ion-label>
+      <ion-input type="text" formControlName="NOK_STATE" placeholder="John Doe"></ion-input>
+    </ion-item>
+
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">Address</ion-label>
+      <ion-textarea formControlName="NOK_ADDRESS" rows="4"></ion-textarea>
+    </ion-item>
+
+    <ion-item details="false" mode="md">
+      <ion-label mode="md" position="stacked">CORR Address</ion-label>
+      <ion-textarea formControlName="NOK_CORRADDRESS1" rows="4"></ion-textarea>
+    </ion-item>
+  </ion-list>
+  <div class="ion-padding">
+    <ion-button type="submit" class="hidden" id="employer-button">Save Employer Details</ion-button>
+  </div>
+</form>
+
+<br />
+<br />

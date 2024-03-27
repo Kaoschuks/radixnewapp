@@ -17,18 +17,18 @@ import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow, IonSelect, IonS
     CurrencyPipe
   ]
 })
-export class CalculatorFormComponent  implements OnInit {
+export class CalculatorFormComponent {
 
-  @Output() onsubmit = new EventEmitter();
+  @Output() onSubmit = new EventEmitter();
   calculatorForm: FormGroup = new FormGroup({
     balance: new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(3),
     ])),
     currentage: new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(3),
+      Validators.required, Validators.minLength(1),
     ])),
     retireage: new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(3),
+      Validators.required, Validators.minLength(1),
     ])),
     contribution: new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(3),
@@ -45,6 +45,8 @@ export class CalculatorFormComponent  implements OnInit {
     ],
   };
 
-  ngOnInit() {}
+  inputOnChange() {
+    if(this.calculatorForm.valid) this.onSubmit.emit(this.calculatorForm.value)
+  }
 
 }

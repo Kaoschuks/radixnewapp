@@ -50,6 +50,19 @@ export class HomeService {
     }
   }
 
+
+  get greetings(): any {
+    var date = new Date();
+    var hour = date.getHours();
+    return hour < 12
+      ? "Good Morning"
+      : hour >= 12 && hour <= 17
+      ? "Good Afternoon"
+      : hour >= 17 && hour <= 24
+      ? "Good Evening"
+      : "Good Day";
+  }
+
   private async getAccoutTransaction(type: string = 'GetActTrans') {
     return await this._accountservice.get_accounts(type)
   }

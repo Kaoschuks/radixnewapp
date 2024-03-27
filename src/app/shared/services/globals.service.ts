@@ -9,7 +9,7 @@ import {
   NavController,
   Platform,
   ToastController,
-} from "@ionic/angular";
+} from "@ionic/angular/standalone";
 
 import { ActivatedRoute, ActivationStart, Router } from "@angular/router";
 import { LocalNotifications } from "@capacitor/local-notifications";
@@ -37,6 +37,7 @@ export class GlobalsServices {
   public menuCtrl: MenuController = inject(MenuController)
   public route: ActivatedRoute = inject(ActivatedRoute)
   public location: Location = inject(Location)
+  public toastCtrl: ToastController = inject(ToastController)
 
 
   config: configModel = {
@@ -55,16 +56,7 @@ export class GlobalsServices {
   appLoading: boolean = true;
   refresh = new BehaviorSubject<boolean>(false);
   pageRefresh: boolean = false;
-  toast = {
-    open: false,
-    message: '',
-    cssClass: 'toast-default',
-    position: 'bottom',
-    duration: 3000
-  }
   loading: any = {
-    open: false,
-    duration: 0,
     message: '',
     hide: async () => {
       await this.loadingCtrl.dismiss();
@@ -75,15 +67,14 @@ export class GlobalsServices {
   }
 
   private async showLoader(message: string, duration: number) {
-    this.loading.open = true;
-    this.loading.duration = duration;
-    this.loading.message = message;
-
-    setTimeout(() => {
-      this.loading.open = false;
-      this.loading.duration = 0;
-      this.loading.message = '';
-    }, duration)
+    const loading = await this.loadingCtrl.create({
+      message: message,
+      backdropDismiss: false,
+      keyboardClose: true,
+      showBackdrop: true,
+      duration: duration,
+    });
+    await loading.present();
   }
 
   setUrlTitle() {
@@ -130,13 +121,14 @@ export class GlobalsServices {
     message: string,
     { duration = 1000, cssClass = "toast-deafult", position = "bottom" } = {}
   ) {
-    this.toast = {
-      open: true,
-      duration: duration,
+    const toast = await this.toastCtrl.create({
       message: message,
+      duration: duration,
+      position:
+        position == "top" ? "top" : position == "middle" ? "middle" : "bottom",
       cssClass: cssClass,
-      position: position || "bottom",
-    };
+    });
+    await toast.present();
   }
 
   navigate(path: string, subpage: boolean = true) {
@@ -178,11 +170,14 @@ export class GlobalsServices {
   async changeStatusBarColor(color: string = '', isLight: boolean = false, noStatus: boolean = true) {
     if(this.platform.is('capacitor')) {
       setTimeout(async () => {
-        await StatusBar.setStyle({
-          style: (isLight == false) ? Style.Light : Style.Dark
-        })
         await StatusBar.setBackgroundColor({ color: color });
-      }, 500);
+        if(noStatus == false) await StatusBar.setStyle({
+          style: (isLight == false) ? Style.Light : Style.Dark,
+        })
+        await StatusBar.setOverlaysWebView({
+          overlay: noStatus
+        })
+      }, 100);
     }
   }
 
