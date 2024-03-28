@@ -9,6 +9,7 @@ import { FeedbackModalComponent } from '../modals/feedback-modal/feedback-modal.
 import { LivechatModalComponent } from '../modals/livechat-modal/livechat-modal.component';
 import { SupportModalComponent } from '../modals/support-modal/support-modal.component';
 import { InvestmentoptionsModalComponent } from '../modals/investmentoptions-modal/investmentoptions-modal.component';
+import { ChangepasswordModalComponent } from '../modals/changepassword-modal/changepassword-modal.component';
 
 @Component({
   selector: 'app-tabs',
@@ -19,7 +20,7 @@ import { InvestmentoptionsModalComponent } from '../modals/investmentoptions-mod
     NgIf, LowerCasePipe,
     LanguageModalComponent, NotificationModalComponent, ProfileModalComponent, ActionsModalComponent, AccountsDetailsModalComponent,
     MobileLayoutComponent, SuccessModalComponent, TransactionModalComponent, FeedbackModalComponent, LivechatModalComponent, 
-    SupportModalComponent, InvestmentoptionsModalComponent
+    SupportModalComponent, InvestmentoptionsModalComponent, ChangepasswordModalComponent
   ],
 })
 

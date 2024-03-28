@@ -13,11 +13,13 @@ export class LoginService {
     try {
       this.globals.loading.show('verifying credentials')
       await this.uData.login(form);
+      this.globals.loading.hide();
+      
       await this.uData.get_user_profile()
       this.globals.navigate('/', false)
     } catch (error: any) {
       this.globals.loading.hide()
-      this.globals.toastAlert(error.message || error.error || error, {
+     await  this.globals.toastAlert(error.message || error.error || error, {
         cssClass: 'toast-danger'
       })
     }

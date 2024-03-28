@@ -10,10 +10,12 @@ export class RegisterService {
 
   async register(form: any) {
     try {
+      this.globals.loading.show('Creating your account')
       await this.uData.register(form);
       this.globals.navigate('/login', false)
     } catch (error: any) {
-      this.globals.toastAlert(error.message || error.error || error, {
+      this.globals.loading.hide()
+     await  this.globals.toastAlert(error.message || error.error || error, {
         cssClass: 'toast-danger'
       })
     }

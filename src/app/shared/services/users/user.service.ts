@@ -54,19 +54,28 @@ export class UserService {
   }
 
   async forgot(form: authModel) {
-    return await new Promise((resolve, reject) => {
+    return await new Promise(async (resolve, reject) => {
       try{
-        this.globals.loading.show()
-        this._api.get(`S_WEBUSER/GetUsers_SendPass/${form.pin}`)
-        .then((res: any) => {
-          if(!res || res.length == 0 || res[0]['PASSCODE'] <= 0) reject("User information not found in database");
+        const res: any = await this._api.get(`S_WEBUSER/GetUsers_SendPass/${form.pin}`)
+        if(!res || res.length == 0 || res[0]['PASSCODE'] <= 0) reject("User information not found in database");
 
-          this.globals.loading.hide()
-          resolve("forgot password sent")
-        }).catch((ex: any) => {
-          this.globals.loading.hide()
-          reject(ex.message || ex.error || ex)
-        })
+        this.globals.loading.hide()
+        resolve("forgot password sent")
+      }catch(ex: any) {
+        this.globals.loading.hide()
+        reject(ex.message || ex.error || ex)
+      }
+    })
+  }
+
+  async changePassword(form: authModel) {
+    return await new Promise(async (resolve, reject) => {
+      try{
+        const res: any = await this._api.post(`S_WEBUSER/PostChangePassword`, form)
+        if(!res || res.length == 0 || res[0]['PASSCODE'] <= 0) reject("User information not found in database");
+
+        this.globals.loading.hide()
+        resolve("forgot password sent")
       }catch(ex: any) {
         this.globals.loading.hide()
         reject(ex.message || ex.error || ex)
@@ -75,21 +84,12 @@ export class UserService {
   }
 
   async register(form: registerModel) {
-    return await new Promise((resolve, reject) => {
-      this.globals.loading.show()
+    return await new Promise(async (resolve, reject) => {
       try{
-        this._api.post(`S_WEBUSER`, form)
-        .then((res: any) => {
-          if(!res || res.length == 0) reject("User information not found in database");
-          this.globals.loading.hide()
-          resolve("success")
-        }).catch((ex: any) => {
-          this.globals.loading.hide()
-          reject(ex.message || ex.error || ex)
-        })
+        const res: any = await this._api.post(`S_WEBUSER`, form)
+        if(!res || res.length == 0) reject("User information not found in database");
+        resolve("success")
       }catch(ex: any) {
-        console.log(ex.message)
-        this.globals.loading.hide()
         reject(ex.message || ex.error || ex)
       }
     })

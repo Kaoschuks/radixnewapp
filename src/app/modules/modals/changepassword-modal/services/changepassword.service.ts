@@ -4,19 +4,21 @@ import { GlobalsServices, UserService } from 'src/app/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ForgotService {
+export class ChangepasswordService {
+
   globals: GlobalsServices = inject(GlobalsServices);
   uData: UserService = inject(UserService);
 
   constructor() { }
 
-  async forgot(form: any) {
+  async chnagepassword(form: any) {
     try {
       this.globals.loading.show('recovering credentials')
-      await this.uData.forgot(form)
-      this.globals.notifyAlert("Recover Account", "Your account password reset information has been sent to your email")
-      this.globals.navigate('/login', false)
+      await this.uData.changePassword(form)
+      this.globals.toastAlert("Your account password has been changed successfully")
+      this.globals.loading.hide()
     } catch (error: any) {
+      this.globals.loading.hide()
       this.globals.toastAlert(error.message || error.error || error, {
         cssClass: 'toast-danger'
       })
