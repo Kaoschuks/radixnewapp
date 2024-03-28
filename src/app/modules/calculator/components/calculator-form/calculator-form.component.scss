@@ -1,5 +1,8 @@
 :host {
-    ion-col {
-        margin-bottom: 7px !important;
+    ion-item {
+        margin-top: 5px !important;
+        ion-input {
+            padding-left: 15px !important;
+        }
     }
 }

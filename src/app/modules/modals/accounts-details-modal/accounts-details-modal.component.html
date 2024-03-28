@@ -1,6 +1,6 @@
 
 <full-modal [open]="isOpen" (closeModal)="globals.closeModal('accountsdetailsmodal')" [asPage]="false"
-    [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'accountsdetails'" [title]="_accountservice.accountInfo?.ACCOUNTTYPE">
+    [headerColor]="'white'" [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'accountsdetails'" [title]="''">
 
     <account-info [currency]="globals.config.currency" [account]="_accountservice.accountInfo"></account-info>
 

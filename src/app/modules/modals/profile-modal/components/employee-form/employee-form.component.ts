@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonButton, IonInput, IonItem, IonLabel, IonList, IonListHeader, IonText, IonTextarea } from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonList, IonListHeader, IonRow, IonText, IonTextarea } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'employee-form',
@@ -9,25 +9,32 @@ import { IonButton, IonInput, IonItem, IonLabel, IonList, IonListHeader, IonText
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    IonItem, IonTextarea, IonLabel, IonInput, IonText, IonList, IonListHeader, IonButton,
+    IonItem, IonTextarea, IonLabel, IonInput, IonText, IonList, IonListHeader, IonButton, IonRow, IonCol,
     FormsModule, ReactiveFormsModule
   ]
 })
 export class EmployeeFormComponent implements OnChanges {
 
-  employeeForm: FormGroup = new FormGroup({
-    EMPLOYER_NAME: new FormControl({ value: '', disabled: true }, [Validators.required]),
-    DATE_EMPLOYED: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+.(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")]),
-    EMPLOYER_RCNO: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
-    EMPLOYER_ADDRESS: new FormControl({ value: '', disabled: true }, [Validators.required]),
-    EMPLOYER_PHONE: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern("([0-9])*")]),
-  });
-
+  @Input() isDisabled!: boolean
   @Input() user: any
+  @Output() onSubmit = new EventEmitter();
+
+  employeeForm: any
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.employeeForm.patchValue(this.user)
+    this.employeeForm = new FormGroup({
+      EMPLOYER_NAME: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      DATE_EMPLOYED: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+.(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")]),
+      EMPLOYER_RCNO: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(3)]),
+      EMPLOYER_ADDRESS: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      EMPLOYER_PHONE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern("([0-9])*")]),
+    });
+    if(this.user) this.employeeForm.patchValue(this.user)
+  }
+
+  inputOnChange() {
+    if(this.employeeForm.valid) this.onSubmit.emit(this.employeeForm.value)
   }
 
 }

@@ -6,6 +6,8 @@ import { QuickActionsComponent } from './components/quick-actions/quick-actions.
 import { HomeService } from './services/home.service';
 import { TransactionListsComponent } from '../accounts/components';
 import { AccountsListsComponent } from '../accounts/components/accounts/accounts-lists/accounts-lists.component';
+import { CircleProgressModule } from 'src/app/shared/components';
+import { CircleProgressComponent } from 'src/app/shared/components/circle-progress/circle-progress.component';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ import { AccountsListsComponent } from '../accounts/components/accounts/accounts
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
+    CircleProgressModule, CircleProgressComponent,
     IonicModule, CommonModule, AsyncPipe,
     AccountPortfolioComponent, QuickActionsComponent, TransactionListsComponent, AccountsListsComponent
   ]

@@ -1,18 +1,10 @@
-<ion-header class="ion-no-border" color="white">
+<!-- <ion-header class="ion-no-border" color="white">
   <ion-toolbar color="white">
       <ion-item color="white" lines="none">
         <ion-label>
           <h2 class="text-primary fs-18">{{greetings | titlecase}}, {{ _userservice.user?.NAME || _userservice.user?.FIRSTNAME + ' ' + _userservice.user?.SURNAME | titlecase }}</h2>
           <p class="fs-12 text-medium">{{ globals.config.pin | uppercase }}</p>
         </ion-label>
-          <!-- <ion-label>
-              <p class="fs-10 text-dark">Main Balance</p>
-              <h2 class="fs-18 fw-5" style="margin-top: 0px;">{{ _accountservice.bal | currency: 'AED '}}</h2>
-          </ion-label>
-          <ion-label slot="end" align="right">
-              <br />
-            <h2 style="margin-top: 0px;" class="fs-12 text-dark"></h2>
-          </ion-label> -->
       </ion-item>
       <ion-list-header>
         <ion-label>
@@ -21,50 +13,41 @@
       </ion-list-header>
       <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content color="light">
     <ion-refresher slot="fixed" (ionRefresh)="getAccounts($event, true)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    
-    <!-- <ion-toolbar>
-      <ion-item lines="none" detail="false" color="white">
-        <ion-label>
-          <h2 class="fs-18">Hello <span class="text-primary">{{_userservice.user?.NAME || _userservice.user?.FIRSTNAME | titlecase}} {{_userservice.user?.SURNAME | titlecase}}</span>,</h2>
-          <p class="ion-text-wrap fs-12">Here is a summary of your investments</p>
-        </ion-label>
-      </ion-item>
-      
-    </ion-toolbar> -->
-    <!-- <ion-item lines="none" detail="false" color="light">
-      <ion-label>
-        <h2 class="fs-18">Hello <span class="text-primary">{{_userservice.user?.NAME || _userservice.user?.FIRSTNAME | titlecase}} {{_userservice.user?.SURNAME | titlecase}}</span>,</h2>
-        <p class="ion-text-wrap fs-12">Here is a summary of your investments</p>
-      </ion-label>
-    </ion-item> -->
 
-    <!-- <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">
+    <ion-card class="no-shadow ion-no-margin" style="margin-bottom: 10px;">
+      <!-- <ion-item color="white" lines="none">
+        <ion-label>
+          <h2 class="text-primary fs-18">{{greetings | titlecase}}, {{ _userservice.user?.NAME || _userservice.user?.FIRSTNAME + ' ' + _userservice.user?.SURNAME | titlecase }}</h2>
+          <p class="fs-12 text-medium">{{ globals.config.pin | uppercase }}</p>
+        </ion-label>
+      </ion-item> -->
       <ion-list-header>
         <ion-label>
           <h2>Quick Actions</h2>
         </ion-label>
       </ion-list-header>
       <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
-    </ion-card> -->
+    </ion-card>
+
+    <ion-card class="no-shadow ion-no-margin" *ngIf="_accountservice.bal == 0">
+      <ion-item lines="none" detail="false" class="bg-transparent" mode="ios">
+        <ion-label>
+          <h2 class="fs-14">Complete Your RADIX profile</h2>
+          <p class="fs-12">Let's get your started, fill out your profile on our system</p>
+        </ion-label>
+        <circleprogress slot="end" [percent]="45" [radius]="25" [stroke]="5"></circleprogress>
+      </ion-item>
+    </ion-card>
 
     <account-portfolio (onViewTransaction)="openTransactions()" (onclick)="globals.openModal($event)" (selectedAccount)="_accountservice.openAccount($event)" [source]="_userservice.user?.EMPLOYER_NAME || 'not set'" [accountNumber]="globals.config.pin || 'not set'" [loader]="loading | async" [accounts]="accounts" [balance]="_accountservice.bal" [currency]="globals.config.currency">
       <!-- <quick-actions (onSelect)="openQuickAction($event)"></quick-actions> -->
     </account-portfolio>
-    
-    <!-- <ion-card color="white" class="ion-no-margin no-shadow">
-      <ion-list-header>
-        <ion-label>
-          <h2 class="fs-14">Quick Actions</h2>
-        </ion-label>
-      </ion-list-header>
-      <quick-actions (onclick)="openQuickAction($event)"></quick-actions>
-    </ion-card> -->
 
     
     <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">

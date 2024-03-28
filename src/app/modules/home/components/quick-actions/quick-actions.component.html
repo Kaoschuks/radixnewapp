@@ -9,7 +9,7 @@
     </ion-label>
   </ion-card> -->
     <div class="product fb" align="center" *ngFor="let product of products" (click)="onSelect.emit(product)">
-      <ion-fab-button class="no-shadow" color="light">
+      <ion-fab-button class="no-shadow" color="primary">
         <i [ngClass]="product?.icon"></i>
       </ion-fab-button>
       <ion-label>

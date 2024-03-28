@@ -1,34 +1,52 @@
-<!-- <ng-container>
-
-</ng-container> -->
-
 <full-modal [open]="isOpen" (closeModal)="globals.closeModal('profilemodal')" [asPage]="false" [headerColor]="'white'"
-    [headerClass]="'bg-white'" [bodyColor]="'light'" [id]="'profile'" [title]="globals.modalData?.title || 'Profile'">
+    [headerClass]="'bg-white'" [hasHeader]="false" [bodyColor]="'light'" [id]="'profile'" [title]="globals.modalData?.title || 'Profile'">
 
-    <ion-card class="no-shadow ion-no-padding ion-no-margin animated fadeIn bg-transparent" align="center">
-        <ng-container>
-            <ion-avatar (click)="openOptions(select)" class="no-shadow bg-medium avatar-lg avatar-border" style="position:relative;z-index:999">
-                <ion-img
-                    [src]="'https://ui-avatars.com/api/?name=Chikeluba Chukwuemeka Favour&color=000000&&background=ffffff'"></ion-img>
-            </ion-avatar>
-            <ion-item lines="none" class="bg-white" style="position:relative;top: -30px;margin-bottom: -30px;">
-                <ion-label align="center">
-                    <br />
-                    <h2>{{ 'Favour Chikleuba Chukwuemeka' | titlecase }}</h2>
-                    <p>{{ 'info@kelubaemeka.me' | titlecase }}</p>
-                </ion-label>
-            </ion-item>
+
+    <ion-header mode="md" slot="fixed" class="ion-no-border">
+        <ion-toolbar mode="md" color="white">
+            <ion-buttons slot="start">
+              <ion-button color="dark" fill="clear" class="no-shadow back" size="small" routerDirection="back"
+                (click)="isOpen = false">
+                <ion-icon name="chevron-down-outline" class="fs-18"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button [disabled]="!disabled" color="dark" fill="clear" class="no-shadow back fs-14" routerDirection="back" (click)="saveProfile()">
+                Save
+              </ion-button>
+            </ion-buttons>
+            <ion-title mode="ios">
+              <span class="fw-4">{{ globals.modalData.title | titlecase }}</span>
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content color="light">
+        <br />
+        <br />
+        <br />
+        <br />
+        <ng-container *ngIf="globals.modalData.title == 'edit profile'">
+            <ion-card class="no-shadow ion-no-padding ion-no-margin animated fadeIn bg-transparent" align="center">
+                <ng-container>
+                    <ion-avatar (click)="openOptions()" class="no-shadow bg-medium avatar-lg avatar-border" style="position:relative;z-index:999">
+                        <ion-img
+                        [src]="'https://ui-avatars.com/api/?name='+userService.user?.FIRSTNAME  + ' ' + userService.user?.SURNAME+'&color=ffffff&&background=000000'"></ion-img>
+                    </ion-avatar>
+                    <h2 class="ion-text-center fs-14 text-dark">Change Profile Picture</h2>
+                    <input accept="image/*" (change)="uploadImage($event)" class="hidden" id="photo" type="file" />
+                </ng-container>
+            </ion-card>
+            <profile-form (onSubmit)="disabled = true;formData = $event" [user]="userService.user" [isDisabled]="true"></profile-form>
         </ng-container>
-    </ion-card>
-    <ion-card class="ion-no-padding no-shadow">
-        <profile-form></profile-form>
-    </ion-card>
 
-    <!-- <employee-form></employee-form> -->
+        <ng-container *ngIf="globals.modalData.title == 'employment'">
+            <employee-form (onSubmit)="disabled = true;formData = $event" [user]="userService.user" [isDisabled]="true"></employee-form>
+        </ng-container>
 
-    <input class="hidden" id="photo" type="file" />
-    <!-- <ion-select (ionChange)="openOptions(select)" id="option-select-profile" class="hidden" interface="action-sheet" mode="md" >
-      <ion-select-option value="camera">Use Camera</ion-select-option>
-      <ion-select-option value="gallery">Select from Gallery</ion-select-option>
-    </ion-select> -->
+        <ng-container *ngIf="globals.modalData.title == 'next of kin'">
+            <otherinfo-form (onSubmit)="disabled = true;formData = $event" [user]="userService.user" [isDisabled]="true"></otherinfo-form>
+        </ng-container>
+
+    </ion-content>
 </full-modal>

@@ -39,6 +39,7 @@
     "@ionic/pwa-elements": "^3.2.2",
     "crypto-js": "^4.2.0",
     "ionicons": "^7.3.0",
+    "ng-circle-progress": "^1.7.1",
     "remixicon": "^4.2.0",
     "rxjs": "~7.8.1",
     "swiper": "^11.0.7",

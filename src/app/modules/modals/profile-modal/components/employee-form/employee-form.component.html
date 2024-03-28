@@ -1,47 +1,43 @@
-<!-- <div class="profile_img">
-  <div class="img_box center_img">
-    <img [src]="profileForm?.controls?.image?.value || 'assets/imgs/profile.png'" class="img_box" loading="lazy" /> 
-  </div>
-  <input class="hidden" id="photo" type="file" />
-  <h2 class="ion-text-center">Change Profile Picture</h2>
-</div> -->
 
 <form class="form" [formGroup]="employeeForm">
-  <ion-list color="light" lines="none">
-    <ion-list-header color="light">
-      <ion-label class="fs-12 bold">Employer Information</ion-label>
-    </ion-list-header>
-
-    <ion-item details="false" mode="md">
-      <ion-label mode="md" position="stacked">Employer Name <ion-text color="danger">*</ion-text></ion-label>
-      <ion-textarea formControlName="EMPLOYER_NAME" rows="3"></ion-textarea>
+  <ion-row>
+    <ion-col size="12">
+    <ion-label class="fs-12">Employer Name <ion-text color="danger">*</ion-text></ion-label>
+    <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
+      <ion-input (ionInput)="inputOnChange()" formControlName="EMPLOYER_NAME" type="text"></ion-input>
     </ion-item>
-    <ion-item details="false" mode="md">
-      <ion-label mode="md" position="stacked">Employment Date <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input type="text" formControlName="DATE_EMPLOYED"></ion-input>
+  </ion-col>
+  <ion-col size="12">
+    <ion-label class="fs-12">Employment Date <ion-text color="danger">*</ion-text></ion-label>
+    <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
+      <ion-input (ionInput)="inputOnChange()" type="text" formControlName="DATE_EMPLOYED"></ion-input>
     </ion-item>
-    <ion-item details="false" mode="md">
-      <ion-label mode="md" position="stacked">Employer RCNO <ion-text color="danger">*</ion-text></ion-label>
-      <ion-input type="text" formControlName="EMPLOYER_RCNO"></ion-input>
+  </ion-col>
+  <ion-col size="12">    
+    <ion-label class="fs-12">Employer RCNO <ion-text color="danger">*</ion-text></ion-label>
+    <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
+      <ion-input (ionInput)="inputOnChange()" type="text" formControlName="EMPLOYER_RCNO"></ion-input>
     </ion-item>
-
+  </ion-col>
+  <ion-col size="12">
     <br />
-    <ion-list-header color="light">
-      <ion-label class="fs-12 bold">Employer Contact Information</ion-label>
+    <ion-list-header>
+      <ion-label>Contact Information</ion-label>
     </ion-list-header>
-    <ion-item details="false" mode="md">
-      <ion-label mode="md" position="stacked">Employer Phonenumber</ion-label>
-      <ion-input type="text" formControlName="EMPLOYER_PHONE" placeholder="John Doe"></ion-input>
+  </ion-col>
+  <ion-col size="12">
+    <ion-label class="fs-12">Employer Phonenumber</ion-label>
+    <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
+      <ion-input (ionInput)="inputOnChange()" type="text" formControlName="EMPLOYER_PHONE" placeholder="John Doe"></ion-input>
     </ion-item>
-
-    <ion-item details="false" mode="md">
-      <ion-label mode="md" position="stacked">Employer Address</ion-label>
-      <ion-textarea formControlName="EMPLOYER_ADDRESS" rows="4"></ion-textarea>
+  </ion-col>
+  <ion-col size="12">
+    <ion-label class="fs-12">Employer Address</ion-label>
+    <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
+      <ion-textarea (ionInput)="inputOnChange()" formControlName="EMPLOYER_ADDRESS" rows="4"></ion-textarea>
     </ion-item>
-  </ion-list>
-  <div class="ion-padding">
-    <ion-button type="submit" class="hidden" id="employer-button">Save Employer Details</ion-button>
-  </div>
+  </ion-col>
+</ion-row>
 </form>
 
 <br />

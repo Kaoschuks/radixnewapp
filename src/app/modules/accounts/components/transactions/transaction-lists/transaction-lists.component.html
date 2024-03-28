@@ -17,9 +17,9 @@
 <div *ngIf="!loader && transactions.length > 0">
   <ng-container>
     <ion-item details="false" (click)="onclick.emit(trans)" lines="none" mode="ios" *ngFor="let trans of transactions">
-      <ion-fab-button slot="start" class="no-shadow" color="light">
-        <i class="fi fi-sr-arrow-trend-up fs-18 text-success" *ngIf="trans?.STATUS == 'Credit'"></i>
-        <i class="fi fi-sr-arrow-trend-down fs-18 text-danger" *ngIf="trans?.STATUS == 'Debit'"></i>
+      <ion-fab-button slot="start" class="no-shadow" [color]="trans?.STATUS == 'Credit' ? 'success' : 'danger'">
+        <i class="fi fi-sr-arrow-trend-up fs-18 text-white" *ngIf="trans?.STATUS == 'Credit'"></i>
+        <i class="fi fi-sr-arrow-trend-down fs-18 text-white" *ngIf="trans?.STATUS == 'Debit'"></i>
       </ion-fab-button>
       <ion-label>
         <h2 class="text-dark fs-14">{{trans?.STATUS}} Transaction</h2>

@@ -1,6 +1,7 @@
 
 
-<full-modal [open]="isOpen" [backDropDismiss]="false" [id]="'walkthrough'" [bodyColor]="'white'" [headerClass]="'hidden'" [footerClass]="'bg-white ion-no-border'">
+<full-modal [open]="isOpen" [backDropDismiss]="false" [id]="'walkthrough'" [bodyColor]="'white'" [headerClass]="'hidden'" [footerClass]="'bg-bg-transparent ion-no-border'">
+  
   <!-- <ion-header class="ion-no-border">
     <ion-toolbar slot="fixed" color="white">
       <ion-title mode="md">
@@ -8,24 +9,20 @@
       </ion-title>
     </ion-toolbar>
   </ion-header> -->
-
-    <!-- <ion-content [fullscreen]="true"> -->
-      <img src="assets/img/bg/radix mobile app design 6 girl.png" id="content-page" />
-    <!-- </ion-content> -->
-
-  <!-- <ion-button (click)="globals.closeModal('walkthroughmodal')" routerLink="/login" size="default" color="primary" class="no-shadow ion-margin onboard-button">
-    <span class="fs-14 ion-padding-end ion-padding-start">Get Started</span>
-    <i class="ri-arrow-right-s-line ri-xl fs-30 fs-16 animated pulse infinite" slot="end"></i>
-  </ion-button> -->
-  
-  <div modal-footer class="ion-padding ion-no-border">
+  <ion-content [fullscreen]="true">
     <onboarding></onboarding>
-    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/register" (click)="globals.closeModal('walkthroughmodal')" size="large">
-      <span class="fs-14">Get Started</span>
+    <!-- <ion-button (click)="globals.closeModal('walkthroughmodal')" routerLink="/login" size="default" color="primary" class="no-shadow ion-margin onboard-button">
+      <span class="fs-14 ion-padding-end ion-padding-start">Get Started</span>
+      <i class="ri-arrow-right-s-line ri-xl fs-30 fs-16 animated pulse infinite" slot="end"></i>
+    </ion-button> -->
+  </ion-content>
+  <div modal-footer class="ion-padding ion-no-border bg-transparent">
+    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/register" (click)="globals.closeModal('walkthroughmodal');resetStatusBar()" size="large">
+      <span class="fs-14">Let's Start</span>
     </ion-button>  
-    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" fill="clear" routerLink="/login" (click)="globals.closeModal('walkthroughmodal')" size="large">
+    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" fill="clear" routerLink="/login" (click)="globals.closeModal('walkthroughmodal');resetStatusBar()" size="large">
       <span class="fs-14 bold">Existing User? (Sign In)</span>
     </ion-button>  
-    <br />
   </div>
+  <br />
 </full-modal>

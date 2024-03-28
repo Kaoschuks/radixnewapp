@@ -15,32 +15,29 @@ import { IonItem, IonTextarea, IonLabel, IonInput, IonText, IonList, IonListHead
   ]
 })
 export class ProfileFormComponent implements OnChanges {
-  ext: string = "+234"
-  options = {
-    maximumImagesCount: 5,
-    quality: 100,
-    outputType: 1
-  }
+
   @Input() isDisabled: boolean = false
-
-  profileForm: FormGroup= new FormGroup({
-    TITLE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    DATE_OF_BIRTH: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    OTHERNAMES: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    PERMANENT_ADDRESS: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    MARITAL_STATUS_CODE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    SURNAME: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    EMAIL: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+.(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")]),
-    FIRSTNAME: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(3)]),
-    GENDER: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
-    MOBILE_PHONE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern("([0-9])*")]),
-  });
-
   @Output() onSubmit = new EventEmitter();
   @Input() user: any
 
+  profileForm: any
+  ext: string = "+234"
+
+
   ngOnChanges() {
-    this.profileForm.patchValue(this.user);
+    this.profileForm = new FormGroup({
+      TITLE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      DATE_OF_BIRTH: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      OTHERNAMES: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      PERMANENT_ADDRESS: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      MARITAL_STATUS_CODE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      SURNAME: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      EMAIL: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(4), Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+.(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")]),
+      FIRSTNAME: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(3)]),
+      GENDER: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required]),
+      MOBILE_PHONE: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.minLength(10), Validators.maxLength(11), Validators.pattern("([0-9])*")]),
+    });
+    if(this.user) this.profileForm.patchValue(this.user);
   }
 
   inputOnChange() {

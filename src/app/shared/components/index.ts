@@ -5,3 +5,4 @@ export * from "./chips/chips.component";
 export * from "./layout";
 export * from "./loaders";
 export * from "./modal_components";
+export * from "./circle-progress/circle-progress.module";

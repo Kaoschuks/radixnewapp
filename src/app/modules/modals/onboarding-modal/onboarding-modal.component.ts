@@ -23,7 +23,10 @@ export class OnboardingModalComponent implements OnChanges {
   public readonly globals: GlobalsServices = inject(GlobalsServices);
 
   async ngOnChanges(changes: SimpleChanges) {
-    // alert();
-    // await this.globals.changeStatusBarColor('#ffffff', false, true)
+    await this.globals.changeStatusBarColor('#ffffff', false, true)
+  }
+
+  async resetStatusBar() {
+    await this.globals.changeStatusBarColor('#ffffff', false, false)
   }
 }
