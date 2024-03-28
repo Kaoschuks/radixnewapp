@@ -657,7 +657,7 @@ ion-title {
     border: 0px solid var(--ion-color-white) !important;
 }
 #content-page {
-    height: 70vh !important;
+    height: calc(100vh - 250px) !important;
 }
 .bg-img {
 //   background-image: url('/assets/img/bg/radix mobile app design 6 girl.png');
