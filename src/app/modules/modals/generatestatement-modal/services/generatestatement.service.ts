@@ -15,8 +15,8 @@ export class GeneratestatementService {
   endDate: any = new Date()
 
   async applyFilter() {
-    const resp: any = await this.acctServ.generate_statement({
-      fundId: 1,
+    await this.acctServ.generate_statement({
+      fundID: 1,
       startdate: this.startDate,
       enddate: this.endDate
     })

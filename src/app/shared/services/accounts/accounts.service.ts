@@ -69,7 +69,7 @@ export class AccountsService {
     return await new Promise(async (resolve, reject) => {
       try {
         this._globals.loading.show("Processing ....")
-        let resp: any = await this._api.post(`S_WEBUSER/GetStatement`, form)
+        let resp: any = await this._api.post(`S_WEBUSER/PostStatement`, form)
         if(!resp || resp.length == 0 ) throw new Error("Generate Statement Failed");
 
         this._globals.loading.hide()
