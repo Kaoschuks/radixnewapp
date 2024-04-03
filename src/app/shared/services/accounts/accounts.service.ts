@@ -65,6 +65,32 @@ export class AccountsService {
     })
   }
 
+  async generate_statement(form: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        this._globals.loading.show("Processing ....")
+        let resp: any = await this._api.post(`S_WEBUSER/GetStatement`, form)
+        if(!resp || resp.length == 0 ) throw new Error("Generate Statement Failed");
+
+        this._globals.loading.hide()
+        await this._globals.toastAlert(`Statement generated successfully and sent to email`, {
+          duration: 3000,
+          cssClass: 'toast-success',
+          position: 'top'
+        })
+        resolve(true)
+      } catch (error: any) {
+        this._globals.closeModal('statementmodal')
+        this._globals.loading.hide()
+        await this._globals.toastAlert(error.error || error.message || error, {
+          duration: 3000,
+          cssClass: 'toast-danger',
+        })
+        reject(false)
+      }
+    })
+  }
+
   private getBalance(accounts: any) {
     accounts.forEach((acct: any) => {
       if(acct.RSABAL) this.bal += parseFloat(acct.RSABAL);

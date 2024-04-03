@@ -26,7 +26,7 @@ export class SettingsService {
       color: 'danger',
       iconName: 'alert-circle-outline',
       description:
-        'Your account will be permanently deleted, do you want to proceed ?',
+        'Your account will be logged out, do you want to proceed ?',
       buttons: [
         {
           action: 'no',

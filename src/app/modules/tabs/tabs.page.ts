@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MobileLayoutComponent, SuccessModalComponent } from 'src/app/shared/components';
 import { LowerCasePipe, NgIf } from '@angular/common';
-import { ActionsModalComponent, LanguageModalComponent, NotificationModalComponent, ProfileModalComponent } from '../modals';
+import { ActionsModalComponent, GeneratestatementModalComponent, LanguageModalComponent, NotificationModalComponent, ProfileModalComponent } from '../modals';
 import { AppService } from './services/app.service';
 import { AccountsDetailsModalComponent } from '../modals/accounts-details-modal/accounts-details-modal.component';
 import { TransactionModalComponent } from '../modals/transaction-modal/transaction-modal.component';
@@ -20,7 +20,7 @@ import { ChangepasswordModalComponent } from '../modals/changepassword-modal/cha
     NgIf, LowerCasePipe,
     LanguageModalComponent, NotificationModalComponent, ProfileModalComponent, ActionsModalComponent, AccountsDetailsModalComponent,
     MobileLayoutComponent, SuccessModalComponent, TransactionModalComponent, FeedbackModalComponent, LivechatModalComponent, 
-    SupportModalComponent, InvestmentoptionsModalComponent, ChangepasswordModalComponent
+    SupportModalComponent, InvestmentoptionsModalComponent, ChangepasswordModalComponent, GeneratestatementModalComponent
   ],
 })
 

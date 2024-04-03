@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { GlobalsServices } from 'src/app/core';
+import { GlobalsServices, UserService } from 'src/app/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculatorService {
   globals: GlobalsServices = inject(GlobalsServices);
+  userService: UserService = inject(UserService);
 
   disabled: boolean = false
   formdata: any;
@@ -18,7 +19,8 @@ export class CalculatorService {
 
   async calculatedPension() {
     try {
-
+      console.log(this.globals.config)  /// global app data
+      console.log(this.userService.user) // looged in user information
       console.log(this.formdata)   ///// formdata use for calculation
 
       const compoundInterest: any = this.compoundInterestCalculation();

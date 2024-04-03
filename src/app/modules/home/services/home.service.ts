@@ -68,12 +68,23 @@ export class HomeService {
   }
 
   async openQuickAction(product: any) {
-    const name: string = product.label.replace('<br />', '');
-    this.globals.modalData.title = name
-    await this.globals.toastAlert(`${name} feature not activated yet`, {
-      duration: 10000
-    })
-    // this.globals.openModal('actionmodal');
+    switch (product.action) {
+      case "none":
+        window.location.href = product.link
+        break;
+      case "app":
+        this.globals.navigate(product.link, false)
+        break; 
+      case "statementmodal":
+        this.globals.openModal(product.action)
+        break;    
+      default:
+        const name: string = product.label.replace('<br />', '');
+        await this.globals.toastAlert(`${name} feature not activated yet`, {
+          duration: 10000
+        })
+        break;
+    }
   }
 
   openTransactions() {

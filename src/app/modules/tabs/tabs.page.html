@@ -12,5 +12,6 @@
 <support-modal [isOpen]="globals.modalData?.supportmodal || false"></support-modal>
 <changepassword-modal [isOpen]="globals.modalData?.changepasswordmodal || false"></changepassword-modal>
 <investmentoptions-modal [isOpen]="globals.modalData?.investmentoptionsmodal || false"></investmentoptions-modal>
-<accounts-details-modal [isOpen]="globals.modalData?.accountsdetailsmodal|| false"></accounts-details-modal>
+<accounts-details-modal [isOpen]="globals.modalData?.accountsdetailsmodal || false"></accounts-details-modal>
+<generatestatement-modal [isOpen]="globals.modalData?.statementmodal || false"></generatestatement-modal>
 <success-modal [isOpen]="globals.modalData?.successmodal || false" (continue)="onModalClosed($event);globals.closeModal('successmodal')" [data]="globals.modalData || {}" [activeColor]="globals.modalData.color || 'primary'" [class]="'modal-center modal-center-sm modal-w70'"></success-modal>
