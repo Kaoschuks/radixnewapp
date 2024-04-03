@@ -16,6 +16,7 @@ export class GeneratestatementService {
 
   async applyFilter() {
     await this.acctServ.generate_statement({
+      PIN: this.globals.config.pin,
       fundID: 1,
       startdate: this.startDate,
       enddate: this.endDate
