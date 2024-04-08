@@ -30,13 +30,12 @@
       <h2 class="fs-14">Pension Accounts</h2>
     </ion-label>
   </ion-list-header> -->
-  <accounts-lists (onclick)="selectedAccount.emit($event)" [currency]="currency" [accounts]="accounts.rsaaccounts.slice(0, 2) || []" [loader]="loader"></accounts-lists>
-  <accounts-lists (onclick)="selectedAccount.emit($event)" [currency]="currency" [accounts]="accounts.volaccounts.slice(0, 1) || []" [loader]="loader"></accounts-lists>
+  <!-- <accounts-lists (onclick)="selectedAccount.emit($event)" [currency]="currency" [accounts]="accounts.rsaaccounts.slice(0, 2) || []" [loader]="loader"></accounts-lists>
+  <accounts-lists (onclick)="selectedAccount.emit($event)" [currency]="currency" [accounts]="accounts.volaccounts.slice(0, 1) || []" [loader]="loader"></accounts-lists> -->
 
-  <ion-item class="bg-transparent" routerDirection="forward" routerLink="/accounts" mode="ios" detail="true" lines="none" style="padding-top: 5px;" *ngIf="accounts.rsaaccounts.length > 0 || accounts.volaccounts.length > 0">
-  <!-- <ion-item (click)="onViewTransaction.emit()" mode="ios" detail="false" lines="none" style="padding-top: 10px;" *ngIf="accounts.rsaaccounts.length > 0 || accounts.volaccounts.length > 0"> -->
+  <!-- <ion-item class="bg-transparent" routerDirection="forward" routerLink="/accounts" mode="ios" detail="true" lines="none" style="padding-top: 5px;" *ngIf="accounts.rsaaccounts.length > 0 || accounts.volaccounts.length > 0">
     <ion-label>
       <h2 class="fs-14 text-dark">View All Your Radix Accounts</h2>
     </ion-label>
-  </ion-item>
+  </ion-item> -->
 </ion-card>

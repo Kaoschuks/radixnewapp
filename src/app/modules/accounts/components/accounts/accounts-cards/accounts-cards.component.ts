@@ -1,6 +1,6 @@
 import { CurrencyPipe, NgFor, NgIf, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IonCard, IonItem, IonLabel, IonNote } from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonItem, IonLabel, IonNote } from '@ionic/angular/standalone';
 import { TransactionListsComponent } from '../../transactions/transaction-lists/transaction-lists.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { TransactionListsComponent } from '../../transactions/transaction-lists/
   styleUrls: ['./accounts-cards.component.scss'],
   standalone: true,
   imports: [
-    IonItem, IonLabel, IonCard, IonNote,
+    IonItem, IonLabel, IonCard, IonNote, IonButton,
     TransactionListsComponent,
     TitleCasePipe, CurrencyPipe, UpperCasePipe,
     NgFor, NgIf

@@ -1,13 +1,13 @@
 
-<form [formGroup]="registerForm" (submit)="onsubmit.emit(registerForm.value)" role="form"class="ion-margin-top">
+<form [formGroup]="registerForm" (submit)="onsubmit.emit(registerForm.value)" role="form"class="form">
 
-  <ion-row class="ion-no-margin">
+  <ion-row>
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="light" class="ion-border">
-        <ion-label aria-label="surname" position="stacked">Surname</ion-label>
+      <ion-label aria-label="surname" class="fs-12 text-dark">Surname <span class="text-danger">*</span></ion-label>
+      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
         <ion-input formControlName="surname" aria-label="surname" type="text" placeholder="Your surname"></ion-input>
       </ion-item>
-      <div class="validation-errors fs-12 text-danger ion-padding-start">
+      <div class="validation-errors fs-12 text-danger">
         <div *ngFor="let validation of validation_messages.surname">
           <div class="error-message" *ngIf="registerForm.get('surname')?.hasError(validation.type) &&
                           registerForm.get('surname')?.touched">
@@ -20,11 +20,11 @@
     </ion-col>
     
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="light" class="ion-border">
-        <ion-label aria-label="firstname" position="stacked">Firstname</ion-label>
-        <ion-input formControlName="firstname" aria-label="firstname" type="text" placeholder="Your Firstname"></ion-input>
+      <ion-label aria-label="firstname" class="fs-12 text-dark">Firstname <span class="text-danger">*</span></ion-label>
+      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+        <ion-input formControlName="firstname" aria-label="firstname" type="text" placeholder="Your firstname"></ion-input>
       </ion-item>
-      <div class="validation-errors fs-12 text-danger ion-padding-start">
+      <div class="validation-errors fs-12 text-danger">
         <div *ngFor="let validation of validation_messages.firstname">
           <div class="error-message" *ngIf="registerForm.get('firstname')?.hasError(validation.type) &&
                           registerForm.get('firstname')?.touched">
@@ -37,11 +37,11 @@
     </ion-col>
     
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="light" class="ion-border">
-        <ion-label aria-label="middlename" position="stacked">Middlename</ion-label>
-        <ion-input formControlName="middlename" aria-label="middlename" type="text" placeholder="Your Middle Name"></ion-input>
+      <ion-label aria-label="middlename" class="fs-12 text-dark">Middlename</ion-label>
+      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+        <ion-input formControlName="middlename" aria-label="middlename" type="text" placeholder="Your Middle name"></ion-input>
       </ion-item>
-      <div class="validation-errors fs-12 text-danger ion-padding-start">
+      <div class="validation-errors fs-12 text-danger">
         <div *ngFor="let validation of validation_messages.middlename">
           <div class="error-message" *ngIf="registerForm.get('middlename')?.hasError(validation.type) &&
                           registerForm.get('middlename')?.touched">
@@ -54,11 +54,11 @@
     </ion-col>
     
     <ion-col size="12">
-      <ion-item lines="none" detail="false" color="light" class="ion-border">
-        <ion-label aria-label="email" position="stacked">Email</ion-label>
+      <ion-label aria-label="email" class="fs-12 text-dark">Email <span class="text-danger">*</span></ion-label>
+      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
         <ion-input formControlName="email" aria-label="email" type="text" placeholder="Your email"></ion-input>
       </ion-item>
-      <div class="validation-errors fs-12 text-danger ion-padding-start">
+      <div class="validation-errors fs-12 text-danger">
         <div *ngFor="let validation of validation_messages.email" class="error">
           <div *ngIf="registerForm.get('email')?.hasError(validation.type) &&
                     registerForm.get('email')?.touched">
@@ -71,9 +71,9 @@
     </ion-col>
 
     <ion-col size="12">
-      <ion-item class="ion-border" detail="false" lines="none" color="light">
-        <ion-label aria-label="pension type" position="stacked">Pension Type</ion-label>
-        <ion-select aria-label="pension type" formControlName="pensiontype" interface="action-sheet">
+      <ion-label aria-label="pension type" class="fs-12 text-dark">Pension Type <span class="text-danger">*</span></ion-label>
+      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+        <ion-select aria-label="pension type" formControlName="pensiontype" interface="action-sheet" mode="md">
           <ion-select-option value="">Choose a Pension Type</ion-select-option>
           <ion-select-option value="RSA PENSION">RSA Pension</ion-select-option>
           <ion-select-option value="MICRO PENSION">Micro Pension</ion-select-option>

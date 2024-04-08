@@ -1,38 +1,24 @@
-<!-- <ion-header class="ion-no-border" color="white">
-  <ion-toolbar color="white">
-      <ion-item color="white" lines="none">
-        <ion-label>
-          <h2 class="text-primary fs-18">{{greetings | titlecase}}, {{ _userservice.user?.NAME || _userservice.user?.FIRSTNAME + ' ' + _userservice.user?.SURNAME | titlecase }}</h2>
-          <p class="fs-12 text-medium">{{ globals.config.pin | uppercase }}</p>
-        </ion-label>
-      </ion-item>
-      <ion-list-header>
-        <ion-label>
-          <h2>Quick Actions</h2>
-        </ion-label>
-      </ion-list-header>
-      <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
-  </ion-toolbar>
-</ion-header> -->
 
 <ion-content color="light">
     <ion-refresher slot="fixed" (ionRefresh)="getAccounts($event, true)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <ion-card class="no-shadow ion-no-margin" style="margin-bottom: 10px;">
-      <!-- <ion-item color="white" lines="none">
-        <ion-label>
-          <h2 class="text-primary fs-18">{{greetings | titlecase}}, {{ _userservice.user?.NAME || _userservice.user?.FIRSTNAME + ' ' + _userservice.user?.SURNAME | titlecase }}</h2>
-          <p class="fs-12 text-medium">{{ globals.config.pin | uppercase }}</p>
-        </ion-label>
-      </ion-item> -->
-      <ion-list-header>
+    <ion-card class="no-shadow ion-no-margin ion-no-padding" style="margin-bottom: 10px;">
+      <account-portfolio (onViewTransaction)="openTransactions()" (onclick)="globals.openModal($event)" (selectedAccount)="_accountservice.openAccount($event)" [source]="_userservice.user?.EMPLOYER_NAME || 'not set'" [accountNumber]="globals.config.pin || 'not set'" [loader]="loading | async" [accounts]="accounts" [balance]="_accountservice.bal" [currency]="globals.config.currency">
+        <ion-list-header>
+          <ion-label>
+            <h2>Quick Actions</h2>
+          </ion-label>
+        </ion-list-header>
+        <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
+      </account-portfolio>
+      <!-- <ion-list-header>
         <ion-label>
           <h2>Quick Actions</h2>
         </ion-label>
       </ion-list-header>
-      <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
+      <quick-actions (onSelect)="openQuickAction($event)"></quick-actions> -->
     </ion-card>
 
     <ion-card class="no-shadow ion-no-margin" *ngIf="_accountservice.bal == 0">
@@ -45,12 +31,22 @@
       </ion-item>
     </ion-card>
 
-    <account-portfolio (onViewTransaction)="openTransactions()" (onclick)="globals.openModal($event)" (selectedAccount)="_accountservice.openAccount($event)" [source]="_userservice.user?.EMPLOYER_NAME || 'not set'" [accountNumber]="globals.config.pin || 'not set'" [loader]="loading | async" [accounts]="accounts" [balance]="_accountservice.bal" [currency]="globals.config.currency">
-      <!-- <quick-actions (onSelect)="openQuickAction($event)"></quick-actions> -->
-    </account-portfolio>
-
+    <ng-container *ngIf="(loading | async) == false">
+      <ion-card class="bg-white no-shadow" *ngIf="accounts.volaccounts?.length == 0 && accounts.rsaaccounts?.length == 0">
+          <no-content [useImage]="false">
+              <img height="150px" src="assets/img/gif/nocontent.gif" />
+              <ion-label>
+                  <h2 class="fs-16">No Accounts Found</h2>
+                  <p>Create a new chat application with data <br />and functions to manage everything</p>
+              </ion-label>
+          </no-content>
+      </ion-card>
+  
+      <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [accounts]="accounts.rsaaccounts || []" [currency]="globals.config.currency"></accounts-cards>
+      <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [accounts]="accounts.volaccounts || []" [currency]="globals.config.currency"></accounts-cards>
+  </ng-container>
     
-    <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">
+    <!-- <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">
       <ion-list-header>
         <ion-label>
           <h2>Recent Transactions</h2>
@@ -60,5 +56,5 @@
         </ion-button>
       </ion-list-header>
       <transaction-lists [currency]="globals.config.currency" [loader]="loading | async" [transactions]="transactions.slice(0,10)"></transaction-lists>
-    </ion-card>
+    </ion-card> -->
 </ion-content>
