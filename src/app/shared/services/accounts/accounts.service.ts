@@ -19,7 +19,7 @@ export class AccountsService {
     return await new Promise(async (resolve, reject) => {
       try {
         let resp: any = await this._api.get(`AccountsTrans/${type}/${this._globals.config.pin}`);
-        this.getBalance(resp.Result || resp)
+        // this.getBalance(resp.Result || resp)
 
         if(resp.Result) resp = resp.Result
         resp = resp.map((acct: any) => {
@@ -91,7 +91,7 @@ export class AccountsService {
     })
   }
 
-  private getBalance(accounts: any) {
+  getBalance(accounts: any) {
     accounts.forEach((acct: any) => {
       if(acct.RSABAL) this.bal += parseFloat(acct.RSABAL);
       if(acct.VOLBAL) this.bal += parseFloat(acct.VOLBAL.split(',').join(''));

@@ -1,6 +1,18 @@
 
 <div class="onboard">
-  <swiper-container #swiper class="myIntroSwiper" [slidesPerView]="1.0" space-between="0px">
+  <swiper-container #swiper class="myIntroSwiper" 
+  [slidesPerView]="1.0" 
+  space-between="0px"
+  effect="slide"
+  navigation="false"
+  pagination="false"
+  autoplay-delay="3000"
+  autoplay-disable-on-interaction="false"
+  autoplay-reverse-direction="true"
+  loop="true"
+  allow-touch-move="false"
+  prevent-clicks="false"
+  >
     <ng-container>
       <swiper-slide>
         <img src="assets/img/bg/pension not tension jpeg uche.jpg" id="content-page" />
