@@ -1,12 +1,12 @@
 PODS:
-  - Capacitor (5.6.0):
+  - Capacitor (5.7.4):
     - CapacitorCordova
-  - CapacitorApp (5.0.6):
+  - CapacitorApp (5.0.7):
     - Capacitor
-  - CapacitorCordova (5.6.0)
-  - CapacitorHaptics (5.0.6):
+  - CapacitorCordova (5.7.4)
+  - CapacitorHaptics (5.0.7):
     - Capacitor
-  - CapacitorKeyboard (5.0.7):
+  - CapacitorKeyboard (5.0.8):
     - Capacitor
   - CapacitorLocalNotifications (5.0.7):
     - Capacitor
@@ -15,6 +15,8 @@ PODS:
   - CapacitorSplashScreen (5.0.7):
     - Capacitor
   - CapacitorStatusBar (5.0.7):
+    - Capacitor
+  - CapacitorToast (5.0.7):
     - Capacitor
   - HugotomaziCapacitorNavigationBar (3.0.0):
     - Capacitor
@@ -29,6 +31,7 @@ DEPENDENCIES:
   - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - "CapacitorToast (from `../../node_modules/@capacitor/toast`)"
   - "HugotomaziCapacitorNavigationBar (from `../../node_modules/@hugotomazi/capacitor-navigation-bar`)"
 
 EXTERNAL SOURCES:
@@ -50,21 +53,24 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  CapacitorToast:
+    :path: "../../node_modules/@capacitor/toast"
   HugotomaziCapacitorNavigationBar:
     :path: "../../node_modules/@hugotomazi/capacitor-navigation-bar"
 
 SPEC CHECKSUMS:
-  Capacitor: ebfc16cdb8116d04c101686b080342872da42d43
-  CapacitorApp: 024e1b1bea5f883d79f6330d309bc441c88ad04a
-  CapacitorCordova: 931b48fcdbc9bc985fc2f16cec9f77c794a27729
-  CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
-  CapacitorKeyboard: ce5e01064cf57a2c05b32565310713b7fe6cc6f9
+  Capacitor: 4fe9adf012caceb4c71ffea2f1f4d005cdcbeea7
+  CapacitorApp: 17fecd0e6cb23feafac7eb0939417389038b0979
+  CapacitorCordova: a6e87fccc0307dee7aec1560ec9398485f2b0ce7
+  CapacitorHaptics: 7c7c206f0c96a628fed073830c96d28c4b2e772e
+  CapacitorKeyboard: aec619a578235c6ce279075009a2689c2cf5c42c
   CapacitorLocalNotifications: c58afadd159f6bc540ef9b3cbdbc82510a2bf112
   CapacitorPreferences: 77ac427e98db83bace772455f8ba447430382c4c
   CapacitorSplashScreen: dd3de3f3644710fa2a697cfb91ec262eece4d242
   CapacitorStatusBar: f390fbb49b82ffb754ea4b3cf71dc8b048baf3e7
+  CapacitorToast: c8bb89eeb59a23c1fc298f138cc06c8ff4d90ac1
   HugotomaziCapacitorNavigationBar: 5cad666e36f4292aa4e0b71bb3e15a39ffa9eefc
 
-PODFILE CHECKSUM: a426cd8746ce064e97701df3d5ba521ae6cf164e
+PODFILE CHECKSUM: 3c6374f93cc056481910dd397ef73abd6940ef79
 
 COCOAPODS: 1.15.2
