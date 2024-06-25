@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonListHeader, IonToolbar } from '@ionic/angular/standalone';
+import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonItem, IonLabel, IonListHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { OnboardingModalComponent } from '../modals';
 import { RouterModule } from '@angular/router';
 import { LoginService } from './services/login.service';
@@ -11,7 +11,7 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [
-    IonHeader, IonToolbar, IonContent, IonButtons, IonButton, IonListHeader, IonItem, IonLabel, IonFooter,
+    IonHeader, IonTitle, IonToolbar, IonContent, IonButtons, IonButton, IonListHeader, IonItem, IonLabel, IonFooter,
     LoginFormComponent, RouterModule,
     OnboardingModalComponent
   ]

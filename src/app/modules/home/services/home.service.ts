@@ -35,6 +35,9 @@ export class HomeService {
       if(rsaaccounts && rsaaccounts.length > 0) rsaaccounts[0]['transactions'] = await this.getAccoutTransaction();
       if(volaccounts && volaccounts.length > 0) volaccounts[0]['transactions'] = await this.getAccoutTransaction('GetVolActTrans');
 
+      this._accountservice.getBalance(rsaaccounts)
+      this._accountservice.getBalance(volaccounts)
+
       this.accounts.rsaaccounts = rsaaccounts;
       this.accounts.volaccounts = volaccounts;
       this.transactions = transactions;

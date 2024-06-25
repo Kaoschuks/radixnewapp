@@ -17,6 +17,11 @@
         <h2 class="fs-14 text-medium">Bid Price {{ acct?.BID_PRICE || 0 | currency: currency }}</h2>
       </ion-label>
     </ion-item>
+    <!-- <div class="ion-padding-start ion-padding-end">
+      <ion-button expand="block" fill="outline">
+        <span class="fs-14">View Transactions</span>
+      </ion-button>
+    </div> -->
     <transaction-lists [loader]="loader" [transactions]="acct?.transactions.slice(0,limit)" [currency]="currency"></transaction-lists>
     <ion-item mode="ios" detail="false" lines="none" (click)="selectedAccount.emit(acct)" *ngIf="acct?.transactions.length > 0">
       <ion-label>
