@@ -29,11 +29,11 @@ export class QuickActionsComponent {
     {
       action: 'none',
       label: 'Client <br /> Update',
-      link: 'https://online.radixpension.com/customer-service/client-update',
+      link: 'https://online.radixpension.com/datarecapture/',
       icon: 'ri-file-text-line'
     },
     {
-      action: 'branchlocator',
+      action: 'branchesmodal',
       label: 'Branch<br /> Locator',
       icon: 'ri-map-2-line'
     },

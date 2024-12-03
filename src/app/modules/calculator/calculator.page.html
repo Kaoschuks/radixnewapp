@@ -7,25 +7,30 @@
         <img src="assets/img/payment.png" />
       </ion-col>
       <ion-col size="9">
+        <ng-container *ngIf="(loader | async) === true">
+          <ion-spinner></ion-spinner>
+        </ng-container>
+        <ng-container *ngIf="(loader | async) === false">
           <ion-label>
             <h2 class="fs-14 text-dark">Your Retirement Income</h2>
-            <h2 class="fs-22 text-primary">{{ result.compoundInterest || 0 | currency : globals.config.currency }}</h2>
+            <h2 class="fs-22 text-primary">{{ result.reclump || 0 | currency : globals.config.currency }}</h2>
           </ion-label>
           <br />
           <ion-label>
-            <h2 class="fs-14 text-dark">{{ result.lipsumAmount || 0 | currency : globals.config.currency }} RSA Contribution</h2>
-            <p class="fs-12 text-medium">Only paid after your reach</p>
+            <h2 class="fs-14 text-dark">{{ result.maxmonthly || 0 | currency : globals.config.currency }} Monthly Withdrawal</h2>
+            <p class="fs-12 text-medium">What your entitled to monthly</p>
           </ion-label>
-          <ion-label>
-            <h2 class="fs-14 text-dark">{{ result.monthlyDrawDownAmount || 0 | currency : globals.config.currency }} monthly down amount</h2>
+          <!-- <ion-label>
+            <h2 class="fs-14 text-dark">{{ result?.maxmonthly || 0 | currency : globals.config.currency }} monthly down amount</h2>
             <p class="fs-12 text-medium">RSA Contribution</p>
-          </ion-label>
+          </ion-label> -->
+        </ng-container>
       </ion-col>
     </ion-row>
   </ion-card>
 
 
-  <calculator-form (onSubmit)="disabled = true;formdata = $event"></calculator-form>
+  <calculator-form [data]="calculatorForm" (onSubmit)="disabled = true;formdata = $event"></calculator-form>
 
   <!-- <ion-card class="no-shadow ion-no-margin" style="padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;">
     <ion-list-header>

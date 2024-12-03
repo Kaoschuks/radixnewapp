@@ -759,3 +759,91 @@ export const faqs = {
 
   ]
 }
+
+
+export const branches = [
+    {
+        name: "HEAD OFFICE",
+        address: "12A, Adeola Hopewell Street, Victoria Island, Lagos",
+        staff: "Oluwatosin Erukubami",
+        phone: "0817 5857 287",
+        email: "oerukubami@radixpension.com"
+    },
+    {
+        name: "ABUJA OFFICE",
+        address: "Israel Plaza, Adetokunbo Ademola Crescent, Plot 1077, Nitel Junction. Wuse II, Abuja",
+        staff: "Rosemary Edogbanya",
+        phone: "09050508469",
+        email: "redogbanya@radixpension.com"
+    },
+    {
+        name: "AKURE OFFICE",
+        address: "1st Floor, Bank of Industry, Alagbaka, Akure",
+        staff: "Ekundayo Oluwatimehin",
+        phone: "0817 5855 934",
+        email: "eolutimehin@radixpension.com"
+    },
+    {
+        name: "AKWA IBOM OFFICE",
+        address: "UBA, Plot 15 block 1, Abak Road, Uyo.",
+        staff: "Emmanuel Ilechie",
+        phone: "0703 498 7868",
+        email: "eilechie@radixpension.com"
+    },
+    {
+        name: "ASABA OFFICE",
+        address: "10 Maryam Babangidas Way, Off Okpanam Road, Asaba",
+        staff: "Emmanuel Nwaofunne",
+        phone: "0817 5856 989",
+        email: "enwaofunne@radixpension.com"
+    },
+    {
+        name: "IBADAN OFFICE",
+        address: "Mutual House, Plot 47/49, Onireke GRA, Ibadan, Oyo",
+        staff: "Stephen Kayode",
+        phone: "0817 5856 327",
+        email: "skayode@radixpension.com"
+    },
+    {
+        name: "CROSS RIVER OFFICE",
+        address: "",
+        staff: "Wilfred Ikpi",
+        phone: "0803 599 9141",
+        email: "wikpi@radixpension.com"
+    },
+    {
+        name: "KANO OFFICE",
+        address: "100 Amsalco Plaza, Zoo road, Kano",
+        staff: "Mustapha Aliyu-Ahmad",
+        phone: "07035873317",
+        email: "maliyuahmad@radixpension.com"
+    },
+    {
+        name: "KADUNA OFFICE",
+        address: "Nissan Building (Beside ASD Motors) Constitution Road, Kaduna",
+        staff: "Opeyemi Adeleye",
+        phone: "0817 5855 705",
+        email: "oadeleye@radixpension.com"
+    },
+    {
+        name: "IKEJA OFFICE",
+        address: "89, Allen Avenue, Ikeja, Lagos",
+        staff: "Olisa Okosi",
+        phone: "0817 5856 659",
+        email: "ookosi@radixpension.com"
+    },
+    {
+        name: "OTA OFFICE",
+        address: "61 Lagos - Abeokuta Expressway, Sango Ota.",
+        staff: "Oyedele Khadijat",
+        phone: "0816 930 4034",
+        email: "koyedele@radixpension.com"
+    },
+    {
+        name: "PORT HARCOURT OFFICE",
+        address: "UBA Branch, 137 Olu Obasanjo Road, Port Harcourt, Rivers State.",
+        staff: "Ojaemor Progress",
+        phone: "0817 5856 016",
+        email: "pojaemor@radixpension.com"
+    },
+]

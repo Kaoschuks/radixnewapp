@@ -1,5 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { GlobalsServices, UserService } from 'src/app/core';
+import { AccountsService } from '../../../shared/services/accounts/accounts.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,51 +9,40 @@ import { GlobalsServices, UserService } from 'src/app/core';
 export class CalculatorService {
   globals: GlobalsServices = inject(GlobalsServices);
   userService: UserService = inject(UserService);
+  accountService: AccountsService = inject(AccountsService)
 
+  loader: any = new BehaviorSubject(false);
   disabled: boolean = false
   formdata: any;
   result: any = {
-    compoundInterest: 0,
-    monthlyDrawDownAmount: 0,
-    lipsumAmount: 0
+    reclump: 0,
+    maxmonthly: 0
   }
 
-
-  async calculatedPension() {
+  protected async getPensionInfo() {
     try {
-      console.log(this.globals.config)  /// global app data
-      console.log(this.userService.user) // looged in user information
-      console.log(this.formdata)   ///// formdata use for calculation
-
-      const compoundInterest: any = this.compoundInterestCalculation();
-      const monthlyDrawDownAmount: any = this.monthlyDrawDownAmountCalculation();
-      const lipsumAmount: any = this.lipsumAmountCalculation();
-
-
-      this.result = {
-        compoundInterest: compoundInterest,
-        monthlyDrawDownAmount: monthlyDrawDownAmount,
-        lipsumAmount: lipsumAmount,
-      }
-
+      this.globals.loading.show('generating pension info...');
+      const resp: any = await this.accountService.get_pension_calculator_information(this.globals.config.pin)
+      this.globals.loading.hide();
+      return resp;
     } catch (error: any) {
+      this.globals.loading.hide();
       await this.globals.toastAlert(error, {
         duration: 3000
       });
     }
   }
 
-
-
-  private compoundInterestCalculation() {
-    return 0
-  }
-
-  private lipsumAmountCalculation() {
-    return 0
-  }
-
-  private monthlyDrawDownAmountCalculation() {
-    return 0
+  protected async calculatedPension() {
+    try {
+      this.loader.next(true)
+      this.result = await this.accountService.pension_calculator(this.formdata)
+      this.loader.next(false)
+    } catch (error: any) {
+      this.loader.next(false)
+      await this.globals.toastAlert(error, {
+        duration: 3000
+      });
+    }
   }
 }

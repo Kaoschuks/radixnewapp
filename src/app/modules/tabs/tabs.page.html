@@ -14,4 +14,5 @@
 <investmentoptions-modal [isOpen]="globals.modalData?.investmentoptionsmodal || false"></investmentoptions-modal>
 <accounts-details-modal [isOpen]="globals.modalData?.accountsdetailsmodal || false"></accounts-details-modal>
 <generatestatement-modal [isOpen]="globals.modalData?.statementmodal || false"></generatestatement-modal>
+<branch-modal [isOpen]="globals.modalData?.branchesmodal || false"></branch-modal>
 <success-modal [isOpen]="globals.modalData?.successmodal || false" (continue)="onModalClosed($event);globals.closeModal('successmodal')" [data]="globals.modalData || {}" [activeColor]="globals.modalData.color || 'primary'" [class]="'modal-center modal-center-sm modal-w70'"></success-modal>

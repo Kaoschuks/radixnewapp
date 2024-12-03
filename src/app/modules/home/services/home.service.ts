@@ -40,6 +40,8 @@ export class HomeService {
 
       this.accounts.rsaaccounts = rsaaccounts;
       this.accounts.volaccounts = volaccounts;
+      console.log(rsaaccounts)
+      console.log(volaccounts)
       this.transactions = transactions;
       this.globals.pageRefresh = false
       this.loading.next(false);
@@ -78,6 +80,7 @@ export class HomeService {
       case "app":
         this.globals.navigate(product.link, false)
         break; 
+      case "branchesmodal":
       case "statementmodal":
         this.globals.openModal(product.action)
         break;    

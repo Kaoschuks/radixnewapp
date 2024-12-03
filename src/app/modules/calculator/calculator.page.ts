@@ -1,6 +1,6 @@
-import { CurrencyPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { IonButton, IonCard, IonCol, IonContent, IonFooter, IonItem, IonLabel, IonListHeader, IonRow, IonThumbnail, IonToolbar } from '@ionic/angular/standalone';
+import { IonButton, IonCard, IonCol, IonContent, IonFooter, IonItem, IonLabel, IonListHeader, IonRow, IonSpinner, IonThumbnail, IonToolbar } from '@ionic/angular/standalone';
 import { CalculatorService } from './services/calculator.service';
 import { CalculatorFormComponent } from './components/calculator-form/calculator-form.component';
 
@@ -10,14 +10,16 @@ import { CalculatorFormComponent } from './components/calculator-form/calculator
   styleUrls: ['./calculator.page.scss'],
   standalone: true,
   imports: [
-    IonContent, IonFooter, IonButton, IonCard, IonItem, IonLabel, IonListHeader, IonRow, IonCol, IonThumbnail,
+    IonContent, IonFooter, IonButton, IonCard, IonItem, IonLabel, IonListHeader, IonRow, IonCol, IonThumbnail, IonSpinner,
     CalculatorFormComponent,
-    CurrencyPipe
+    CurrencyPipe, AsyncPipe, NgIf
   ]
 })
 export class CalculatorPage extends CalculatorService implements OnInit {
   
-  ngOnInit() {
+  calculatorForm: any
+  async ngOnInit() {
+    this.calculatorForm = await this.getPensionInfo();
   }
 
 }

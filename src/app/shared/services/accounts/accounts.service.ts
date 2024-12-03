@@ -23,6 +23,7 @@ export class AccountsService {
 
         if(resp.Result) resp = resp.Result
         resp = resp.map((acct: any) => {
+          acct.TOTAL_CONTRIBUTION = this.toNumber(acct.TOTAL_CONTRIBUTION)
           acct.GROWTH = this.toNumber(acct.GROWTH)
           acct.RSACONTRIBUTION = this.toNumber(acct.RSACONTRIBUTION)
           acct.ACCOUNTTYPE = (type == 'GetRSABal') ? 'RSA Accounts' : 'Voluntary Accounts'
@@ -87,6 +88,28 @@ export class AccountsService {
           cssClass: 'toast-danger',
         })
         reject(false)
+      }
+    })
+  }
+
+  async pension_calculator(form: any) {
+    return await new Promise(async (resolve, reject) => {
+      try{
+        const res: any = await this._api.post(`S_WEBUSER/PostCalcPen`, form)
+        resolve(res)
+      }catch(ex: any) {
+        reject(ex.message || ex.error || ex)
+      }
+    })
+  }
+
+  async get_pension_calculator_information(pensionid: string) {
+    return await new Promise(async (resolve, reject) => {
+      try{
+        const res: any = await this._api.get(`S_WEBUSER/GetPensionInfo/${pensionid}`)
+        resolve(res)
+      }catch(ex: any) {
+        reject(ex.message || ex.error || ex)
       }
     })
   }

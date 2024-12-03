@@ -31,9 +31,11 @@ export class TransactionListsComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.transactions)
   }
 
   toNumber(str: string = "0") {
+    // console.log(str)
     str = str.replace(",", '')
     return parseInt(str);
   }

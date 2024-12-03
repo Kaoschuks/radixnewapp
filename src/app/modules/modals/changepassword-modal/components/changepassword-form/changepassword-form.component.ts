@@ -19,7 +19,7 @@ export class ChangepasswordFormComponent  {
   hide = true;
 
   changepasswordForm: FormGroup = new FormGroup({
-    pin: new FormControl('', Validators.compose([
+    PIN: new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(11),
       Validators.pattern('^[a-zA-Z0-9_.+-]+$')
     ])),
@@ -27,7 +27,7 @@ export class ChangepasswordFormComponent  {
     rpassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]))
   });
   validation_messages = {
-    pin: [
+    PIN: [
       { type: "required", message: "Pin is required." },
       {
         type: "minlength",

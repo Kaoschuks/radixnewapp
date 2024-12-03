@@ -1,0 +1,38 @@
+<ion-accordion-group value="1branch" class="bg-light">
+  <ion-accordion style="margin-top: 3px;" [value]="i+1+'branch'" *ngFor="let branch of branches; let i = index">
+    <ion-item slot="header" class="bg-white" color="white" lines="none" mode="ios">
+      <ion-avatar slot="start" class="no-shadow">
+        <ion-img [src]="'https://ui-avatars.com/api/?name='+branch?.name+'&color=000000&&background=f4f5f8'"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2 class="ion-text-wrap text-dark">{{branch?.name | titlecase }}</h2>
+      </ion-label>
+    </ion-item>
+    <div class="bg-white" slot="content">
+      <BR />
+      <ion-item lines="none" detail="false" mode="ios">
+        <ion-label>
+          <p class="fs-12">Co Ordinator</p>
+          <h2 class="ion-text-wrap fs-14">{{ branch?.staff | titlecase }}</h2>
+        </ion-label>
+        <ion-label slot="end">
+          <p class="fs-12">Branch Contact</p>
+          <h2 class="ion-text-wrap fs-14">{{ branch?.phone || 'not set' | titlecase }}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" detail="false" mode="ios">
+        <ion-label>
+          <p class="fs-12">Branch Email</p>
+          <h2 class="ion-text-wrap fs-14">{{ branch?.email | titlecase }}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" detail="false" mode="ios">
+        <ion-label>
+          <p class="fs-12">Branch Address</p>
+          <h2 class="ion-text-wrap fs-14">{{ branch?.address || 'not set' | titlecase }}</h2>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-accordion>
+
+</ion-accordion-group>

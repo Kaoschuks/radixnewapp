@@ -3,11 +3,11 @@
     <ion-col size="12">
       <ion-label class="fs-12 text-dark">RSA Balance</ion-label>
       <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
-        <ion-input class="ion-padding-start" (ionInput)="inputOnChange()" formControlName="balance" type="number" placeholder="0.00"></ion-input>
+        <ion-input class="ion-padding-start" (ionInput)="inputOnChange()" formControlName="RSABal" type="number" placeholder="0.00"></ion-input>
       </ion-item>
       <div class="validation-errors fs-12 text-danger ion-padding-start">
-        <div *ngFor="let validation of validation_messages.balance">
-          <div class="error-message" *ngIf="calculatorForm.get('balance')?.hasError(validation.type) && calculatorForm.get('balance')?.touched">
+        <div *ngFor="let validation of validation_messages.RSABal">
+          <div class="error-message" *ngIf="calculatorForm.get('RSABal')?.hasError(validation.type) && calculatorForm.get('RSABal')?.touched">
             <div>
               {{" "+validation.message}}
             </div>
@@ -18,19 +18,19 @@
     <ion-col size="12">
       <ion-label class="fs-12 text-dark">RSA Contribution</ion-label>
       <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
-        <ion-input (ionInput)="inputOnChange()" type="number" formControlName="contribution" placeholder="0.00"></ion-input>
+        <ion-input (ionInput)="inputOnChange()" type="number" formControlName="RSACon" placeholder="0.00"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col size="6">
       <ion-label class="fs-12 text-dark">Current Age</ion-label>
       <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
-        <ion-input (ionInput)="inputOnChange()" type="number" formControlName="currentage" placeholder="0.00"></ion-input>
+        <ion-input (ionInput)="inputOnChange()" type="number" formControlName="CurAge" placeholder="0.00"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col size="6">
       <ion-label class="fs-12 text-dark">Retired Age</ion-label>
       <ion-item class="ion-no-padding ion-item-border-radius" color="white" mode="ios">
-        <ion-input (ionInput)="inputOnChange()" type="number" formControlName="retireage" placeholder="0.00"></ion-input>
+        <ion-input (ionInput)="inputOnChange()" type="number" formControlName="RetAge" placeholder="0.00"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>

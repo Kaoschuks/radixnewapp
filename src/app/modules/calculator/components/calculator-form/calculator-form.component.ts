@@ -1,5 +1,5 @@
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
@@ -17,26 +17,54 @@ import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow, IonSelect, IonS
     CurrencyPipe
   ]
 })
-export class CalculatorFormComponent {
+export class CalculatorFormComponent implements OnChanges {
 
   @Output() onSubmit = new EventEmitter();
+  @Input() data: any;
   calculatorForm: FormGroup = new FormGroup({
-    balance: new FormControl('', Validators.compose([
+    RSABal: new FormControl({
+      value: '',
+      disabled: true
+    }, Validators.compose([
       Validators.required, Validators.minLength(3),
     ])),
-    currentage: new FormControl('', Validators.compose([
+    CurAge: new FormControl({
+      value: '',
+      disabled: true
+    }, Validators.compose([
       Validators.required, Validators.minLength(1),
     ])),
-    retireage: new FormControl('', Validators.compose([
+    RetAge: new FormControl({
+      value: '',
+      disabled: true
+    }, Validators.compose([
       Validators.required, Validators.minLength(1),
     ])),
-    contribution: new FormControl('', Validators.compose([
+    RSACon: new FormControl({
+      value: '',
+      disabled: true
+    }, Validators.compose([
       Validators.required, Validators.minLength(3),
     ])),
   });
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.data) {
+      this.calculatorForm.patchValue({
+        RSABal: this.data.RSABal,
+        RetAge: this.data.retirementage,
+        CurAge: this.data.currentage,
+        RSACon: this.data.totalcon,
+      })
+      this.onSubmit.emit({
+        ...this.calculatorForm.value,
+        Gender: this.data.Gender
+      })
+    }
+  }
+
   validation_messages = {
-    balance: [
+    RSABal: [
       { type: "required", message: "Balance is required." },
       {
         type: "minlength",
@@ -46,7 +74,12 @@ export class CalculatorFormComponent {
   };
 
   inputOnChange() {
-    if(this.calculatorForm.valid) this.onSubmit.emit(this.calculatorForm.value)
+    if(this.calculatorForm.valid) {
+      this.onSubmit.emit({
+        ...this.calculatorForm.value,
+        Gender: this.data.Gender
+      })
+    }
   }
 
 }
