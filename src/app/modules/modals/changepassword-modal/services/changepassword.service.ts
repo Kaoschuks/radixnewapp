@@ -13,6 +13,7 @@ export class ChangepasswordService {
 
   async chnagepassword(form: any) {
     try {
+      form['PIN'] = this.globals.config.pin
       this.globals.loading.show('recovering credentials')
       await this.uData.changePassword(form)
       this.globals.toastAlert("Your account password has been changed successfully")

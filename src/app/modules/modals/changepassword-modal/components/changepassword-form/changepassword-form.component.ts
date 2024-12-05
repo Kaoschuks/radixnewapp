@@ -19,10 +19,10 @@ export class ChangepasswordFormComponent  {
   hide = true;
 
   changepasswordForm: FormGroup = new FormGroup({
-    PIN: new FormControl('', Validators.compose([
-      Validators.required, Validators.minLength(11),
-      Validators.pattern('^[a-zA-Z0-9_.+-]+$')
-    ])),
+    // PIN: new FormControl('', Validators.compose([
+    //   Validators.required, Validators.minLength(11),
+    //   Validators.pattern('^[a-zA-Z0-9_.+-]+$')
+    // ])),
     password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
     rpassword: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)]))
   });

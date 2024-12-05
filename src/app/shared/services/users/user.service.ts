@@ -116,6 +116,7 @@ export class UserService {
   async send_feedback(form: any) {
     return await new Promise((resolve, reject) => {
       try{
+        form['message'] = form['msg']
         this.globals.loading.show()
         this._api.post(`util`, form)
         .then((res: any) => {

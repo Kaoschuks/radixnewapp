@@ -1,14 +1,8 @@
 :host {
-
-    ion-input, ion-textarea {
-        margin-top: 10px;
-        --background: var(--ion-color-light) !important;
-        background-color: var(--ion-color-light) !important;
-        border-radius: 5px !important;
-        padding-left: 8px !important;
-    }
     ion-item {
-        background-color: transparent !important;
-        --background: transparent !important;
+        margin-top: 5px !important;
+        ion-input {
+            padding-left: 15px !important;
+        }
     }
 }

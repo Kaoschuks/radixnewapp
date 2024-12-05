@@ -29,8 +29,13 @@
     </ion-row>
   </ion-card>
 
+  <ng-container *ngIf="(loader | async) === true">
+    <ion-spinner></ion-spinner>
+  </ng-container>
+  <ng-container *ngIf="(loader | async) === false">
+    <calculator-form [data]="calculatorForm" (onSubmit)="disabled = true;formdata = $event"></calculator-form>
+  </ng-container>
 
-  <calculator-form [data]="calculatorForm" (onSubmit)="disabled = true;formdata = $event"></calculator-form>
 
   <!-- <ion-card class="no-shadow ion-no-margin" style="padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;">
     <ion-list-header>

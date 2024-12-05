@@ -23,13 +23,13 @@ export class QuickActionsComponent {
     {
       action: 'none',
       label: 'Data<br /> Recapture',
-      link: 'https://online.radixpension.com/onboarding/',
+      link: 'https://online.radixpension.com/datarecapture/',
       icon: 'ri-arrow-left-right-line'
     },
     {
       action: 'none',
       label: 'Client <br /> Update',
-      link: 'https://online.radixpension.com/datarecapture/',
+      link: 'https://online.radixpension.com/RadixSelfServices/',
       icon: 'ri-file-text-line'
     },
     {

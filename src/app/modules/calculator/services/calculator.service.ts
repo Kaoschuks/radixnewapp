@@ -21,12 +21,15 @@ export class CalculatorService {
 
   protected async getPensionInfo() {
     try {
+      this.loader.next(true)
       this.globals.loading.show('generating pension info...');
       const resp: any = await this.accountService.get_pension_calculator_information(this.globals.config.pin)
       this.globals.loading.hide();
+      this.loader.next(false)
       return resp;
     } catch (error: any) {
       this.globals.loading.hide();
+      this.loader.next(false)
       await this.globals.toastAlert(error, {
         duration: 3000
       });

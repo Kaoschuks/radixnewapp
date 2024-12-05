@@ -27,6 +27,7 @@ const LOGTAG = '[GlobalErrorHandlerService]';
 
 export class GlobalsServices {
 
+  private alertController: AlertController = inject(AlertController)
   private injector: Injector = inject(Injector)
   public platform: Platform = inject(Platform)
   public navCtrl: NavController = inject(NavController)
@@ -182,9 +183,39 @@ export class GlobalsServices {
   }
 
   exitApp() {
-    this.platform.backButton.subscribeWithPriority(-1, () => {
-      if (this.router.url === '/home') App.exitApp();
+    App.addListener('backButton', async () => {
+      // Logic for handling back button
+      const currentPath = window.location.pathname;
+      
+      // If not on the root page, use Ionic navigation
+      if (!["/home"].includes(currentPath)
+      ) {
+        window.history.back();
+      } else {
+        this.showExitConfirm();
+      }
     });
+  }
+
+  private async showExitConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Exit App',
+      message: 'Do you want to close the app?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Close',
+          handler: () => {
+            App.exitApp(); // Exit the app
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   get isLight(): boolean {

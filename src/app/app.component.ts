@@ -20,6 +20,7 @@ export class AppComponent implements AfterViewInit {
   async ngAfterViewInit() {
     try {
       await this.globals.platform.ready();
+      await this.globals.exitApp();
       await this.globals.changeStatusBarColor('#ffffff', false, false);
       if(this.globals.platform.is('capacitor')) await SplashScreen.hide();
       setTimeout(() => { 

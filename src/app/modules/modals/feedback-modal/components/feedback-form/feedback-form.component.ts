@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonButton, IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow, IonTextarea } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'feedback-form',
@@ -11,7 +11,7 @@ import { IonButton, IonInput, IonItem, IonLabel } from '@ionic/angular/standalon
   imports: [
     FormsModule, ReactiveFormsModule,
     NgFor, NgIf,
-    IonItem, IonInput, IonLabel, IonButton,
+    IonItem, IonInput, IonLabel, IonButton, IonRow, IonCol, IonTextarea
   ]
 })
 export class FeedbackFormComponent implements OnInit {
@@ -26,11 +26,12 @@ export class FeedbackFormComponent implements OnInit {
     phonenumber: new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2)
     ])),
-    message: new FormControl('', Validators.compose([
+    msg: new FormControl('', Validators.compose([
       Validators.required, Validators.minLength(2),
       Validators.pattern('^[a-zA-Z0-9_.+-]+$')
     ])),
   });
+
   validation_messages = {
     fullname: [
       { type: "required", message: "Fullname is required." },
@@ -55,7 +56,7 @@ export class FeedbackFormComponent implements OnInit {
         message: "Phone Number must be at least 5 characters long."
       }
     ], 
-    message: [
+    msg: [
       { type: "required", message: "Message is required." },
       {
         type: "minlength",
