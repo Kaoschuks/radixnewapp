@@ -13,7 +13,7 @@
 <ion-grid>
   <ion-row>
     <ion-col class="ion-no-padding" size="3" align="center" *ngFor="let product of products">
-      <ion-card class="product ion-no-padding ion-no-margin">
+      <ion-card class="product ion-no-padding ion-no-margin" (click)="onSelect.emit(product)">
         <ion-fab-button class="no-shadow bg-transparent">
           <i [ngClass]="product?.icon"></i>
         </ion-fab-button>

@@ -21,7 +21,7 @@ export class AppComponent implements AfterViewInit {
     try {
       await this.globals.platform.ready();
       await this.globals.exitApp();
-      await this.globals.changeStatusBarColor('#21205c', true, false);
+      await this.globals.changeStatusBarColor('#ffffff', false, false);
       if(this.globals.platform.is('capacitor')) await SplashScreen.hide();
       setTimeout(() => { 
         this.globals.appLoading = false;

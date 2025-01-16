@@ -23,6 +23,7 @@ import { CircleProgressComponent } from 'src/app/shared/components/circle-progre
 export class HomePage extends HomeService implements OnInit {
   
   async ngOnInit() {
+    await this.globals.changeStatusBarColor('#21205c', true, false);
     this.loading.next(true)
     await this.getAccounts(null);
   }
