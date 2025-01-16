@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow } from '@ionic/angular/standalone';
+import { UppercaseDirective } from 'src/app/core';
 
 @Component({
   selector: 'login-form',
@@ -11,7 +12,7 @@ import { IonButton, IonCol, IonInput, IonItem, IonLabel, IonRow } from '@ionic/a
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [IonItem, IonInput, IonLabel, IonButton, FormsModule, ReactiveFormsModule, IonRow, IonCol,
-    RouterModule, NgIf, NgFor
+    RouterModule, NgIf, NgFor, UppercaseDirective
   ]
 })
 export class LoginFormComponent {

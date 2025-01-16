@@ -25,7 +25,7 @@ export class HomeService {
       event?.target?.complete();
 
 
-    this._accountservice.bal = 0;
+      this._accountservice.bal = 0;
       const [rsaaccounts, volaccounts, transactions]: any = await Promise.all([
         await this._accountservice.get_accounts(),
         await this._accountservice.get_accounts('GetVolBal'),
@@ -40,8 +40,7 @@ export class HomeService {
 
       this.accounts.rsaaccounts = rsaaccounts;
       this.accounts.volaccounts = volaccounts;
-      console.log(rsaaccounts)
-      console.log(volaccounts)
+      
       this.transactions = transactions;
       this.globals.pageRefresh = false
       this.loading.next(false);

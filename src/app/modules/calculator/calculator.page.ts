@@ -20,6 +20,11 @@ export class CalculatorPage extends CalculatorService implements OnInit {
   calculatorForm: any
   async ngOnInit() {
     this.calculatorForm = await this.getPensionInfo();
+    if(this.calculatorForm) this.disabled = true;
+  }
+
+  submmited(data: any) {
+    this.formdata = data    
   }
 
 }

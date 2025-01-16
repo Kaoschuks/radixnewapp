@@ -4,12 +4,13 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <ion-card class="no-shadow ion-no-margin ion-no-padding" style="margin-bottom: 10px;">
+    <ion-card class="no-shadow ion-no-margin ion-no-padding" style="margin-bottom: 10px;" color="primary">
       <account-portfolio (onViewTransaction)="openTransactions()" (onclick)="globals.openModal($event)" (selectedAccount)="_accountservice.openAccount($event)" [source]="_userservice.user?.EMPLOYER_NAME || 'not set'" [accountNumber]="globals.config.pin || 'not set'" [loader]="loading | async" [accounts]="accounts" [balance]="_accountservice.bal" [currency]="globals.config.currency">
         <ion-list-header>
-          <ion-label>
+          <ion-label color="white">
             <h2>Quick Actions</h2>
           </ion-label>
+          <ion-button>See All</ion-button>
         </ion-list-header>
         <quick-actions (onSelect)="openQuickAction($event)"></quick-actions>
       </account-portfolio>
@@ -21,7 +22,7 @@
       <quick-actions (onSelect)="openQuickAction($event)"></quick-actions> -->
     </ion-card>
 
-    <ion-card class="no-shadow ion-no-margin" *ngIf="_accountservice.bal == 0">
+    <ion-card class="no-shadow bl-primary" *ngIf="_accountservice.bal == 0">
       <ion-item lines="none" detail="false" class="bg-transparent" mode="ios">
         <ion-label>
           <h2 class="fs-14">Complete Your RADIX profile</h2>

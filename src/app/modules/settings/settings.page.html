@@ -7,8 +7,8 @@
                     [src]="'https://ui-avatars.com/api/?name='+_userservice.user?.FIRSTNAME  + ' ' + _userservice.user?.SURNAME+'&color=ffffff&&background=000000'"></ion-img>
             </ion-avatar>
             <ion-label>
-                <h2 class="fs-16">{{_userservice.user?.NAME || _userservice.user?.FIRSTNAME  + ' ' + _userservice.user?.SURNAME || 'not set' | titlecase}}</h2>
-                <p class="text-medium fs-12">{{ _userservice.user?.EMAIL || 'not set' | titlecase }}</p>
+                <h2 class="fs-16">{{_userservice.user.NAME || _userservice.user.FIRSTNAME  + ' ' + _userservice.user.SURNAME || 'not set' | titlecase}}</h2>
+                <p class="text-medium fs-12">{{ _userservice.user.EMAIL || 'not set' | titlecase }}</p>
             </ion-label>
         </ion-item>
 
@@ -174,7 +174,7 @@
 
 
     <p class="text-medium ion-text-center fs-12 ion-padding">
-        BY providing your information, you will allow Radix Pension to provide best services with the information  provided and manage your information on our secured systems. 
+        BY providing your information, you will allow Cardinal Stone Pension to provide best services with the information  provided and manage your information on our secured systems. 
     </p>
 
 </ion-content>

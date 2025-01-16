@@ -95,6 +95,7 @@ export class AccountsService {
   async pension_calculator(form: any) {
     return await new Promise(async (resolve, reject) => {
       try{
+        console.log(form)
         const res: any = await this._api.post(`S_WEBUSER/PostCalcPen`, form)
         resolve(res)
       }catch(ex: any) {

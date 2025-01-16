@@ -24,25 +24,25 @@ export class CalculatorFormComponent implements OnChanges {
   calculatorForm: FormGroup = new FormGroup({
     RSABal: new FormControl({
       value: '',
-      disabled: true
+      disabled: false
     }, Validators.compose([
       Validators.required, Validators.minLength(3),
     ])),
     CurAge: new FormControl({
       value: '',
-      disabled: true
+      disabled: false
     }, Validators.compose([
       Validators.required, Validators.minLength(1),
     ])),
     RetAge: new FormControl({
       value: '',
-      disabled: true
+      disabled: false
     }, Validators.compose([
       Validators.required, Validators.minLength(1),
     ])),
     RSACon: new FormControl({
       value: '',
-      disabled: true
+      disabled: false
     }, Validators.compose([
       Validators.required, Validators.minLength(3),
     ])),

@@ -33,7 +33,7 @@
     <ion-spinner></ion-spinner>
   </ng-container>
   <ng-container *ngIf="(loader | async) === false">
-    <calculator-form [data]="calculatorForm" (onSubmit)="disabled = true;formdata = $event"></calculator-form>
+    <calculator-form [data]="calculatorForm" (onSubmit)="submmited($event)"></calculator-form>
   </ng-container>
 
 

@@ -96,14 +96,14 @@ export const faqs = {
           ]
       },
       {
-          "name": "How do I register with Radix Pension for Micro Pension Plan? ",
+          "name": "How do I register with Cardinalstone Pension for Micro Pension Plan? ",
           "children": [
               {
-                  "name": "An eligible contributor can register with Radix Pension by completing the registration form either physically or electronically. A Personal Identification Number (PIN) would be issued within 24 hours of registration.",
+                  "name": "An eligible contributor can register with Cardinalstone Pension by completing the registration form either physically or electronically. A Personal Identification Number (PIN) would be issued within 24 hours of registration.",
                   "children": [
                       {
-                          "name": "How do I register with Radix Pension for Micro Pension Plan?",
-                          "information": "An eligible contributor can register with Radix Pension by completing the registration form either physically or electronically. A Personal Identification Number (PIN) would be issued within 24 hours of registration.",
+                          "name": "How do I register with Cardinalstone Pension for Micro Pension Plan?",
+                          "information": "An eligible contributor can register with Cardinalstone Pension by completing the registration form either physically or electronically. A Personal Identification Number (PIN) would be issued within 24 hours of registration.",
                           "price": "10"
                       }
                   ]
@@ -766,7 +766,7 @@ export const branches = [
         name: "HEAD OFFICE",
         address: "12A, Adeola Hopewell Street, Victoria Island, Lagos",
         staff: "Oluwatosin Erukubami",
-        phone: "0817 5857 287",
+        phone: "0802 860 3506",
         email: "oerukubami@radixpension.com"
     },
     {

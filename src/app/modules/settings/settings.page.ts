@@ -17,7 +17,9 @@ import { SettingsService } from './services/settings.service';
 })
 export class SettingsPage  extends SettingsService implements OnInit {
 
-  ngOnInit() {
+  async ngOnInit() {
+    const user: any = await this._userservice.get_user_profile();
+    this._userservice.user = user
   }
 
 }

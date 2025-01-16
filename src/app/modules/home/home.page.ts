@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AccountPortfolioComponent } from '../accounts/components/accounts/account-portfolio/account-portfolio.component';
@@ -13,7 +13,6 @@ import { CircleProgressComponent } from 'src/app/shared/components/circle-progre
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     CircleProgressModule, CircleProgressComponent,

@@ -18,40 +18,44 @@ export class StorageService {
 
   saveItem = (key: string, data: {}) =>
   {
-    Preferences.set({
-        key: key,
-        value: this.encrypt(data, this.secret),
-    }).catch((ex: any) => {
-        throw new Error(ex)
-    })
+    sessionStorage.setItem(key, this.encrypt(data, this.secret))
+    // Preferences.set({
+    //     key: key,
+    //     value: this.encrypt(data, this.secret),
+    // }).catch((ex: any) => {
+    //     throw new Error(ex)
+    // })
   }
 
   getItem = async (key: string):Promise<any> =>
   {
       return await new Promise((resolve, reject) => {
-        return Preferences.get({ key: key })
-        .then((encryptedRes: any) => {
+        const encryptedRes: any = sessionStorage.getItem(key)
+        // return Preferences.get({ key: key })
+        // .then((encryptedRes: any) => {
             if(encryptedRes.value != null) {
                 resolve(this.decrypt(encryptedRes.value, this.secret));
             } else {
                 resolve(encryptedRes.value);
             }
-        })
-        .catch((err: any) => {
-            reject(err)
-        });
+        // })
+        // .catch((err: any) => {
+        //     reject(err)
+        // });
       });
   }
 
   removeItem = (key: string) =>
   {
-    return Preferences.remove({
-        key: key
-    })
+    return sessionStorage.removeItem(key)
+    // return Preferences.remove({
+    //     key: key
+    // })
   }
 
   clear = () =>
   {
-    return Preferences.clear();
+    return sessionStorage.clear();
+    // return Preferences.clear();
   }
 }

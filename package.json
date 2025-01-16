@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "resources": "node scripts/resources.js"
+    "resources": "cordova-res android && node scripts/resources.js"
   },
   "private": true,
   "dependencies": {
