@@ -18,13 +18,13 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Start Date</ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input [(ngModel)]="startDate" type="date" placeholder="00/00/0000"></ion-input>
+          <input style="border: 0px" class="bg-transparent no-shadow ion-no-border" [(ngModel)]="startDate" type="date" placeholder="00/00/0000" />
         </ion-item>
       </ion-col>
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">End Date</ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input [(ngModel)]="endDate" type="date" placeholder="00/00/0000"></ion-input>
+          <input style="border: 0px" class="bg-transparent no-shadow ion-no-border" [(ngModel)]="endDate" type="date" placeholder="00/00/0000" />
         </ion-item>
       </ion-col>
       <ion-col size="12">
@@ -43,3 +43,9 @@
   </ion-content>
 </half-modal>
 
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime id="datetime"></ion-datetime>
+  </ng-template>
+</ion-modal>
