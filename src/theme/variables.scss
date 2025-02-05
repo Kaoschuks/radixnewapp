@@ -120,10 +120,10 @@
 	--ion-item-background: transparent;
 }
 
-@use './md';
-@use './theme';
-@use './desktop';
-@use './animate';
-@use './fonts';
-@use './dark';
-@use './ios';
+@import './md';
+@import './theme';
+@import './desktop';
+@import './animate';
+@import './fonts';
+@import './dark';
+@import './ios';
