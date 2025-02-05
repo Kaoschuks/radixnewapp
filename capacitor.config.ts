@@ -1,10 +1,10 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
 	appId: "com.Radix.RadixMobile2",
 	appName: "Cardinalstone Pension",
 	loggingBehavior: 'none',
-	webDir: 'www/browser',
+	webDir: 'www',
 	plugins: {
 		CapacitorCookies: {
 			enabled: false

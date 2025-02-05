@@ -1,4 +1,4 @@
-package com.Radix.RadixMobile2;
+package io.ionic.starter;
 
 import com.getcapacitor.BridgeActivity;
 

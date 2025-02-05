@@ -16,7 +16,6 @@ import { LocalNotifications } from "@capacitor/local-notifications";
 import { StorageService } from "./storage";
 import { configModel, currency } from "src/app/core";
 import { App } from "@capacitor/app";
-import { NavigationBar, NavigationBarPluginEvents } from '@hugotomazi/capacitor-navigation-bar';
 import { BehaviorSubject } from "rxjs";
 
 const LOGTAG = '[GlobalErrorHandlerService]';
@@ -158,14 +157,6 @@ export class GlobalsServices {
     this.config.login = false;
     await storageService.clear();
     window.location.href = "/"
-  }
-
-  async changeNavigatorbarColor(color: string, isDark: boolean = true) {
-    if(this.platform.is('capacitor')) await NavigationBar.setColor({
-      color: color,
-      darkButtons: isDark
-    });
-    await NavigationBar.show()
   }
 
   async changeStatusBarColor(color: string = '', isLight: boolean = false, noStatus: boolean = true) {

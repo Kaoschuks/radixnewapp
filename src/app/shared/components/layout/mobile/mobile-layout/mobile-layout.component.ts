@@ -15,6 +15,6 @@ export class MobileLayoutComponent {
   @Input() username!: string
   @Input() accountnumber!: string
   @Input() refresh: boolean = false
-  @Input() color: string = 'primary';
+  @Input() color: string = 'white';
   @Output() onHeaderButtonClicked = new EventEmitter();
 }

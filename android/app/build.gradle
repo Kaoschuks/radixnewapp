@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.Radix.RadixMobile2"
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    namespace "io.ionic.starter"
+    compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.Radix.RadixMobile2"
+        applicationId "io.ionic.starter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

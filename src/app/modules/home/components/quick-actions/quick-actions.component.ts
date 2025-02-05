@@ -38,9 +38,36 @@ export class QuickActionsComponent {
       icon: 'ri-map-2-line'
     },
     {
+      action: 'employmentmodal',
+      label: 'Employer<br /> Information',
+      icon: 'fi fi-rr-portrait'
+    },
+    {
+      action: 'livechatmodal',
+      label: 'Live<br /> Chat',
+      icon: 'fi fi-rr-handshake'
+    },
+    {
       action: 'statementmodal',
       label: 'Generate<br /> Statement',
       icon: 'ri-file-zip-line'
+    },
+    {
+      action: 'investmentoptionsmodal',
+      label: 'Investment<br /> Options',
+      icon: 'fi fi-rr-coin-up-arrow'
+    },
+    {
+      action: 'app',
+      link: '/accounts',
+      label: 'Pension<br /> Accounts',
+      icon: 'fi fi-ss-chart-user'
+    },
+    {
+      action: 'app',
+      link: '/micropensions',
+      label: 'Micro<br /> Pensions',
+      icon: 'fi fi-ss-hands-holding-diamond'
     },
     {
       action: 'app',

@@ -1,5 +1,4 @@
 
-/* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
@@ -15,13 +14,7 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-@import './theme/fonts';
-@import './theme/ios';
-@import './theme/md';
-@import './theme/theme';
-@import './theme/desktop';
-@import './theme/animate';
-// @import './theme/dark' ;
+@import "@ionic/angular/css/palettes/dark.class.css";
 
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
