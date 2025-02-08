@@ -16,6 +16,14 @@
 
 @import "@ionic/angular/css/palettes/dark.class.css";
 
+@import './theme/ios';
+@import './theme/md';
+@import './theme/theme';
+@import './theme/desktop';
+@import './theme/animate';
+@import './theme/fonts';
+@import './theme/dark';
+
 html {
   --ion-dynamic-font: var(--ion-default-dynamic-font);
 }

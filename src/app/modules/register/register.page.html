@@ -1,7 +1,8 @@
+
 <ion-header class="ion-no-border">
   <ion-toolbar color="white">
     <ion-buttons slot="start">
-      <ion-button (click)="globals.openModal('walkthroughmodal')">
+      <ion-button (click)="goback()">
         <i class="ri-arrow-left-s-line ri-xl fs-25"></i>
       </ion-button>
     </ion-buttons>
@@ -13,7 +14,9 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content color="white">
+  <onboarding-modal [isOpen]="globals.modalData?.walkthroughmodal || false"></onboarding-modal>
   <ion-list-header class="ion-margin-bottom">
     <ion-label>
       <h2 class="fs-20">Create your Account</h2>

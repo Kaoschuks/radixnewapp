@@ -35,11 +35,11 @@
               }
             ],
             "styles": [
+              "src/theme/variables.scss", 
+              "src/global.scss",
               "./node_modules/@flaticon/flaticon-uicons/css/all/all.css",
               "./node_modules/remixicon/fonts/remixicon.css",
-              "src/assets/css/animate.css",
-              "src/theme/variables.scss", 
-              "src/global.scss"
+              "src/assets/css/animate.css"
             ],
             "scripts": [
             ]
