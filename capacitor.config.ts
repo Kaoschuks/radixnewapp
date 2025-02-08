@@ -3,7 +3,9 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
 	appId: "com.Radix.RadixMobile2",
 	appName: "Cardinalstone Pension",
-	loggingBehavior: 'none',
+	backgroundColor: "#ffffffff",
+	loggingBehavior: "none",
+	bundledWebRuntime: false,
 	webDir: 'www',
 	plugins: {
 		CapacitorCookies: {
@@ -11,17 +13,18 @@ const config: CapacitorConfig = {
 		},
 		SplashScreen: {
 			launchShowDuration: 1500,
-			launchAutoHide: true,
+			launchAutoHide: false,
 			launchFadeOutDuration: 500,
-			splashFullScreen: true,
-			splashImmersive: true,
-			backgroundColor: '#ffffffff',
+			backgroundColor: "#ffffffff",
+			splashFullScreen: false,
+			splashImmersive: false,
+			layoutName: "launch_screen",
 		},
 		LocalNotifications: {
 			smallIcon: 'ic_stat_icon_config_sample',
 			iconColor: '#488AFF',
 			sound: 'beep.wav'
-		},
+		}
 	},
 	android: {
 		minWebViewVersion: 55,
