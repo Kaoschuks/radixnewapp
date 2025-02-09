@@ -38,7 +38,7 @@ export class QuickActionsComponent {
       icon: 'ri-map-2-line'
     },
     {
-      action: 'employmentmodal',
+      action: 'employment',
       label: 'Employer<br /> Information',
       icon: 'fi fi-rr-portrait'
     },

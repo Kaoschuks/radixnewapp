@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MobileHeaderComponent } from '../mobile-header/mobile-header.component';
 import { MobileFooterComponent } from '../mobile-footer/mobile-footer.component';
 
@@ -10,15 +10,11 @@ import { MobileFooterComponent } from '../mobile-footer/mobile-footer.component'
   standalone: true,
   imports: [MobileHeaderComponent, MobileFooterComponent]
 })
-export class MobileLayoutComponent implements OnChanges {
+export class MobileLayoutComponent {
   @Input() title!: string
   @Input() username!: string
   @Input() accountnumber!: string
   @Input() refresh: boolean = false
   @Input() color: string = 'white';
   @Output() onHeaderButtonClicked = new EventEmitter();
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.username)
-  }
 }

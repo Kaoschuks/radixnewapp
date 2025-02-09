@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MobileLayoutComponent, SuccessModalComponent } from 'src/app/shared/components';
 import { LowerCasePipe, NgIf } from '@angular/common';
 import { ActionsModalComponent, GeneratestatementModalComponent, LanguageModalComponent, NotificationModalComponent, ProfileModalComponent } from '../modals';
@@ -25,5 +25,10 @@ import { BranchModalComponent } from '../modals/branch-modal/branch-modal.compon
   ],
 })
 
-export class TabsPage extends AppService {
+export class TabsPage extends AppService implements OnInit {
+
+  async ngOnInit() {
+    const user: any = await this.userService.get_user_profile();
+    this.userService.user = user
+  }
 }

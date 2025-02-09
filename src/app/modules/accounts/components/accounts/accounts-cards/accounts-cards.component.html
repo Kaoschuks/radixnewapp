@@ -2,7 +2,7 @@
   <ion-item color="white" lines="none" detail="false">
     <ion-label>
       <p class="fs-14 fw-4">{{acct?.ACCOUNTTYPE | titlecase}}</p>
-      <h2 class="fs-20 text-primary">{{ acct?.RSABAL || 0 | currency: currency}} <span class="fs-12 text-dark">/ {{ acct?.RSACONTRIBUTION || 0 | currency: currency}}</span></h2>
+      <h2 class="fs-20 bold text-primary">{{ acct?.RSABAL || 0 | currency: currency}} <span class="fs-12 text-dark">/ {{ acct?.RSACONTRIBUTION || 0 | currency: currency}}</span></h2>
       <!-- <p class="fs-14 text-dark">{{acct?.PIN}} - {{acct?.SCHEMENAME | titlecase}}</p> -->
     </ion-label>
     <ion-note slot="end">
@@ -22,7 +22,7 @@
       }
       <ion-item mode="ios" detail="false" lines="none" (click)="selectedAccount.emit(acct)" *ngIf="acct?.transactions.length > 0">
         <ion-label>
-          <h2 class="fs-14 text-primary">View This Account Information</h2>
+          <h2 class="fs-14 text-dark">View This Account Information</h2>
         </ion-label>
       </ion-item>
     </div>

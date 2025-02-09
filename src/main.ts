@@ -10,7 +10,7 @@ import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { GlobalErrorHandlerService , GlobalsServices, RequestInterceptorService, RequestService, StorageService } from './app/core';
-import { SplashScreen } from '@capacitor/splash-screen';
+// import { SplashScreen } from '@capacitor/splash-screen';
 
 // import 'remixicon/fonts/remixicon.css'
 

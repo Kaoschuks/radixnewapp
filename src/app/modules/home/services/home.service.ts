@@ -27,9 +27,9 @@ export class HomeService {
 
       this._accountservice.bal = 0;
       const [rsaaccounts, volaccounts, transactions]: any = await Promise.all([
-        await this._accountservice.get_accounts(),
-        await this._accountservice.get_accounts('GetVolBal'),
-        await this._accountservice.get_transactions()
+        this._accountservice.get_accounts(),
+        this._accountservice.get_accounts('GetVolBal'),
+        this._accountservice.get_transactions()
       ])
 
       if(rsaaccounts && rsaaccounts.length > 0) rsaaccounts[0]['transactions'] = await this.getAccoutTransaction();
@@ -79,6 +79,11 @@ export class HomeService {
       case "app":
         this.globals.navigate(product.link, false)
         break; 
+      case "employment":
+        this.globals.modalData.title = product.action
+        this.globals.openModal("profilemodal")
+        break; 
+      case "livechatmodal":
       case "branchesmodal":
       case "statementmodal":
         this.globals.openModal(product.action)

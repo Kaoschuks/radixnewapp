@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true" color="light">
 
-  <ion-card class="no-shadow ion-no-margin" style="margin-bottom: 10px;">
+  <ion-card class="no-shadow ion-no-margin bg-white" style="margin-bottom: 10px;">
     <!-- <ion-card class="no-shadow ion-no-margin" style="padding-top:10px;padding-bottom: 10px;margin-top: 10px;margin-bottom: 10px;"> -->
     <ion-row>
       <ion-col size="3">
@@ -13,7 +13,7 @@
         <ng-container *ngIf="(loader | async) === false">
           <ion-label>
             <h2 class="fs-14 text-dark">Your Retirement Income</h2>
-            <h2 class="fs-22 text-primary">{{ result.reclump || 0 | currency : globals.config.currency }}</h2>
+            <h2 class="fs-22 text-dark">{{ result.reclump || 0 | currency : globals.config.currency }}</h2>
           </ion-label>
           <br />
           <ion-label>
@@ -52,7 +52,7 @@
 </ion-content>
 
 <ion-footer class="ion-padding-start ion-padding-end ion-no-border bg-transparent">
-  <ion-button [disabled]="!disabled" class="ion-margin-bottom" color="primary" expand="block" size="default"
+  <ion-button class="ion-margin-bottom" color="dark" expand="block" size="default"
     (click)="calculatedPension()">
     <span class="fs-14">Calculate Pensions</span>
   </ion-button>
