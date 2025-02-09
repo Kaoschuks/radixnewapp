@@ -43,8 +43,8 @@
           </no-content>
       </ion-card>
   
-      <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [accounts]="accounts.rsaaccounts || []" [currency]="globals.config.currency"></accounts-cards>
-      <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [accounts]="accounts.volaccounts || []" [currency]="globals.config.currency"></accounts-cards>
+      <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [hasTransactions]="false" [accounts]="accounts.rsaaccounts || []" [currency]="globals.config.currency"></accounts-cards>
+      <accounts-cards (selectedAccount)="_accountservice.openAccount($event)" [hasTransactions]="false" [accounts]="accounts.volaccounts || []" [currency]="globals.config.currency"></accounts-cards>
   </ng-container>
     
     <!-- <ion-card class="no-shadow ion-no-margin" style="margin-top: 10px;margin-bottom: 10px;">

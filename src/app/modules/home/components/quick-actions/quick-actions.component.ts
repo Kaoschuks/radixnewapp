@@ -60,7 +60,7 @@ export class QuickActionsComponent {
     {
       action: 'app',
       link: '/accounts',
-      label: 'Pension<br /> Accounts',
+      label: 'Transaction<br /> History',
       icon: 'fi fi-ss-chart-user'
     },
     {

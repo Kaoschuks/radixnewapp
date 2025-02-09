@@ -1,0 +1,12 @@
+{
+    "/api/**": {
+        "target": "https://online.radixpension.com/RadixWebAPI/api/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api": ""    
+        }
+    }
+}
+  

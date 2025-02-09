@@ -18,6 +18,7 @@ import { TransactionListsComponent } from '../../transactions/transaction-lists/
 export class AccountsCardsComponent  implements OnInit {
 
   @Input() loader: any = false
+  @Input() hasTransactions: boolean = true
   @Input() accounts: any
   @Input() currency!: string
   @Output() selectedAccount: any = new EventEmitter();
