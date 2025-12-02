@@ -17,19 +17,19 @@ export class QuickActionsComponent {
     {
       action: 'none',
       label: 'Self<br /> Service',
-      link: 'https://online.radixpension.com/RadixSelfServices/#!',
+      link: 'https://online.cardinalstonepensions.com/selfservices/#!',
       icon: 'ri-smartphone-line'
     },
     {
       action: 'none',
       label: 'Data<br /> Recapture',
-      link: 'https://online.radixpension.com/datarecapture/',
+      link: 'https://online.cardinalstonepensions.com/datarecapture/',
       icon: 'ri-arrow-left-right-line'
     },
     {
       action: 'none',
       label: 'Client <br /> Update',
-      link: 'https://online.radixpension.com/RadixSelfServices/',
+      link: 'https://online.cardinalstonepensions.com/SelfServices/',
       icon: 'ri-file-text-line'
     },
     {
