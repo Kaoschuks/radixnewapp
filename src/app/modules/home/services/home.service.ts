@@ -42,8 +42,11 @@ export class HomeService {
       this.accounts.volaccounts = volaccounts;
       
       this.transactions = transactions;
+      console.log( this.accounts)
+      // console.log( this.transactions)
       this.globals.pageRefresh = false
       this.loading.next(false);
+      
 
     } catch (error: any) {
       this.globals.pageRefresh = false

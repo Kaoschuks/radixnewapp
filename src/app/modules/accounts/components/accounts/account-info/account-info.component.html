@@ -6,7 +6,7 @@
   <br />
   <ion-label align="center">
       <p class="fs-14 fw-4">{{account?.ACCOUNTTYPE | titlecase}}</p>
-      <h2 class="fs-20 text-dark">{{ account?.RSABAL || 0 | currency : currency }}</h2>
+      <h2 class="fs-20 text-dark">{{ account?.RSABAL || account?.VOLBAL || 0 | currency : currency }}</h2>
       <p class="fs-14 text-medium">Bid Price {{ account?.BID_PRICE || 0 | currency: currency }}</p>
   </ion-label>
   <!-- <ion-item lines="none" class="bg-white" style="position:relative;top: -20px;margin-bottom: -30px;">
@@ -30,7 +30,7 @@
     <ion-item mode="ios" detail="false" lines="none" style="margin-top: -5px;">
       <ion-label>
         <p class="fs-12">Amount</p>
-        <h2 class="fs-14">{{ account?.RSABAL || 0 | currency : currency  }}</h2>
+        <h2 class="fs-14">{{ account?.RSABAL || account?.VOLBAL || 0 | currency : currency  }}</h2>
       </ion-label>
     </ion-item>
 
@@ -43,7 +43,7 @@
       </ion-label>
       <ion-label>
         <p class="fs-12">Contribution</p>
-        <h2 class="fs-14">{{ account?.RSACONTRIBUTION || 0 | currency : currency }}</h2>
+        <h2 class="fs-14">{{ account?.OTHER_CONTRIBUTION || account?.RSACONTRIBUTION || 0 | currency : currency }}</h2>
       </ion-label>
     </ion-item>
   </ion-list>

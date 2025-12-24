@@ -23,9 +23,10 @@ export class AccountsService {
 
         if(resp.Result) resp = resp.Result
         resp = resp.map((acct: any) => {
-          acct.TOTAL_CONTRIBUTION = this.toNumber(acct.TOTAL_CONTRIBUTION)
+          acct.OTHER_CONTRIBUTION = this.toNumber(acct.OTHER_CONTRIBUTION)
           acct.GROWTH = this.toNumber(acct.GROWTH)
-          acct.RSACONTRIBUTION = this.toNumber(acct.RSACONTRIBUTION)
+          acct.RSACONTRIBUTION = this.toNumber(acct.TOTAL_CONTRIBUTION)
+          delete acct.TOTAL_CONTRIBUTION
           acct.ACCOUNTTYPE = (type == 'GetRSABal') ? 'RSA Accounts' : 'Voluntary Accounts'
           acct.SIGNATURE = (type == 'GetRSABal') ? 'GetActTrans' : 'GetVolActTrans'
           return acct;
@@ -49,7 +50,6 @@ export class AccountsService {
         let resp: any = await this._api.get(`AccountsTrans/GetAllActTrans/${this._globals.config.pin}`)
         if(!resp || resp.length == 0 ) throw new Error("Transactions not found in database");
 
-        if(resp.Result) resp = resp.Result
         resp = resp.map((transactions: any) => {
           transactions.RSA_CONTRIBUTION = this.toNumber(transactions.RSA_CONTRIBUTION);
           transactions.VOLUNTARY_CONTRIBUTION = this.toNumber(transactions.VOLUNTARY_CONTRIBUTION);
@@ -118,7 +118,7 @@ export class AccountsService {
   getBalance(accounts: any) {
     accounts.forEach((acct: any) => {
       if(acct.RSABAL) this.bal += parseFloat(acct.RSABAL);
-      if(acct.VOLBAL) this.bal += parseFloat(acct.VOLBAL.split(',').join(''));
+      if(acct.VOLBAL) this.bal += parseFloat(acct.VOLBAL);
     });
   }
 
