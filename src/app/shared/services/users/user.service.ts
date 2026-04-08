@@ -86,9 +86,8 @@ export class UserService {
   async register(form: registerModel) {
     return await new Promise(async (resolve, reject) => {
       try{
-        const res: any = await this._api.post(`S_WEBUSER`, form)
-        if(!res || res.length == 0) reject("User information not found in database");
-        resolve("success")
+        const res: any = await this._api.post('employee/CreatePPP', form )
+        resolve(res)
       }catch(ex: any) {
         reject(ex.message || ex.error || ex)
       }

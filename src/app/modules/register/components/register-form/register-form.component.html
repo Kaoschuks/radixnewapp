@@ -1,94 +1,526 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
 
-<form [formGroup]="registerForm" (submit)="onsubmit.emit(registerForm.value)" role="form"class="form">
+  <!-- ── Progress Header ── -->
+  <div class="step-header">
+    <div class="step-meta">
+      <span class="fs-12 text-medium">Step {{currentStep}} of {{totalSteps}}</span>
+      <span class="fs-14 fw-6 text-dark">{{getStepTitle()}}</span>
+    </div>
+    <ion-progress-bar [value]="progressValue" color="primary" class="step-progress-bar"></ion-progress-bar>
+    <!-- <div class="step-dots">
+      <div class="step-dot" *ngFor="let s of [1,2,3,4]"
+           [class.active]="s === currentStep"
+           [class.done]="s < currentStep">
+        <span>{{s}}</span>
+      </div>
+    </div> -->
+  </div>
 
-  <ion-row>
-    <ion-col size="12">
-      <ion-label aria-label="surname" class="fs-12 text-dark">Surname <span class="text-danger">*</span></ion-label>
-      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-        <ion-input formControlName="surname" aria-label="surname" type="text" placeholder="Your surname"></ion-input>
-      </ion-item>
-      <div class="validation-errors fs-12 text-danger">
-        <div *ngFor="let validation of validation_messages.surname">
-          <div class="error-message" *ngIf="registerForm.get('surname')?.hasError(validation.type) &&
-                          registerForm.get('surname')?.touched">
-            <div>
-              {{" "+validation.message}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </ion-col>
-    
-    <ion-col size="12">
-      <ion-label aria-label="firstname" class="fs-12 text-dark">Firstname <span class="text-danger">*</span></ion-label>
-      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-        <ion-input formControlName="firstname" aria-label="firstname" type="text" placeholder="Your firstname"></ion-input>
-      </ion-item>
-      <div class="validation-errors fs-12 text-danger">
-        <div *ngFor="let validation of validation_messages.firstname">
-          <div class="error-message" *ngIf="registerForm.get('firstname')?.hasError(validation.type) &&
-                          registerForm.get('firstname')?.touched">
-            <div>
-              {{" "+validation.message}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </ion-col>
-    
-    <ion-col size="12">
-      <ion-label aria-label="middlename" class="fs-12 text-dark">Middlename</ion-label>
-      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-        <ion-input formControlName="middlename" aria-label="middlename" type="text" placeholder="Your Middle name"></ion-input>
-      </ion-item>
-      <div class="validation-errors fs-12 text-danger">
-        <div *ngFor="let validation of validation_messages.middlename">
-          <div class="error-message" *ngIf="registerForm.get('middlename')?.hasError(validation.type) &&
-                          registerForm.get('middlename')?.touched">
-            <div>
-              {{" "+validation.message}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </ion-col>
-    
-    <ion-col size="12">
-      <ion-label aria-label="email" class="fs-12 text-dark">Email <span class="text-danger">*</span></ion-label>
-      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-        <ion-input formControlName="email" aria-label="email" type="text" placeholder="Your email"></ion-input>
-      </ion-item>
-      <div class="validation-errors fs-12 text-danger">
-        <div *ngFor="let validation of validation_messages.email" class="error">
-          <div *ngIf="registerForm.get('email')?.hasError(validation.type) &&
-                    registerForm.get('email')?.touched">
-            <div>
-              {{" "+validation.message}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </ion-col>
+  <!-- ── STEP 1: Personal Details ── -->
+  <div *ngIf="currentStep === 1">
+    <ion-row>
 
-    <ion-col size="12">
-      <ion-label aria-label="pension type" class="fs-12 text-dark">Pension Type <span class="text-danger">*</span></ion-label>
-      <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-        <ion-select aria-label="pension type" formControlName="pensiontype" interface="action-sheet" mode="md">
-          <ion-select-option value="">Choose a Pension Type</ion-select-option>
-          <ion-select-option value="RSA PENSION">RSA Pension</ion-select-option>
-          <ion-select-option value="MICRO PENSION">Micro Pension</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-col>
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">User Type <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="userType" interface="action-sheet" mode="md" placeholder="Select">
+            <ion-select-option *ngFor="let o of userTypeOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
 
-    <ion-col size="12">
-      <br />
-      <ion-button type="submit" expand="full" size="large" color="primary" [disabled]="registerForm.invalid" class="ion-no-border">
-        <span class="fs-14">Create Account</span>
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Title <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="title" interface="action-sheet" mode="md" placeholder="Select">
+            <ion-select-option *ngFor="let o of titleOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['title']">
+            <div *ngIf="registerForm.get('title')?.hasError(v.type) && registerForm.get('title')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Last Name <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="lastName" type="text" placeholder="Your last name"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['lastName']">
+            <div *ngIf="registerForm.get('lastName')?.hasError(v.type) && registerForm.get('lastName')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">First Name <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="firstName" type="text" placeholder="Your first name"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['firstName']">
+            <div *ngIf="registerForm.get('firstName')?.hasError(v.type) && registerForm.get('firstName')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Middle Name</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="middleName" type="text" placeholder="Your middle name"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Gender <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="gender" interface="action-sheet" mode="md" placeholder="Select">
+            <ion-select-option *ngFor="let o of genderOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['gender']">
+            <div *ngIf="registerForm.get('gender')?.hasError(v.type) && registerForm.get('gender')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Marital Status <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="maritalStatus" interface="action-sheet" mode="md" placeholder="Select">
+            <ion-select-option *ngFor="let o of maritalStatusOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['maritalStatus']">
+            <div *ngIf="registerForm.get('maritalStatus')?.hasError(v.type) && registerForm.get('maritalStatus')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Date of Birth <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="dateOfBirth" type="date"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['dateOfBirth']">
+            <div *ngIf="registerForm.get('dateOfBirth')?.hasError(v.type) && registerForm.get('dateOfBirth')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Phone Number <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="phoneNumber" type="tel" placeholder="08012345678"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['phoneNumber']">
+            <div *ngIf="registerForm.get('phoneNumber')?.hasError(v.type) && registerForm.get('phoneNumber')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Email Address <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="emailAddress" type="email" placeholder="you@example.com"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['emailAddress']">
+            <div *ngIf="registerForm.get('emailAddress')?.hasError(v.type) && registerForm.get('emailAddress')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">NIN <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nin" type="text" placeholder="11-digit NIN"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nin']">
+            <div *ngIf="registerForm.get('nin')?.hasError(v.type) && registerForm.get('nin')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">BVN <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="bvn" type="text" placeholder="11-digit BVN"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['bvn']">
+            <div *ngIf="registerForm.get('bvn')?.hasError(v.type) && registerForm.get('bvn')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12" *ngIf="isMinor">
+        <ion-label class="fs-12 text-dark">Guardian PIN</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="guardianPin" type="text" placeholder="Guardian PEN number"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">RSA PIN</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="rsaPin" type="text" placeholder="Existing PEN (if any)"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Nationality <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="nationality" interface="action-sheet" mode="md">
+            <ion-select-option *ngFor="let o of nationalityOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">State of Origin <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="stateOfOriginCode" interface="action-sheet" mode="md" placeholder="Select state">
+            <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['stateOfOriginCode']">
+            <div *ngIf="registerForm.get('stateOfOriginCode')?.hasError(v.type) && registerForm.get('stateOfOriginCode')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">LGA of Origin <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="lgaOriginCode" interface="action-sheet" mode="md" placeholder="Select LGA">
+            <ion-select-option *ngFor="let o of filteredOriginLgas" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['lgaOriginCode']">
+            <div *ngIf="registerForm.get('lgaOriginCode')?.hasError(v.type) && registerForm.get('lgaOriginCode')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Residential Address <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="residentialAddress" type="text" placeholder="Full address"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['residentialAddress']">
+            <div *ngIf="registerForm.get('residentialAddress')?.hasError(v.type) && registerForm.get('residentialAddress')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Residential State <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="residentialStateCode" interface="action-sheet" mode="md" placeholder="Select state">
+            <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['residentialStateCode']">
+            <div *ngIf="registerForm.get('residentialStateCode')?.hasError(v.type) && registerForm.get('residentialStateCode')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Residential LGA <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="residentialLgaCode" interface="action-sheet" mode="md" placeholder="Select LGA">
+            <ion-select-option *ngFor="let o of filteredResidentialLgas" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['residentialLgaCode']">
+            <div *ngIf="registerForm.get('residentialLgaCode')?.hasError(v.type) && registerForm.get('residentialLgaCode')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">PFA (Pension Fund Administrator) <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="pfaCode" interface="action-sheet" mode="md" placeholder="Select PFA">
+            <ion-select-option *ngFor="let o of pfaOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['pfaCode']">
+            <div *ngIf="registerForm.get('pfaCode')?.hasError(v.type) && registerForm.get('pfaCode')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </div>
+
+  <!-- ── STEP 2: Employment Details ── -->
+  <div *ngIf="currentStep === 2">
+    <ion-row>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Employer Name <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="employerName" type="text" placeholder="Name of employer"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['employerName']">
+            <div *ngIf="registerForm.get('employerName')?.hasError(v.type) && registerForm.get('employerName')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Employer Phone Number</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="employerPhonenumber" type="tel" placeholder="Employer phone"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Employer State</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="employerState" interface="action-sheet" mode="md" placeholder="Select state">
+            <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Employer LGA</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="employerLga" interface="action-sheet" mode="md" placeholder="Select LGA">
+            <ion-select-option *ngFor="let o of filteredEmployerLgas" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">State of Posting</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="employerStateOfPosting" interface="action-sheet" mode="md" placeholder="Select state">
+            <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </div>
+
+  <!-- ── STEP 3: Next of Kin ── -->
+  <div *ngIf="currentStep === 3">
+    <ion-row>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Title</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="nextOfKinTitle" interface="action-sheet" mode="md" placeholder="Select">
+            <ion-select-option *ngFor="let o of titleOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-label class="fs-12 text-dark">Gender</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="nextOfKinGender" interface="action-sheet" mode="md" placeholder="Select">
+            <ion-select-option *ngFor="let o of genderOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">First Name <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nextOfKinFirstname" type="text" placeholder="First name"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinFirstname']">
+            <div *ngIf="registerForm.get('nextOfKinFirstname')?.hasError(v.type) && registerForm.get('nextOfKinFirstname')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Surname <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nextOfKinSurname" type="text" placeholder="Surname"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinSurname']">
+            <div *ngIf="registerForm.get('nextOfKinSurname')?.hasError(v.type) && registerForm.get('nextOfKinSurname')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Relationship <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-select formControlName="nextOfRelationship" interface="action-sheet" mode="md" placeholder="Select relationship">
+            <ion-select-option *ngFor="let o of relationshipOptions" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfRelationship']">
+            <div *ngIf="registerForm.get('nextOfRelationship')?.hasError(v.type) && registerForm.get('nextOfRelationship')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Phone Number</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nextOfKinPhoneNumber" type="tel" placeholder="Phone number"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Email</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nextOfKinEmail" type="email" placeholder="Email address"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Address</ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nextOfKinAddress" type="text" placeholder="Residential address"></ion-input>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </div>
+
+  <!-- ── STEP 4: Images ── -->
+  <div *ngIf="currentStep === 4">
+    <ion-row>
+
+      <!-- Passport Photo -->
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Passport Photo <span class="text-danger">*</span></ion-label>
+        <div class="upload-card" [class.uploaded]="registerForm.get('photo')?.value"
+             [class.upload-error]="registerForm.get('photo')?.invalid && registerForm.get('photo')?.touched">
+          <ng-container *ngIf="registerForm.get('photo')?.value; else photoEmpty">
+            <img class="upload-preview-img" [src]="registerForm.get('photo')?.value" alt="Passport photo" />
+            <button type="button" class="clear-btn" (click)="clearFile('photo', photoInput)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </ng-container>
+          <ng-template #photoEmpty>
+            <label class="upload-label" for="photoInput">
+              <ion-icon name="person-circle-outline" class="upload-icon"></ion-icon>
+              <span class="fs-12 fw-6 text-dark">Passport Photo</span>
+              <span class="fs-12 text-medium">Tap to choose image</span>
+            </label>
+          </ng-template>
+        </div>
+        <input #photoInput id="photoInput" type="file" accept="image/*"
+               (change)="onFileSelected('photo', $event)" class="file-input" />
+        <div class="validation-errors fs-12 text-danger"
+             *ngIf="registerForm.get('photo')?.invalid && registerForm.get('photo')?.touched">
+          <ng-container *ngFor="let v of validation_messages['photo']">
+            <div *ngIf="registerForm.get('photo')?.hasError(v.type)">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <!-- Signature -->
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Signature <span class="text-danger">*</span></ion-label>
+        <div class="upload-card" [class.uploaded]="registerForm.get('signature')?.value"
+             [class.upload-error]="registerForm.get('signature')?.invalid && registerForm.get('signature')?.touched">
+          <ng-container *ngIf="registerForm.get('signature')?.value; else sigEmpty">
+            <img class="upload-preview-img" [src]="registerForm.get('signature')?.value" alt="Signature" />
+            <button type="button" class="clear-btn" (click)="clearFile('signature', signatureInput)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </ng-container>
+          <ng-template #sigEmpty>
+            <label class="upload-label" for="signatureInput">
+              <ion-icon name="create-outline" class="upload-icon"></ion-icon>
+              <span class="fs-12 fw-6 text-dark">Signature</span>
+              <span class="fs-12 text-medium">Tap to choose image</span>
+            </label>
+          </ng-template>
+        </div>
+        <input #signatureInput id="signatureInput" type="file" accept="image/*"
+               (change)="onFileSelected('signature', $event)" class="file-input" />
+        <div class="validation-errors fs-12 text-danger"
+             *ngIf="registerForm.get('signature')?.invalid && registerForm.get('signature')?.touched">
+          <ng-container *ngFor="let v of validation_messages['signature']">
+            <div *ngIf="registerForm.get('signature')?.hasError(v.type)">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <!-- Consent Form -->
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">Consent Form <span class="text-danger">*</span></ion-label>
+        <div class="upload-card" [class.uploaded]="registerForm.get('consentForm')?.value"
+             [class.upload-error]="registerForm.get('consentForm')?.invalid && registerForm.get('consentForm')?.touched">
+          <ng-container *ngIf="registerForm.get('consentForm')?.value; else consentEmpty">
+            <img class="upload-preview-img" [src]="registerForm.get('consentForm')?.value" alt="Consent form" />
+            <button type="button" class="clear-btn" (click)="clearFile('consentForm', consentInput)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </ng-container>
+          <ng-template #consentEmpty>
+            <label class="upload-label" for="consentInput">
+              <ion-icon name="document-text-outline" class="upload-icon"></ion-icon>
+              <span class="fs-12 fw-6 text-dark">Consent Form</span>
+              <span class="fs-12 text-medium">Tap to choose image</span>
+            </label>
+          </ng-template>
+        </div>
+        <input #consentInput id="consentInput" type="file" accept="image/*"
+               (change)="onFileSelected('consentForm', $event)" class="file-input" />
+        <div class="validation-errors fs-12 text-danger"
+             *ngIf="registerForm.get('consentForm')?.invalid && registerForm.get('consentForm')?.touched">
+          <ng-container *ngFor="let v of validation_messages['consentForm']">
+            <div *ngIf="registerForm.get('consentForm')?.hasError(v.type)">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+    </ion-row>
+  </div>
+
+  <!-- ── Navigation ── -->
+  <ion-row class="nav-row">
+    <ion-col size="4" *ngIf="!isFirstStep">
+      <ion-button expand="block" fill="outline" color="medium" (click)="prevStep()" type="button">
+        <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+        Back
+      </ion-button>
+    </ion-col>
+    <ion-col [size]="isFirstStep ? '12' : '8'">
+      <ion-button expand="block" color="primary" type="button"
+                  *ngIf="!isLastStep" (click)="nextStep()">
+        Next
+        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+      <ion-button expand="block" color="primary" type="submit"
+                  *ngIf="isLastStep">
+        Create Account
+        <ion-icon slot="end" name="checkmark-outline"></ion-icon>
       </ion-button>
     </ion-col>
   </ion-row>
 
-
-  
 </form>
