@@ -1,12 +1,13 @@
 import { NgFor, NgIf } from '@angular/common';
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, Output
+  ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output
 } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonItem, IonInput, IonLabel, IonButton, IonSelect, IonSelectOption,
   IonRow, IonCol, IonIcon, IonProgressBar
 } from '@ionic/angular/standalone';
+import { RequestService } from 'src/app/core';
 
 @Component({
   selector: 'register-form',
@@ -19,10 +20,14 @@ import {
     IonRow, IonCol, ReactiveFormsModule, NgIf, NgFor, IonIcon, IonProgressBar
   ]
 })
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnInit {
   @Output() onsubmit = new EventEmitter();
 
   private cdr = inject(ChangeDetectorRef);
+  private api = inject(RequestService);
+
+  employers: { value: string; label: string }[] = [];
+  employersLoading = false;
 
   currentStep = 1;
   totalSteps = 4;
@@ -40,7 +45,6 @@ export class RegisterFormComponent {
     middleName: new FormControl(''),
     dateOfBirth: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    rsaPin: new FormControl(''),
     emailAddress: new FormControl('', [Validators.required, Validators.email]),
     nationality: new FormControl('NG', Validators.required),
     stateOfOriginCode: new FormControl('', Validators.required),
@@ -49,15 +53,10 @@ export class RegisterFormComponent {
     residentialAddress: new FormControl('', Validators.required),
     residentialStateCode: new FormControl('', Validators.required),
     residentialLgaCode: new FormControl('', Validators.required),
-    pfaCode: new FormControl('', Validators.required),
     apaCode: new FormControl('001'),
 
     // Step 2: Employment Details
-    employerName: new FormControl('', Validators.required),
-    employerPhonenumber: new FormControl(''),
-    employerStateOfPosting: new FormControl(''),
-    employerLga: new FormControl(''),
-    employerState: new FormControl(''),
+    employerCode: new FormControl('', Validators.required),
 
     // Step 3: Next of Kin
     nextOfKinTitle: new FormControl(''),
@@ -98,8 +97,7 @@ export class RegisterFormComponent {
     residentialAddress: [{ type: 'required', message: 'Residential address is required.' }],
     residentialStateCode: [{ type: 'required', message: 'Residential state is required.' }],
     residentialLgaCode: [{ type: 'required', message: 'Residential LGA is required.' }],
-    pfaCode: [{ type: 'required', message: 'PFA is required.' }],
-    employerName: [{ type: 'required', message: 'Employer name is required.' }],
+    employerCode: [{ type: 'required', message: 'Employer is required.' }],
     nextOfKinFirstname: [{ type: 'required', message: 'First name is required.' }],
     nextOfKinSurname: [{ type: 'required', message: 'Surname is required.' }],
     nextOfRelationship: [{ type: 'required', message: 'Relationship is required.' }],
@@ -142,20 +140,6 @@ export class RegisterFormComponent {
     { value: 'PARENT', label: 'Parent' },
     { value: 'SIBLING', label: 'Sibling' },
     { value: 'OTHER', label: 'Other' }
-  ];
-
-  pfaOptions = [
-    { value: '021', label: 'AIICO Pension Managers Ltd' },
-    { value: '001', label: 'Stanbic IBTC Pension Managers' },
-    { value: '002', label: 'Crusader Sterling Pension Ltd' },
-    { value: '003', label: 'Emerald Benefit Pension Ltd' },
-    { value: '004', label: 'Fairworth Pension Managers Ltd' },
-    { value: '005', label: 'Fidelity Pension Managers' },
-    { value: '006', label: 'First Guarantee Pension Ltd' },
-    { value: '007', label: 'Fpencil Pension Managers Ltd' },
-    { value: '008', label: 'Leadway Assurance Company Ltd' },
-    { value: '009', label: 'Nigerian Coal Pension' },
-    { value: '010', label: 'Nigerian Reinsurance Corporation' }
   ];
 
   stateOptions = [
@@ -666,10 +650,6 @@ export class RegisterFormComponent {
     return this.lgasByState[this.registerForm.get('residentialStateCode')?.value] || [];
   }
 
-  get filteredEmployerLgas() {
-    return this.lgasByState[this.registerForm.get('employerStateOfPosting')?.value] || [];
-  }
-
   get isMinor(): boolean {
     return this.registerForm.get('userType')?.value === 'MINOR';
   }
@@ -744,6 +724,30 @@ export class RegisterFormComponent {
     inputEl.value = '';
   }
 
+  ngOnInit() {
+    this.loadEmployers();
+  }
+
+  private async loadEmployers() {
+    this.employersLoading = true;
+    try {
+      const res: any = await this.api.get(
+        'https://online.cardinalstonepensions.com/RadixWebAPI/api/employers',
+        true
+      );
+      const list: any[] = Array.isArray(res) ? res : (res?.data ?? []);
+      this.employers = list.map(e => ({
+        value: e.employerCode ?? e.EmployerCode ?? e.code ?? e.Code,
+        label: e.employerName ?? e.EmployerName ?? e.name ?? e.Name,
+      }));
+    } catch {
+      this.employers = [];
+    } finally {
+      this.employersLoading = false;
+      this.cdr.markForCheck();
+    }
+  }
+
   private getStepFields(step: number): string[] {
     switch (step) {
       case 1: return [
@@ -751,9 +755,9 @@ export class RegisterFormComponent {
         'firstName', 'lastName', 'dateOfBirth', 'phoneNumber', 'emailAddress',
         'nationality', 'stateOfOriginCode', 'lgaOriginCode',
         'maritalStatus', 'residentialAddress', 'residentialStateCode',
-        'residentialLgaCode', 'pfaCode'
+        'residentialLgaCode'
       ];
-      case 2: return ['employerName'];
+      case 2: return ['employerCode'];
       case 3: return ['nextOfKinFirstname', 'nextOfKinSurname', 'nextOfRelationship'];
       case 4: return ['consentForm', 'signature', 'photo'];
       default: return [];

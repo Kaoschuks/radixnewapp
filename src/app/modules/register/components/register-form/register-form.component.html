@@ -170,13 +170,6 @@
       </ion-col>
 
       <ion-col size="12">
-        <ion-label class="fs-12 text-dark">RSA PIN</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="rsaPin" type="text" placeholder="Existing PEN (if any)"></ion-input>
-        </ion-item>
-      </ion-col>
-
-      <ion-col size="12">
         <ion-label class="fs-12 text-dark">Nationality <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-select formControlName="nationality" interface="action-sheet" mode="md">
@@ -253,20 +246,6 @@
         </div>
       </ion-col>
 
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">PFA (Pension Fund Administrator) <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="pfaCode" interface="action-sheet" mode="md" placeholder="Select PFA">
-            <ion-select-option *ngFor="let o of pfaOptions" [value]="o.value">{{o.label}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <div class="validation-errors fs-12 text-danger">
-          <ng-container *ngFor="let v of validation_messages['pfaCode']">
-            <div *ngIf="registerForm.get('pfaCode')?.hasError(v.type) && registerForm.get('pfaCode')?.touched">{{v.message}}</div>
-          </ng-container>
-        </div>
-      </ion-col>
-
     </ion-row>
   </div>
 
@@ -275,49 +254,18 @@
     <ion-row>
 
       <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Employer Name <span class="text-danger">*</span></ion-label>
+        <ion-label class="fs-12 text-dark">Employer <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="employerName" type="text" placeholder="Name of employer"></ion-input>
+          <ion-select formControlName="employerCode" interface="action-sheet" mode="md"
+                      [placeholder]="employersLoading ? 'Loading employers...' : 'Select employer'">
+            <ion-select-option *ngFor="let o of employers" [value]="o.value">{{o.label}}</ion-select-option>
+          </ion-select>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
-          <ng-container *ngFor="let v of validation_messages['employerName']">
-            <div *ngIf="registerForm.get('employerName')?.hasError(v.type) && registerForm.get('employerName')?.touched">{{v.message}}</div>
+          <ng-container *ngFor="let v of validation_messages['employerCode']">
+            <div *ngIf="registerForm.get('employerCode')?.hasError(v.type) && registerForm.get('employerCode')?.touched">{{v.message}}</div>
           </ng-container>
         </div>
-      </ion-col>
-
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Employer Phone Number</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="employerPhonenumber" type="tel" placeholder="Employer phone"></ion-input>
-        </ion-item>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-label class="fs-12 text-dark">Employer State</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="employerState" interface="action-sheet" mode="md" placeholder="Select state">
-            <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-label class="fs-12 text-dark">Employer LGA</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="employerLga" interface="action-sheet" mode="md" placeholder="Select LGA">
-            <ion-select-option *ngFor="let o of filteredEmployerLgas" [value]="o.value">{{o.label}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">State of Posting</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="employerStateOfPosting" interface="action-sheet" mode="md" placeholder="Select state">
-            <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
-          </ion-select>
-        </ion-item>
       </ion-col>
 
     </ion-row>

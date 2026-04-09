@@ -23,7 +23,6 @@ export class RegisterService {
         middleName: form.middleName || undefined,
         dateOfBirth: form.dateOfBirth,
         phoneNumber: form.phoneNumber,
-        rsaPin: form.rsaPin || undefined,
         guardianPin: form.guardianPin || undefined,
         emailAddress: form.emailAddress,
         nationality: form.nationality,
@@ -33,14 +32,9 @@ export class RegisterService {
         residentialAddress: form.residentialAddress,
         residentialStateCode: form.residentialStateCode,
         residentialLgaCode: form.residentialLgaCode,
-        pfaCode: form.pfaCode,
         apaCode: form.apaCode || undefined,
         employmentDetails: {
-          employerName: form.employerName || undefined,
-          employerPhonenumber: form.employerPhonenumber || undefined,
-          employerState: form.employerState || undefined,
-          employerLga: form.employerLga || undefined,
-          employerStateOfPosting: form.employerStateOfPosting || undefined,
+          employerCode: form.employerCode,
         },
         nextOfKinDetails: {
           nextOfKinTitle: form.nextOfKinTitle || undefined,

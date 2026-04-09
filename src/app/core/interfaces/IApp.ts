@@ -59,12 +59,7 @@ export interface registerModel {
   pfaCode: string,
   apaCode?: string,
   employmentDetails: {
-    employerCode?: string,
-    employerName?: string,
-    employerPhonenumber?: string,
-    employerState?: string,
-    employerLga?: string,
-    employerStateOfPosting?: string,
+    employerCode: string,
   },
   nextOfKinDetails: {
     nextOfKinTitle?: string,
