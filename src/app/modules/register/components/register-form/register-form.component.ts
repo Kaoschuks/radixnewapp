@@ -724,8 +724,8 @@ export class RegisterFormComponent implements OnInit {
     inputEl.value = '';
   }
 
-  ngOnInit() {
-    this.loadEmployers();
+  async ngOnInit() {
+    await this.loadEmployers();
   }
 
   private async loadEmployers() {
@@ -737,8 +737,8 @@ export class RegisterFormComponent implements OnInit {
       );
       const list: any[] = Array.isArray(res) ? res : (res?.data ?? []);
       this.employers = list.map(e => ({
-        value: e.employerCode ?? e.EmployerCode ?? e.code ?? e.Code,
-        label: e.employerName ?? e.EmployerName ?? e.name ?? e.Name,
+        value: e.CODE ,
+        label: e.EMPNAME,
       }));
     } catch {
       this.employers = [];
