@@ -47,7 +47,6 @@ export interface registerModel {
   middleName?: string,
   dateOfBirth: string,
   phoneNumber: string,
-  rsaPin?: string,
   emailAddress: string,
   nationality: string,
   stateOfOriginCode: string,
@@ -56,7 +55,6 @@ export interface registerModel {
   residentialAddress: string,
   residentialStateCode: string,
   residentialLgaCode: string,
-  pfaCode: string,
   apaCode?: string,
   employmentDetails: {
     employerCode: string,
