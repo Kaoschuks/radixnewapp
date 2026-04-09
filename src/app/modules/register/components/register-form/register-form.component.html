@@ -27,6 +27,11 @@
             <ion-select-option *ngFor="let o of userTypeOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['userType']">
+            <div *ngIf="registerForm.get('userType')?.hasError(v.type) && registerForm.get('userType')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
       <ion-col size="6">
@@ -72,6 +77,11 @@
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="middleName" type="text" placeholder="Your middle name"></ion-input>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['middleName']">
+            <div *ngIf="registerForm.get('middleName')?.hasError(v.type) && registerForm.get('middleName')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
       <ion-col size="6">
@@ -141,7 +151,7 @@
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">NIN <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="nin" type="text" placeholder="11-digit NIN"></ion-input>
+          <ion-input formControlName="nin" type="text" placeholder="8–11 digit NIN" maxlength="11"></ion-input>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['nin']">
@@ -153,7 +163,7 @@
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">BVN <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="bvn" type="text" placeholder="11-digit BVN"></ion-input>
+          <ion-input formControlName="bvn" type="text" placeholder="8–11 digit BVN" maxlength="11"></ion-input>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['bvn']">
@@ -276,21 +286,31 @@
     <ion-row>
 
       <ion-col size="6">
-        <ion-label class="fs-12 text-dark">Title</ion-label>
+        <ion-label class="fs-12 text-dark">Title <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-select formControlName="nextOfKinTitle" interface="action-sheet" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of titleOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinTitle']">
+            <div *ngIf="registerForm.get('nextOfKinTitle')?.hasError(v.type) && registerForm.get('nextOfKinTitle')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
       <ion-col size="6">
-        <ion-label class="fs-12 text-dark">Gender</ion-label>
+        <ion-label class="fs-12 text-dark">Gender <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-select formControlName="nextOfKinGender" interface="action-sheet" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of genderOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinGender']">
+            <div *ngIf="registerForm.get('nextOfKinGender')?.hasError(v.type) && registerForm.get('nextOfKinGender')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
       <ion-col size="12">
@@ -332,24 +352,39 @@
       </ion-col>
 
       <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Phone Number</ion-label>
+        <ion-label class="fs-12 text-dark">Phone Number <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="nextOfKinPhoneNumber" type="tel" placeholder="Phone number"></ion-input>
+          <ion-input formControlName="nextOfKinPhoneNumber" type="tel" placeholder="08012345678"></ion-input>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinPhoneNumber']">
+            <div *ngIf="registerForm.get('nextOfKinPhoneNumber')?.hasError(v.type) && registerForm.get('nextOfKinPhoneNumber')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
       <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Email</ion-label>
+        <ion-label class="fs-12 text-dark">Email <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="nextOfKinEmail" type="email" placeholder="Email address"></ion-input>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinEmail']">
+            <div *ngIf="registerForm.get('nextOfKinEmail')?.hasError(v.type) && registerForm.get('nextOfKinEmail')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
       <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Address</ion-label>
+        <ion-label class="fs-12 text-dark">Address <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="nextOfKinAddress" type="text" placeholder="Residential address"></ion-input>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nextOfKinAddress']">
+            <div *ngIf="registerForm.get('nextOfKinAddress')?.hasError(v.type) && registerForm.get('nextOfKinAddress')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
       </ion-col>
 
     </ion-row>

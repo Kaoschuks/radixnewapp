@@ -34,23 +34,23 @@ export class RegisterFormComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({
     // Step 1: Personal Details
-    nin: new FormControl('', Validators.required),
-    userType: new FormControl('RSA', Validators.required),
+    nin: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
+    userType: new FormControl('', Validators.required),
     guardianPin: new FormControl(''),
-    bvn: new FormControl('', Validators.required),
+    bvn: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     gender: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    middleName: new FormControl(''),
+    firstName: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-']+$/)]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-']+$/)]),
+    middleName: new FormControl('', Validators.pattern(/^[a-zA-Z\s\-']*$/)),
     dateOfBirth: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
     emailAddress: new FormControl('', [Validators.required, Validators.email]),
     nationality: new FormControl('NG', Validators.required),
     stateOfOriginCode: new FormControl('', Validators.required),
     lgaOriginCode: new FormControl('', Validators.required),
     maritalStatus: new FormControl('', Validators.required),
-    residentialAddress: new FormControl('', Validators.required),
+    residentialAddress: new FormControl('', [Validators.required, Validators.minLength(5)]),
     residentialStateCode: new FormControl('', Validators.required),
     residentialLgaCode: new FormControl('', Validators.required),
     apaCode: new FormControl('001'),
@@ -59,14 +59,14 @@ export class RegisterFormComponent implements OnInit {
     employerCode: new FormControl('', Validators.required),
 
     // Step 3: Next of Kin
-    nextOfKinTitle: new FormControl(''),
-    nextOfKinGender: new FormControl(''),
-    nextOfKinFirstname: new FormControl('', Validators.required),
-    nextOfKinSurname: new FormControl('', Validators.required),
-    nextOfKinAddress: new FormControl(''),
+    nextOfKinTitle: new FormControl('', Validators.required),
+    nextOfKinGender: new FormControl('', Validators.required),
+    nextOfKinFirstname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-']+$/)]),
+    nextOfKinSurname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-']+$/)]),
+    nextOfKinAddress: new FormControl('', [Validators.required, Validators.minLength(5)]),
     nextOfRelationship: new FormControl('', Validators.required),
-    nextOfKinPhoneNumber: new FormControl(''),
-    nextOfKinEmail: new FormControl(''),
+    nextOfKinPhoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
+    nextOfKinEmail: new FormControl('', [Validators.required, Validators.email]),
 
     // Step 4: Images (all required)
     consentForm: new FormControl('', Validators.required),
@@ -75,32 +75,78 @@ export class RegisterFormComponent implements OnInit {
   });
 
   validation_messages: { [key: string]: { type: string; message: string }[] } = {
-    nin: [{ type: 'required', message: 'NIN is required.' }],
-    bvn: [{ type: 'required', message: 'BVN is required.' }],
+    nin: [
+      { type: 'required', message: 'NIN is required.' },
+      { type: 'minlength', message: 'NIN must be at least 8 digits.' },
+      { type: 'maxlength', message: 'NIN must not exceed 11 digits.' },
+      { type: 'pattern', message: 'NIN must contain digits only.' },
+    ],
+    bvn: [
+      { type: 'required', message: 'BVN is required.' },
+      { type: 'minlength', message: 'BVN must be at least 8 digits.' },
+      { type: 'maxlength', message: 'BVN must not exceed 11 digits.' },
+      { type: 'pattern', message: 'BVN must contain digits only.' },
+    ],
     userType: [{ type: 'required', message: 'User type is required.' }],
     gender: [{ type: 'required', message: 'Gender is required.' }],
     title: [{ type: 'required', message: 'Title is required.' }],
-    firstName: [{ type: 'required', message: 'First name is required.' }],
-    lastName: [{ type: 'required', message: 'Last name is required.' }],
+    firstName: [
+      { type: 'required', message: 'First name is required.' },
+      { type: 'pattern', message: 'First name must contain letters only.' },
+    ],
+    lastName: [
+      { type: 'required', message: 'Last name is required.' },
+      { type: 'pattern', message: 'Last name must contain letters only.' },
+    ],
+    middleName: [
+      { type: 'pattern', message: 'Middle name must contain letters only.' },
+    ],
     dateOfBirth: [{ type: 'required', message: 'Date of birth is required.' }],
     phoneNumber: [
       { type: 'required', message: 'Phone number is required.' },
-      { type: 'minlength', message: 'Phone number must be at least 10 digits.' }
+      { type: 'minlength', message: 'Phone number must be at least 10 digits.' },
+      { type: 'maxlength', message: 'Phone number must not exceed 14 digits.' },
+      { type: 'pattern', message: 'Phone number must contain digits only.' },
     ],
     emailAddress: [
       { type: 'required', message: 'Email is required.' },
-      { type: 'email', message: 'Please enter a valid email.' }
+      { type: 'email', message: 'Please enter a valid email.' },
     ],
     stateOfOriginCode: [{ type: 'required', message: 'State of origin is required.' }],
     lgaOriginCode: [{ type: 'required', message: 'LGA of origin is required.' }],
     maritalStatus: [{ type: 'required', message: 'Marital status is required.' }],
-    residentialAddress: [{ type: 'required', message: 'Residential address is required.' }],
+    residentialAddress: [
+      { type: 'required', message: 'Residential address is required.' },
+      { type: 'minlength', message: 'Please enter a full address.' },
+    ],
     residentialStateCode: [{ type: 'required', message: 'Residential state is required.' }],
     residentialLgaCode: [{ type: 'required', message: 'Residential LGA is required.' }],
     employerCode: [{ type: 'required', message: 'Employer is required.' }],
-    nextOfKinFirstname: [{ type: 'required', message: 'First name is required.' }],
-    nextOfKinSurname: [{ type: 'required', message: 'Surname is required.' }],
+    nextOfKinTitle: [{ type: 'required', message: 'Title is required.' }],
+    nextOfKinGender: [{ type: 'required', message: 'Gender is required.' }],
+    nextOfKinFirstname: [
+      { type: 'required', message: 'First name is required.' },
+      { type: 'pattern', message: 'First name must contain letters only.' },
+    ],
+    nextOfKinSurname: [
+      { type: 'required', message: 'Surname is required.' },
+      { type: 'pattern', message: 'Surname must contain letters only.' },
+    ],
+    nextOfKinAddress: [
+      { type: 'required', message: 'Address is required.' },
+      { type: 'minlength', message: 'Please enter a full address.' },
+    ],
     nextOfRelationship: [{ type: 'required', message: 'Relationship is required.' }],
+    nextOfKinPhoneNumber: [
+      { type: 'required', message: 'Phone number is required.' },
+      { type: 'minlength', message: 'Phone number must be at least 10 digits.' },
+      { type: 'maxlength', message: 'Phone number must not exceed 14 digits.' },
+      { type: 'pattern', message: 'Phone number must contain digits only.' },
+    ],
+    nextOfKinEmail: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'email', message: 'Please enter a valid email.' },
+    ],
     consentForm: [{ type: 'required', message: 'Consent form image is required.' }],
     signature: [{ type: 'required', message: 'Signature image is required.' }],
     photo: [{ type: 'required', message: 'Passport photo is required.' }],
@@ -130,7 +176,7 @@ export class RegisterFormComponent implements OnInit {
   nationalityOptions = [{ value: 'NG', label: 'Nigeria' }];
 
   userTypeOptions = [
-    { value: 'RSA', label: 'RSA Holder' },
+    { value: 'RSA', label: 'Adult' },
     { value: 'MINOR', label: 'Minor' }
   ];
 
@@ -758,7 +804,10 @@ export class RegisterFormComponent implements OnInit {
         'residentialLgaCode'
       ];
       case 2: return ['employerCode'];
-      case 3: return ['nextOfKinFirstname', 'nextOfKinSurname', 'nextOfRelationship'];
+      case 3: return [
+        'nextOfKinTitle', 'nextOfKinGender', 'nextOfKinFirstname', 'nextOfKinSurname',
+        'nextOfKinAddress', 'nextOfRelationship', 'nextOfKinPhoneNumber', 'nextOfKinEmail'
+      ];
       case 4: return ['consentForm', 'signature', 'photo'];
       default: return [];
     }
