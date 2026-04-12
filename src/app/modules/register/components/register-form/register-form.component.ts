@@ -69,7 +69,6 @@ export class RegisterFormComponent implements OnInit {
     nextOfKinEmail: new FormControl('', [Validators.required, Validators.email]),
 
     // Step 4: Images (all required)
-    consentForm: new FormControl('', Validators.required),
     signature: new FormControl('', Validators.required),
     photo: new FormControl('', Validators.required),
   });
@@ -147,7 +146,6 @@ export class RegisterFormComponent implements OnInit {
       { type: 'required', message: 'Email is required.' },
       { type: 'email', message: 'Please enter a valid email.' },
     ],
-    consentForm: [{ type: 'required', message: 'Consent form image is required.' }],
     signature: [{ type: 'required', message: 'Signature image is required.' }],
     photo: [{ type: 'required', message: 'Passport photo is required.' }],
   };
@@ -750,6 +748,7 @@ export class RegisterFormComponent implements OnInit {
         .forEach(f => this.registerForm.get(f)?.markAsTouched());
       return;
     }
+    console.log('Register form payload:', this.registerForm.value);
     this.onsubmit.emit(this.registerForm.value);
   }
 
@@ -808,7 +807,7 @@ export class RegisterFormComponent implements OnInit {
         'nextOfKinTitle', 'nextOfKinGender', 'nextOfKinFirstname', 'nextOfKinSurname',
         'nextOfKinAddress', 'nextOfRelationship', 'nextOfKinPhoneNumber', 'nextOfKinEmail'
       ];
-      case 4: return ['consentForm', 'signature', 'photo'];
+      case 4: return ['signature', 'photo'];
       default: return [];
     }
   }

@@ -50,7 +50,6 @@ export class RegisterService {
         biometricsDetails: {
           photo: this.stripBase64Prefix(form.photo),
           signature: this.stripBase64Prefix(form.signature),
-          consentForm: this.stripBase64Prefix(form.consentForm),
         },
       };
 

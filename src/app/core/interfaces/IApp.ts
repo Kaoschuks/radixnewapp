@@ -75,6 +75,6 @@ export interface registerModel {
   biometricsDetails: {
     photo: string,
     signature: string,
-    consentForm: string,
+    consentForm?: string,
   },
 }

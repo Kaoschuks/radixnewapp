@@ -452,34 +452,6 @@
         </div>
       </ion-col>
 
-      <!-- Consent Form -->
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Consent Form <span class="text-danger">*</span></ion-label>
-        <div class="upload-card" [class.uploaded]="registerForm.get('consentForm')?.value"
-             [class.upload-error]="registerForm.get('consentForm')?.invalid && registerForm.get('consentForm')?.touched">
-          <ng-container *ngIf="registerForm.get('consentForm')?.value; else consentEmpty">
-            <img class="upload-preview-img" [src]="registerForm.get('consentForm')?.value" alt="Consent form" />
-            <button type="button" class="clear-btn" (click)="clearFile('consentForm', consentInput)">
-              <ion-icon name="close-circle"></ion-icon>
-            </button>
-          </ng-container>
-          <ng-template #consentEmpty>
-            <label class="upload-label" for="consentInput">
-              <ion-icon name="document-text-outline" class="upload-icon"></ion-icon>
-              <span class="fs-12 fw-6 text-dark">Consent Form</span>
-              <span class="fs-12 text-medium">Tap to choose image</span>
-            </label>
-          </ng-template>
-        </div>
-        <input #consentInput id="consentInput" type="file" accept="image/*"
-               (change)="onFileSelected('consentForm', $event)" class="file-input" />
-        <div class="validation-errors fs-12 text-danger"
-             *ngIf="registerForm.get('consentForm')?.invalid && registerForm.get('consentForm')?.touched">
-          <ng-container *ngFor="let v of validation_messages['consentForm']">
-            <div *ngIf="registerForm.get('consentForm')?.hasError(v.type)">{{v.message}}</div>
-          </ng-container>
-        </div>
-      </ion-col>
 
     </ion-row>
   </div>
