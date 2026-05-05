@@ -8,6 +8,7 @@ import {
   IonRow, IonCol, IonIcon, IonProgressBar
 } from '@ionic/angular/standalone';
 import { RequestService } from 'src/app/core';
+import { RegisterService } from '../../services/register.service';
 
 @Component({
   selector: 'register-form',
@@ -25,9 +26,14 @@ export class RegisterFormComponent implements OnInit {
 
   private cdr = inject(ChangeDetectorRef);
   private api = inject(RequestService);
+  private registerService = inject(RegisterService);
 
   employers: { value: string; label: string }[] = [];
   employersLoading = false;
+
+  ninVerified = false;
+  ninVerifying = false;
+  ninVerifyError = '';
 
   currentStep = 1;
   totalSteps = 4;
@@ -699,9 +705,40 @@ export class RegisterFormComponent implements OnInit {
   }
 
   get canProceed(): boolean {
-    return this.getStepFields(this.currentStep)
+    const fieldsValid = this.getStepFields(this.currentStep)
       .every(field => this.registerForm.get(field)?.valid);
+    if (this.currentStep === 1) return fieldsValid && this.ninVerified;
+    return fieldsValid;
   }
+
+  async verifyNin() {
+    const ninControl = this.registerForm.get('nin');
+    if (!ninControl?.valid) return;
+
+    const nin = ninControl.value;
+    if (this.ninVerified && nin === this._lastVerifiedNin) return;
+
+    this.ninVerifying = true;
+    this.ninVerified = false;
+    this.ninVerifyError = '';
+    this.cdr.markForCheck();
+
+    try {
+      const res: any = await this.registerService.verifyNin(nin);
+      console.log('NIN verification response:', res);
+      this.ninVerified = true;
+      this.ninVerifyError = '';
+      this._lastVerifiedNin = nin;
+    } catch (err: any) {
+      this.ninVerified = false;
+      this.ninVerifyError = err?.error?.message || err?.message || 'NIN verification failed.';
+    } finally {
+      this.ninVerifying = false;
+      this.cdr.markForCheck();
+    }
+  }
+
+  private _lastVerifiedNin = '';
 
   get isLastStep(): boolean {
     return this.currentStep === this.totalSteps;
@@ -771,6 +808,14 @@ export class RegisterFormComponent implements OnInit {
 
   async ngOnInit() {
     await this.loadEmployers();
+    this.registerForm.get('nin')?.valueChanges.subscribe(() => {
+      if (this.ninVerified || this.ninVerifyError) {
+        this.ninVerified = false;
+        this.ninVerifyError = '';
+        this._lastVerifiedNin = '';
+        this.cdr.markForCheck();
+      }
+    });
   }
 
   private async loadEmployers() {

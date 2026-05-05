@@ -137,3 +137,14 @@
   min-height: 16px;
   margin-top: 2px;
 }
+
+// ── NIN verification spinner ─────────────────────────────
+.nin-spin {
+  animation: spin 1s linear infinite;
+  color: var(--ion-color-medium);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

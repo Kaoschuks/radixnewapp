@@ -1,5 +1,5 @@
 import { Injectable, OnInit, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { url } from 'src/app/core';
 
 
@@ -26,6 +26,17 @@ export class RequestService {
     const url = custom_url ? routes : this.url + routes;
     return await new Promise((resolve, reject) => {
       this.http.post(url, data).subscribe(
+        (response) => resolve(response),
+        (error) => reject(error)
+      );
+    });
+  }
+
+  async postWithHeaders(routes: string, data: any, extraHeaders: { [key: string]: string }, custom_url: boolean = false) {
+    const url = custom_url ? routes : this.url + routes;
+    const headers = new HttpHeaders(extraHeaders);
+    return await new Promise((resolve, reject) => {
+      this.http.post(url, data, { headers }).subscribe(
         (response) => resolve(response),
         (error) => reject(error)
       );

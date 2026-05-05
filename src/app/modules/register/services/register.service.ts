@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { GlobalsServices, UserService, registerModel } from 'src/app/core';
+import { GlobalsServices, UserService, RequestService, registerModel } from 'src/app/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,16 @@ import { GlobalsServices, UserService, registerModel } from 'src/app/core';
 export class RegisterService {
   globals: GlobalsServices = inject(GlobalsServices);
   uData: UserService = inject(UserService);
+  private api: RequestService = inject(RequestService);
+
+  async verifyNin(nin: string): Promise<any> {
+    return await this.api.postWithHeaders(
+      environment.ninKycUrl,
+      { nin },
+      { 'x-api-key': environment.ninKycSecret },
+      true
+    );
+  }
 
   async register(form: any) {
     try {
