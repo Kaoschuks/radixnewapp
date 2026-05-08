@@ -1,16 +1,22 @@
-
-
 <full-modal [open]="isOpen" [backDropDismiss]="false" [id]="'walkthrough'" [bodyColor]="'white'" [headerClass]="'hidden'" [footerClass]="'bg-bg-transparent ion-no-border'">
+
   <ion-content [fullscreen]="true">
-    <onboarding></onboarding>
+    <onboarding *ngIf="screen === 'onboarding'"></onboarding>
+    <account-type-select
+      *ngIf="screen === 'account-type'"
+      (selected)="onAccountTypeSelected($event)"
+      (back)="goBackToOnboarding()">
+    </account-type-select>
   </ion-content>
-  <div modal-footer class="ion-padding ion-no-border bg-transparent">
-    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" routerLink="/register" (click)="globals.closeModal('walkthroughmodal');resetStatusBar()" size="large">
+
+  <div modal-footer class="ion-padding ion-no-border bg-transparent" *ngIf="screen === 'onboarding'">
+    <ion-button class="no-shadow" color="primary" mode="md" expand="block" size="large" (click)="showAccountTypeSelect()">
       <span class="fs-14">Let's Start</span>
-    </ion-button>  
-    <ion-button class="no-shadow" color ="primary" mode="md" expand="block" fill="clear" routerLink="/login" (click)="globals.closeModal('walkthroughmodal');resetStatusBar()" size="large">
+    </ion-button>
+    <ion-button class="no-shadow" color="primary" mode="md" expand="block" fill="clear" routerLink="/login" (click)="globals.closeModal('walkthroughmodal'); resetStatusBar()" size="large">
       <span class="fs-14 bold">Existing User? (Sign In)</span>
-    </ion-button>  
+    </ion-button>
   </div>
+
   <br />
 </full-modal>

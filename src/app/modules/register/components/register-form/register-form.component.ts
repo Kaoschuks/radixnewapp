@@ -34,6 +34,7 @@ export class RegisterFormComponent implements OnInit {
   ninVerified = false;
   ninVerifying = false;
   ninVerifyError = '';
+  ninData: any = null;
 
   currentStep = 1;
   totalSteps = 4;
@@ -726,16 +727,54 @@ export class RegisterFormComponent implements OnInit {
     try {
       const res: any = await this.registerService.verifyNin(nin);
       console.log('NIN verification response:', res);
+
+      if (res?.statusCode !== 200) {
+        throw new Error(res?.message || 'NIN verification failed. Please try again.');
+      }
+
+      this.ninData = res?.data ?? null;
+      this._populateFromNin(this.ninData);
       this.ninVerified = true;
       this.ninVerifyError = '';
       this._lastVerifiedNin = nin;
     } catch (err: any) {
       this.ninVerified = false;
-      this.ninVerifyError = err?.error?.message || err?.message || 'NIN verification failed.';
+      this.ninData = null;
+      this.ninVerifyError = err?.error?.message || err?.message || 'NIN verification failed. Please try again.';
     } finally {
       this.ninVerifying = false;
       this.cdr.markForCheck();
     }
+  }
+
+  retryNinVerification() {
+    this.ninVerifyError = '';
+    this.ninVerified = false;
+    this.ninData = null;
+    this._lastVerifiedNin = '';
+    this._clearNinPopulatedFields();
+    this.cdr.markForCheck();
+  }
+
+  private _populateFromNin(data: any) {
+    if (!data) return;
+    const patch: any = {};
+    if (data.first_name)    patch['firstName']   = this._toTitleCase(data.first_name);
+    if (data.last_name)     patch['lastName']    = this._toTitleCase(data.last_name);
+    if (data.middle_name)   patch['middleName']  = this._toTitleCase(data.middle_name);
+    if (data.date_of_birth) patch['dateOfBirth'] = data.date_of_birth; // already YYYY-MM-DD
+    if (data.phone_number)  patch['phoneNumber'] = data.phone_number;
+    this.registerForm.patchValue(patch);
+  }
+
+  private _clearNinPopulatedFields() {
+    this.registerForm.patchValue({
+      firstName: '', lastName: '', middleName: '', dateOfBirth: '', phoneNumber: ''
+    });
+  }
+
+  private _toTitleCase(str: string): string {
+    return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   }
 
   private _lastVerifiedNin = '';

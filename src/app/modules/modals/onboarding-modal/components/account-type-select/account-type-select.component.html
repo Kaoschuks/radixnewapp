@@ -1,0 +1,40 @@
+<div class="account-type-screen">
+
+  <button class="back-btn" type="button" (click)="back.emit()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </button>
+
+  <div class="header">
+    <h2 class="title">Choose Account Type</h2>
+    <p class="subtitle">Select the type of pension account you want to create</p>
+  </div>
+
+  <div class="cards">
+
+    <button class="account-card" type="button" (click)="select('ppp')">
+      <div class="card-icon ppp">
+        <ion-icon name="person-outline"></ion-icon>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Personal Pension Plan</span>
+        <span class="card-tag">PPP</span>
+        <p class="card-desc">Start saving for retirement with a personal pension plan tailored to your needs.</p>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="card-arrow"></ion-icon>
+    </button>
+
+    <button class="account-card" type="button" (click)="select('rsa')">
+      <div class="card-icon rsa">
+        <ion-icon name="briefcase-outline"></ion-icon>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Retiree Savings Account</span>
+        <span class="card-tag">RSA</span>
+        <p class="card-desc">Manage your retirement savings with a dedicated retiree savings account.</p>
+      </div>
+      <ion-icon name="chevron-forward-outline" class="card-arrow"></ion-icon>
+    </button>
+
+  </div>
+
+</div>

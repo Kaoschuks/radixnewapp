@@ -62,6 +62,10 @@ export const routes: Routes = [
     loadComponent: () => import('../register/register.page').then(m => m.RegisterPage)
   },
   {
+    path: 'register-rsa',
+    loadComponent: () => import('../register-rsa/register-rsa.page').then(m => m.RegisterRsaPage)
+  },
+  {
     path: 'forgot',
     loadComponent: () => import('../forgot/forgot.page').then(m => m.ForgotPage)
   },

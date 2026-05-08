@@ -138,6 +138,27 @@
   margin-top: 2px;
 }
 
+// ── NIN error + retry row ────────────────────────────────
+.nin-error-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+
+  ion-button {
+    --padding-start: 4px;
+    --padding-end: 4px;
+    height: 24px;
+    font-size: 12px;
+  }
+}
+
+// ── Lock icon on readonly fields ─────────────────────────
+.lock-icon {
+  font-size: 14px;
+  opacity: 0.5;
+}
+
 // ── NIN verification spinner ─────────────────────────────
 .nin-spin {
   animation: spin 1s linear infinite;

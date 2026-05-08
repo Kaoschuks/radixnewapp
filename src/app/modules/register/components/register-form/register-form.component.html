@@ -20,6 +20,32 @@
   <div *ngIf="currentStep === 1">
     <ion-row>
 
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">NIN <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="nin" type="text" inputmode="numeric" autocomplete="off" placeholder="11 Phone Number" maxlength="11"
+                     (ionBlur)="verifyNin()"></ion-input>
+          <ion-icon *ngIf="ninVerifying" name="sync-outline" slot="end" class="nin-spin"></ion-icon>
+          <ion-icon *ngIf="ninVerified && !ninVerifying" name="checkmark-circle" slot="end" color="success"></ion-icon>
+          <ion-icon *ngIf="ninVerifyError && !ninVerifying" name="close-circle" slot="end" color="danger"></ion-icon>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['nin']">
+            <div *ngIf="registerForm.get('nin')?.hasError(v.type) && registerForm.get('nin')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+        <div class="fs-12 text-success" *ngIf="ninVerified && !ninVerifying">NIN verified successfully.</div>
+        <div class="nin-error-row" *ngIf="ninVerifyError && !ninVerifying">
+          <span class="fs-12 text-danger">{{ninVerifyError}}</span>
+          <ion-button fill="clear" size="small" color="primary" type="button" (click)="retryNinVerification()">
+            Retry
+          </ion-button>
+        </div>
+        <div class="fs-12 text-medium" *ngIf="ninVerifying">Verifying NIN...</div>
+      </ion-col>
+
+      <ng-container *ngIf="ninVerified">
+
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">User Type <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
@@ -50,8 +76,9 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Last Name <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="lastName" type="text" placeholder="Your last name"></ion-input>
+        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+          <ion-input formControlName="lastName" type="text" placeholder="Your last name" [readonly]="ninVerified"></ion-input>
+          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['lastName']">
@@ -62,8 +89,9 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">First Name <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="firstName" type="text" placeholder="Your first name"></ion-input>
+        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+          <ion-input formControlName="firstName" type="text" placeholder="Your first name" [readonly]="ninVerified"></ion-input>
+          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['firstName']">
@@ -74,8 +102,9 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Middle Name</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="middleName" type="text" placeholder="Your middle name"></ion-input>
+        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+          <ion-input formControlName="middleName" type="text" placeholder="Your middle name" [readonly]="ninVerified"></ion-input>
+          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['middleName']">
@@ -114,8 +143,9 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Date of Birth <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="dateOfBirth" type="date"></ion-input>
+        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+          <ion-input formControlName="dateOfBirth" type="date" [readonly]="ninVerified"></ion-input>
+          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['dateOfBirth']">
@@ -126,8 +156,9 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Phone Number <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="phoneNumber" type="tel" placeholder="08012345678"></ion-input>
+        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+          <ion-input formControlName="phoneNumber" type="tel" placeholder="08012345678" [readonly]="ninVerified"></ion-input>
+          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['phoneNumber']">
@@ -146,25 +177,6 @@
             <div *ngIf="registerForm.get('emailAddress')?.hasError(v.type) && registerForm.get('emailAddress')?.touched">{{v.message}}</div>
           </ng-container>
         </div>
-      </ion-col>
-
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">NIN <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="nin" type="text" placeholder="8–11 digit NIN" maxlength="11"
-                     (ionBlur)="verifyNin()"></ion-input>
-          <ion-icon *ngIf="ninVerifying" name="sync-outline" slot="end" class="nin-spin"></ion-icon>
-          <ion-icon *ngIf="ninVerified && !ninVerifying" name="checkmark-circle" slot="end" color="success"></ion-icon>
-          <ion-icon *ngIf="ninVerifyError && !ninVerifying" name="close-circle" slot="end" color="danger"></ion-icon>
-        </ion-item>
-        <div class="validation-errors fs-12 text-danger">
-          <ng-container *ngFor="let v of validation_messages['nin']">
-            <div *ngIf="registerForm.get('nin')?.hasError(v.type) && registerForm.get('nin')?.touched">{{v.message}}</div>
-          </ng-container>
-        </div>
-        <div class="fs-12 text-success" *ngIf="ninVerified">NIN verified successfully.</div>
-        <div class="fs-12 text-danger" *ngIf="ninVerifyError">{{ninVerifyError}}</div>
-        <div class="fs-12 text-medium" *ngIf="ninVerifying">Verifying NIN...</div>
       </ion-col>
 
       <ion-col size="12">
@@ -262,6 +274,8 @@
           </ng-container>
         </div>
       </ion-col>
+
+      </ng-container>
 
     </ion-row>
   </div>

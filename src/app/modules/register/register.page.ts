@@ -20,7 +20,6 @@ import { OnboardingModalComponent } from '../modals';
 export class RegisterPage extends RegisterService {
 
   goback() {
-    console.log("test")
     this.globals.openModal('walkthroughmodal')
   }
 }

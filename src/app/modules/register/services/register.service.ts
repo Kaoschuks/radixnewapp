@@ -14,14 +14,14 @@ export class RegisterService {
     return await this.api.postWithHeaders(
       environment.ninKycUrl,
       { nin },
-      { 'x-api-key': environment.ninKycSecret },
+      { 'x-cardinalstone-secret': environment.ninKycSecret },
       true
     );
   }
 
   async register(form: any) {
     try {
-      this.globals.loading.show('Creating your account');
+      this.globals.loading.show('Creating your PPP account');
 
       const payload: registerModel = {
         nin: form.nin,
@@ -65,6 +65,29 @@ export class RegisterService {
       };
 
       await this.uData.register(payload);
+      this.globals.navigate('/login', false);
+    } catch (error: any) {
+      this.globals.loading.hide();
+      await this.globals.toastAlert(error.message || error.error || error, {
+        cssClass: 'toast-danger'
+      });
+    }
+  }
+
+  async registerRSA(form: any) {
+    try {
+      this.globals.loading.show('Creating your RSA account');
+
+      const payload: any = {
+        firstName: form.firstName,
+        lastName: form.lastName,
+        middleName: form.middleName || undefined,
+        dateOfBirth: form.dateOfBirth,
+        phoneNumber: form.phoneNumber,
+      };
+
+      await this.uData.registerRSA(payload);
+      this.globals.loading.hide();
       this.globals.navigate('/login', false);
     } catch (error: any) {
       this.globals.loading.hide();
