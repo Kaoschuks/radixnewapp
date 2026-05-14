@@ -87,7 +87,7 @@ export class UserService {
     return await new Promise(async (resolve, reject) => {
       try{
         const res: any = await this._api.post(`S_WEBUSER`, form)
-        if(!res || res.length == 0) reject("User information not found in database");
+        if(!res || res != "Success") reject("User information not found in database");
         resolve("success")
       }catch(ex: any) {
         reject(ex.message || ex.error || ex)
