@@ -5,7 +5,7 @@ import {
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonItem, IonInput, IonLabel, IonButton, IonSelect, IonSelectOption,
-  IonRow, IonCol, IonIcon, IonProgressBar
+  IonRow, IonCol, IonIcon, IonProgressBar, IonCheckbox
 } from '@ionic/angular/standalone';
 import { RequestService } from 'src/app/core';
 import { RegisterService } from '../../services/register.service';
@@ -18,7 +18,7 @@ import { RegisterService } from '../../services/register.service';
   standalone: true,
   imports: [
     IonItem, IonInput, IonLabel, IonButton, FormsModule, IonSelect, IonSelectOption,
-    IonRow, IonCol, ReactiveFormsModule, NgIf, NgFor, IonIcon, IonProgressBar
+    IonRow, IonCol, ReactiveFormsModule, NgIf, NgFor, IonIcon, IonProgressBar, IonCheckbox
   ]
 })
 export class RegisterFormComponent implements OnInit {
@@ -44,6 +44,7 @@ export class RegisterFormComponent implements OnInit {
     nin: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     userType: new FormControl('', Validators.required),
     guardianPin: new FormControl(''),
+    rsaPin: new FormControl('', Validators.required),
     bvn: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     gender: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
@@ -61,6 +62,7 @@ export class RegisterFormComponent implements OnInit {
     residentialStateCode: new FormControl('', Validators.required),
     residentialLgaCode: new FormControl('', Validators.required),
     apaCode: new FormControl('001'),
+    pfaCode: new FormControl('', Validators.required),
 
     // Step 2: Employment Details
     employerCode: new FormControl('', Validators.required),
@@ -78,6 +80,7 @@ export class RegisterFormComponent implements OnInit {
     // Step 4: Images (all required)
     signature: new FormControl('', Validators.required),
     photo: new FormControl('', Validators.required),
+    consentForm: new FormControl(false, Validators.requiredTrue),
   });
 
   validation_messages: { [key: string]: { type: string; message: string }[] } = {
@@ -94,6 +97,7 @@ export class RegisterFormComponent implements OnInit {
       { type: 'pattern', message: 'BVN must contain digits only.' },
     ],
     userType: [{ type: 'required', message: 'User type is required.' }],
+    rsaPin: [{ type: 'required', message: 'RSA PIN is required.' }],
     gender: [{ type: 'required', message: 'Gender is required.' }],
     title: [{ type: 'required', message: 'Title is required.' }],
     firstName: [
@@ -128,6 +132,7 @@ export class RegisterFormComponent implements OnInit {
     residentialStateCode: [{ type: 'required', message: 'Residential state is required.' }],
     residentialLgaCode: [{ type: 'required', message: 'Residential LGA is required.' }],
     employerCode: [{ type: 'required', message: 'Employer is required.' }],
+    pfaCode: [{ type: 'required', message: 'PFA code is required.' }],
     nextOfKinTitle: [{ type: 'required', message: 'Title is required.' }],
     nextOfKinGender: [{ type: 'required', message: 'Gender is required.' }],
     nextOfKinFirstname: [
@@ -155,6 +160,7 @@ export class RegisterFormComponent implements OnInit {
     ],
     signature: [{ type: 'required', message: 'Signature image is required.' }],
     photo: [{ type: 'required', message: 'Passport photo is required.' }],
+    consentForm: [{ type: 'required', message: 'You must accept the consent statement to continue.' }],
   };
 
   // Select options
@@ -880,18 +886,18 @@ export class RegisterFormComponent implements OnInit {
   private getStepFields(step: number): string[] {
     switch (step) {
       case 1: return [
-        'nin', 'bvn', 'userType', 'gender', 'title',
+        'nin', 'bvn', 'userType', 'gender', 'title', 'rsaPin',
         'firstName', 'lastName', 'dateOfBirth', 'phoneNumber', 'emailAddress',
         'nationality', 'stateOfOriginCode', 'lgaOriginCode',
         'maritalStatus', 'residentialAddress', 'residentialStateCode',
         'residentialLgaCode'
       ];
-      case 2: return ['employerCode'];
+      case 2: return ['employerCode', 'pfaCode'];
       case 3: return [
         'nextOfKinTitle', 'nextOfKinGender', 'nextOfKinFirstname', 'nextOfKinSurname',
         'nextOfKinAddress', 'nextOfRelationship', 'nextOfKinPhoneNumber', 'nextOfKinEmail'
       ];
-      case 4: return ['signature', 'photo'];
+      case 4: return ['signature', 'photo', 'consentForm'];
       default: return [];
     }
   }

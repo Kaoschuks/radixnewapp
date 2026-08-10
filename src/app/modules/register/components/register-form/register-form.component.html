@@ -199,6 +199,18 @@
       </ion-col>
 
       <ion-col size="12">
+        <ion-label class="fs-12 text-dark">RSA PIN <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="rsaPin" type="text" placeholder="PEN number"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['rsaPin']">
+            <div *ngIf="registerForm.get('rsaPin')?.hasError(v.type) && registerForm.get('rsaPin')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
         <ion-label class="fs-12 text-dark">Nationality <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-select formControlName="nationality" interface="action-sheet" mode="md">
@@ -295,6 +307,18 @@
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['employerCode']">
             <div *ngIf="registerForm.get('employerCode')?.hasError(v.type) && registerForm.get('employerCode')?.touched">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-label class="fs-12 text-dark">PFA Code <span class="text-danger">*</span></ion-label>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="pfaCode" type="text" placeholder="PFA code"></ion-input>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger">
+          <ng-container *ngFor="let v of validation_messages['pfaCode']">
+            <div *ngIf="registerForm.get('pfaCode')?.hasError(v.type) && registerForm.get('pfaCode')?.touched">{{v.message}}</div>
           </ng-container>
         </div>
       </ion-col>
@@ -473,6 +497,21 @@
         </div>
       </ion-col>
 
+      <!-- Consent -->
+      <ion-col size="12">
+        <ion-item class="ion-no-padding" lines="none">
+          <ion-checkbox formControlName="consentForm" justify="start" labelPlacement="end" slot="start"></ion-checkbox>
+          <ion-label class="fs-12 text-dark ion-text-wrap">
+            I consent to the collection and processing of my personal data for the purpose of this registration.
+          </ion-label>
+        </ion-item>
+        <div class="validation-errors fs-12 text-danger"
+             *ngIf="registerForm.get('consentForm')?.invalid && registerForm.get('consentForm')?.touched">
+          <ng-container *ngFor="let v of validation_messages['consentForm']">
+            <div *ngIf="registerForm.get('consentForm')?.hasError(v.type)">{{v.message}}</div>
+          </ng-container>
+        </div>
+      </ion-col>
 
     </ion-row>
   </div>

@@ -26,6 +26,7 @@ export class RegisterService {
       const payload: registerModel = {
         nin: form.nin,
         userType: form.userType,
+        rsaPin: form.rsaPin,
         bvn: form.bvn,
         gender: form.gender,
         title: form.title,
@@ -44,6 +45,7 @@ export class RegisterService {
         residentialStateCode: form.residentialStateCode,
         residentialLgaCode: form.residentialLgaCode,
         apaCode: form.apaCode || undefined,
+        pfaCode: form.pfaCode,
         employmentDetails: {
           employerCode: form.employerCode,
         },
@@ -61,6 +63,7 @@ export class RegisterService {
         biometricsDetails: {
           photo: this.stripBase64Prefix(form.photo),
           signature: this.stripBase64Prefix(form.signature),
+          consentForm: String(!!form.consentForm),
         },
       };
 
