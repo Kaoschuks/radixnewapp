@@ -15,12 +15,13 @@ import { catchError, map } from 'rxjs/operators';
 export class RequestInterceptorService implements HttpInterceptor {
 
     public intercept(request: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-        let headers: any = {
-            'content-type': 'application/json',
-        }
-        const modifiedReq = request.clone({
-            setHeaders: headers
-        });
+        // Only set Content-Type on requests with a body. Adding it to bodyless
+        // GET requests turns them into CORS-preflighted requests, and some
+        // endpoints (e.g. /api/employers) don't return Access-Control-Allow-Methods
+        // on their OPTIONS response, causing the browser to block the request.
+        const modifiedReq = request.body != null
+            ? request.clone({ setHeaders: { 'content-type': 'application/json' } })
+            : request;
 
         return handler.handle(modifiedReq).pipe(
             map(event => {
