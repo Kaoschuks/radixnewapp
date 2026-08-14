@@ -26,7 +26,7 @@ export class RegisterService {
       const payload: registerModel = {
         nin: form.nin,
         userType: form.userType,
-        rsaPin: form.rsaPin,
+        rsaPin: form.userType === 'MINOR' ? form.guardianPin : undefined,
         bvn: form.bvn,
         gender: form.gender,
         title: form.title,
@@ -45,7 +45,6 @@ export class RegisterService {
         residentialStateCode: form.residentialStateCode,
         residentialLgaCode: form.residentialLgaCode,
         apaCode: form.apaCode || undefined,
-        pfaCode: form.pfaCode,
         employmentDetails: {
           employerCode: form.employerCode,
         },

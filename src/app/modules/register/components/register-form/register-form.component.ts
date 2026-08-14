@@ -44,7 +44,6 @@ export class RegisterFormComponent implements OnInit {
     nin: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     userType: new FormControl('', Validators.required),
     guardianPin: new FormControl(''),
-    rsaPin: new FormControl('', Validators.required),
     bvn: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     gender: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
@@ -62,7 +61,6 @@ export class RegisterFormComponent implements OnInit {
     residentialStateCode: new FormControl('', Validators.required),
     residentialLgaCode: new FormControl('', Validators.required),
     apaCode: new FormControl('001'),
-    pfaCode: new FormControl('', Validators.required),
 
     // Step 2: Employment Details
     employerCode: new FormControl('', Validators.required),
@@ -97,7 +95,7 @@ export class RegisterFormComponent implements OnInit {
       { type: 'pattern', message: 'BVN must contain digits only.' },
     ],
     userType: [{ type: 'required', message: 'User type is required.' }],
-    rsaPin: [{ type: 'required', message: 'RSA PIN is required.' }],
+    guardianPin: [{ type: 'required', message: 'Guardian PIN is required for a minor.' }],
     gender: [{ type: 'required', message: 'Gender is required.' }],
     title: [{ type: 'required', message: 'Title is required.' }],
     firstName: [
@@ -132,7 +130,6 @@ export class RegisterFormComponent implements OnInit {
     residentialStateCode: [{ type: 'required', message: 'Residential state is required.' }],
     residentialLgaCode: [{ type: 'required', message: 'Residential LGA is required.' }],
     employerCode: [{ type: 'required', message: 'Employer is required.' }],
-    pfaCode: [{ type: 'required', message: 'PFA code is required.' }],
     nextOfKinTitle: [{ type: 'required', message: 'Title is required.' }],
     nextOfKinGender: [{ type: 'required', message: 'Gender is required.' }],
     nextOfKinFirstname: [
@@ -861,6 +858,14 @@ export class RegisterFormComponent implements OnInit {
         this.cdr.markForCheck();
       }
     });
+    this.registerForm.get('userType')?.valueChanges.subscribe(() => this._updateGuardianPinValidators());
+    this._updateGuardianPinValidators();
+  }
+
+  private _updateGuardianPinValidators() {
+    const guardianPin = this.registerForm.get('guardianPin');
+    guardianPin?.setValidators(this.isMinor ? [Validators.required] : []);
+    guardianPin?.updateValueAndValidity({ emitEvent: false });
   }
 
   private async loadEmployers() {
@@ -886,13 +891,14 @@ export class RegisterFormComponent implements OnInit {
   private getStepFields(step: number): string[] {
     switch (step) {
       case 1: return [
-        'nin', 'bvn', 'userType', 'gender', 'title', 'rsaPin',
+        'nin', 'bvn', 'userType', 'gender', 'title',
         'firstName', 'lastName', 'dateOfBirth', 'phoneNumber', 'emailAddress',
         'nationality', 'stateOfOriginCode', 'lgaOriginCode',
         'maritalStatus', 'residentialAddress', 'residentialStateCode',
-        'residentialLgaCode'
+        'residentialLgaCode',
+        ...(this.isMinor ? ['guardianPin'] : [])
       ];
-      case 2: return ['employerCode', 'pfaCode'];
+      case 2: return ['employerCode'];
       case 3: return [
         'nextOfKinTitle', 'nextOfKinGender', 'nextOfKinFirstname', 'nextOfKinSurname',
         'nextOfKinAddress', 'nextOfRelationship', 'nextOfKinPhoneNumber', 'nextOfKinEmail'

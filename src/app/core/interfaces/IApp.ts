@@ -39,7 +39,7 @@ export interface registerModel {
   nin: string,
   userType: string,
   guardianPin?: string,
-  rsaPin: string,
+  rsaPin?: string,
   bvn: string,
   gender: string,
   title: string,
@@ -57,7 +57,6 @@ export interface registerModel {
   residentialStateCode: string,
   residentialLgaCode: string,
   apaCode?: string,
-  pfaCode: string,
   employmentDetails: {
     employerCode: string,
   },

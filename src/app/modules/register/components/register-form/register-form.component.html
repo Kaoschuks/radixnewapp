@@ -192,20 +192,13 @@
       </ion-col>
 
       <ion-col size="12" *ngIf="isMinor">
-        <ion-label class="fs-12 text-dark">Guardian PIN</ion-label>
+        <ion-label class="fs-12 text-dark">Guardian PIN <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="guardianPin" type="text" placeholder="Guardian PEN number"></ion-input>
         </ion-item>
-      </ion-col>
-
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">RSA PIN <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="rsaPin" type="text" placeholder="PEN number"></ion-input>
-        </ion-item>
         <div class="validation-errors fs-12 text-danger">
-          <ng-container *ngFor="let v of validation_messages['rsaPin']">
-            <div *ngIf="registerForm.get('rsaPin')?.hasError(v.type) && registerForm.get('rsaPin')?.touched">{{v.message}}</div>
+          <ng-container *ngFor="let v of validation_messages['guardianPin']">
+            <div *ngIf="registerForm.get('guardianPin')?.hasError(v.type) && registerForm.get('guardianPin')?.touched">{{v.message}}</div>
           </ng-container>
         </div>
       </ion-col>
@@ -307,18 +300,6 @@
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['employerCode']">
             <div *ngIf="registerForm.get('employerCode')?.hasError(v.type) && registerForm.get('employerCode')?.touched">{{v.message}}</div>
-          </ng-container>
-        </div>
-      </ion-col>
-
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">PFA Code <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="pfaCode" type="text" placeholder="PFA code"></ion-input>
-        </ion-item>
-        <div class="validation-errors fs-12 text-danger">
-          <ng-container *ngFor="let v of validation_messages['pfaCode']">
-            <div *ngIf="registerForm.get('pfaCode')?.hasError(v.type) && registerForm.get('pfaCode')?.touched">{{v.message}}</div>
           </ng-container>
         </div>
       </ion-col>
