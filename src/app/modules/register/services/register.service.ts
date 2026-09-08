@@ -61,6 +61,7 @@ export class RegisterService {
         parentDetails: form.guardianPin ? { rsaPin: form.guardianPin } : undefined,
         biometricsDetails: {
           photo: this.stripBase64Prefix(form.photo),
+          payslip: this.stripBase64Prefix(form.payslip),
           signature: this.stripBase64Prefix(form.signature),
           consentForm: String(!!form.consentForm),
         },

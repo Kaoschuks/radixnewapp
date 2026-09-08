@@ -37,14 +37,20 @@ export class RegisterFormComponent implements OnInit {
   ninData: any = null;
 
   currentStep = 1;
-  totalSteps = 4;
+  totalSteps = 5;
+  payslipName = '';
+  payslipError = '';
+  payslipLoading = false;
 
   registerForm: FormGroup = new FormGroup({
-    // Step 1: Personal Details
-    nin: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
+    identityType: new FormControl('nin', Validators.required),
+    payslip: new FormControl('', Validators.required),
+
+    // Personal Details
+    nin: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     userType: new FormControl('', Validators.required),
     guardianPin: new FormControl(''),
-    bvn: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
+    bvn: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
     gender: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
     firstName: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-']+$/)]),
@@ -62,10 +68,10 @@ export class RegisterFormComponent implements OnInit {
     residentialLgaCode: new FormControl('', Validators.required),
     apaCode: new FormControl('001'),
 
-    // Step 2: Employment Details
+    // Step 3: Employment Details
     employerCode: new FormControl('', Validators.required),
 
-    // Step 3: Next of Kin
+    // Step 4: Next of Kin
     nextOfKinTitle: new FormControl('', Validators.required),
     nextOfKinGender: new FormControl('', Validators.required),
     nextOfKinFirstname: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s\-']+$/)]),
@@ -75,7 +81,7 @@ export class RegisterFormComponent implements OnInit {
     nextOfKinPhoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
     nextOfKinEmail: new FormControl('', [Validators.required, Validators.email]),
 
-    // Step 4: Images (all required)
+    // Step 5: Images (all required)
     signature: new FormControl('', Validators.required),
     photo: new FormControl('', Validators.required),
     consentForm: new FormControl(false, Validators.requiredTrue),
@@ -84,13 +90,13 @@ export class RegisterFormComponent implements OnInit {
   validation_messages: { [key: string]: { type: string; message: string }[] } = {
     nin: [
       { type: 'required', message: 'NIN is required.' },
-      { type: 'minlength', message: 'NIN must be at least 8 digits.' },
+      { type: 'minlength', message: 'NIN must be 11 digits.' },
       { type: 'maxlength', message: 'NIN must not exceed 11 digits.' },
       { type: 'pattern', message: 'NIN must contain digits only.' },
     ],
     bvn: [
       { type: 'required', message: 'BVN is required.' },
-      { type: 'minlength', message: 'BVN must be at least 8 digits.' },
+      { type: 'minlength', message: 'BVN must be 11 digits.' },
       { type: 'maxlength', message: 'BVN must not exceed 11 digits.' },
       { type: 'pattern', message: 'BVN must contain digits only.' },
     ],
@@ -711,13 +717,17 @@ export class RegisterFormComponent implements OnInit {
   get canProceed(): boolean {
     const fieldsValid = this.getStepFields(this.currentStep)
       .every(field => this.registerForm.get(field)?.valid);
-    if (this.currentStep === 1) return fieldsValid && this.ninVerified;
+    if (this.currentStep === 1) {
+      return fieldsValid && !this.payslipLoading &&
+        (this.registerForm.get('identityType')?.value === 'bvn' || this.ninVerified);
+    }
+    if (this.currentStep === 2) return fieldsValid && this.ninVerified;
     return fieldsValid;
   }
 
   async verifyNin() {
     const ninControl = this.registerForm.get('nin');
-    if (!ninControl?.valid) return;
+    if (!ninControl?.valid || this.ninVerifying) return;
 
     const nin = ninControl.value;
     if (this.ninVerified && nin === this._lastVerifiedNin) return;
@@ -729,7 +739,7 @@ export class RegisterFormComponent implements OnInit {
 
     try {
       const res: any = await this.registerService.verifyNin(nin);
-      console.log('NIN verification response:', res);
+      if (nin !== ninControl.value) return;
 
       if (res?.statusCode !== 200) {
         throw new Error(res?.message || 'NIN verification failed. Please try again.');
@@ -741,6 +751,7 @@ export class RegisterFormComponent implements OnInit {
       this.ninVerifyError = '';
       this._lastVerifiedNin = nin;
     } catch (err: any) {
+      if (nin !== ninControl.value) return;
       this.ninVerified = false;
       this.ninData = null;
       this.ninVerifyError = err?.error?.message || err?.message || 'NIN verification failed. Please try again.';
@@ -796,15 +807,19 @@ export class RegisterFormComponent implements OnInit {
 
   getStepTitle(): string {
     switch (this.currentStep) {
-      case 1: return 'Personal Details';
-      case 2: return 'Employment Details';
-      case 3: return 'Next of Kin';
-      case 4: return 'Upload Images';
+      case 1: return 'Subscribe';
+      case 2: return 'Personal Details';
+      case 3: return 'Employment Details';
+      case 4: return 'Next of Kin';
+      case 5: return 'Upload Images';
       default: return '';
     }
   }
 
-  nextStep() {
+  async nextStep() {
+    if (this.currentStep === 1 && this.registerForm.get('identityType')?.value === 'nin' && !this.ninVerified) {
+      await this.verifyNin();
+    }
     if (!this.canProceed) {
       this.getStepFields(this.currentStep)
         .forEach(f => this.registerForm.get(f)?.markAsTouched());
@@ -822,20 +837,43 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.canProceed) {
-      this.getStepFields(this.currentStep)
-        .forEach(f => this.registerForm.get(f)?.markAsTouched());
+    if (!this.isLastStep) {
+      void this.nextStep();
       return;
     }
-    console.log('Register form payload:', this.registerForm.value);
+    if (this.registerForm.invalid || !this.ninVerified || this.payslipLoading) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
     this.onsubmit.emit(this.registerForm.value);
   }
 
   onFileSelected(field: string, event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) return;
+    if (field === 'payslip') {
+      this.registerForm.get(field)?.setValue('');
+      this.payslipName = '';
+      this.payslipError = '';
+      if (!['application/pdf', 'image/jpeg', 'image/png'].includes(file.type)) {
+        this.payslipError = 'Choose a PDF, JPG or PNG payslip.';
+        return;
+      }
+      this.payslipLoading = true;
+    }
     const reader = new FileReader();
+    reader.onerror = () => {
+      if (field === 'payslip') {
+        this.payslipLoading = false;
+        this.payslipError = 'Could not read the payslip. Please choose it again.';
+        this.cdr.markForCheck();
+      }
+    };
     reader.onload = () => {
+      if (field === 'payslip') {
+        this.payslipName = file.name;
+        this.payslipLoading = false;
+      }
       this.registerForm.get(field)?.setValue(reader.result as string);
       this.registerForm.get(field)?.markAsTouched();
       this.cdr.markForCheck();
@@ -849,10 +887,12 @@ export class RegisterFormComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.loadEmployers();
+    void this.loadEmployers();
     this.registerForm.get('nin')?.valueChanges.subscribe(() => {
       if (this.ninVerified || this.ninVerifyError) {
         this.ninVerified = false;
+        this.ninData = null;
+        this._clearNinPopulatedFields();
         this.ninVerifyError = '';
         this._lastVerifiedNin = '';
         this.cdr.markForCheck();
@@ -890,7 +930,8 @@ export class RegisterFormComponent implements OnInit {
 
   private getStepFields(step: number): string[] {
     switch (step) {
-      case 1: return [
+      case 1: return ['identityType', this.registerForm.get('identityType')?.value, 'payslip'];
+      case 2: return [
         'nin', 'bvn', 'userType', 'gender', 'title',
         'firstName', 'lastName', 'dateOfBirth', 'phoneNumber', 'emailAddress',
         'nationality', 'stateOfOriginCode', 'lgaOriginCode',
@@ -898,12 +939,12 @@ export class RegisterFormComponent implements OnInit {
         'residentialLgaCode',
         ...(this.isMinor ? ['guardianPin'] : [])
       ];
-      case 2: return ['employerCode'];
-      case 3: return [
+      case 3: return ['employerCode'];
+      case 4: return [
         'nextOfKinTitle', 'nextOfKinGender', 'nextOfKinFirstname', 'nextOfKinSurname',
         'nextOfKinAddress', 'nextOfRelationship', 'nextOfKinPhoneNumber', 'nextOfKinEmail'
       ];
-      case 4: return ['signature', 'photo', 'consentForm'];
+      case 5: return ['signature', 'photo', 'consentForm'];
       default: return [];
     }
   }

@@ -75,6 +75,7 @@ export interface registerModel {
   },
   biometricsDetails: {
     photo: string,
+    payslip: string,
     signature: string,
     consentForm: string,
   },
