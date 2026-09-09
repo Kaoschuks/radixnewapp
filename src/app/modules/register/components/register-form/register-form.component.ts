@@ -46,7 +46,6 @@ export class RegisterFormComponent implements OnInit {
   payslipLoading = false;
 
   registerForm: FormGroup = new FormGroup({
-    identityType: new FormControl('nin', Validators.required),
     payslip: new FormControl('', Validators.required),
 
     // Personal Details
@@ -62,7 +61,6 @@ export class RegisterFormComponent implements OnInit {
     dateOfBirth: new FormControl('', Validators.required),
     phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
     emailAddress: new FormControl('', [Validators.required, Validators.email]),
-    nationality: new FormControl('NG', Validators.required),
     stateOfOriginCode: new FormControl('', Validators.required),
     lgaOriginCode: new FormControl('', Validators.required),
     maritalStatus: new FormControl('', Validators.required),
@@ -190,7 +188,6 @@ export class RegisterFormComponent implements OnInit {
     { value: 'WIDOWED', label: 'Widowed' }
   ];
 
-  nationalityOptions = [{ value: 'NG', label: 'Nigeria' }];
 
   userTypeOptions = [
     { value: 'RSA', label: 'Adult' },
@@ -722,7 +719,7 @@ export class RegisterFormComponent implements OnInit {
       .every(field => this.registerForm.get(field)?.valid);
     if (this.currentStep === 1) {
       return fieldsValid && !this.payslipLoading &&
-        (this.registerForm.get('identityType')?.value === 'bvn' || this.ninVerified);
+        this.ninVerified;
     }
     if (this.currentStep === 2) return fieldsValid && this.ninVerified;
     return fieldsValid;
@@ -820,7 +817,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   async nextStep() {
-    if (this.currentStep === 1 && this.registerForm.get('identityType')?.value === 'nin' && !this.ninVerified) {
+    if (this.currentStep === 1 && !this.ninVerified) {
       await this.verifyNin();
     }
     if (!this.canProceed) {
@@ -943,11 +940,11 @@ export class RegisterFormComponent implements OnInit {
 
   private getStepFields(step: number): string[] {
     switch (step) {
-      case 1: return ['identityType', this.registerForm.get('identityType')?.value, 'payslip'];
+      case 1: return ['nin', 'payslip'];
       case 2: return [
         'nin', 'bvn', 'userType', 'gender', 'title',
         'firstName', 'lastName', 'dateOfBirth', 'phoneNumber', 'emailAddress',
-        'nationality', 'stateOfOriginCode', 'lgaOriginCode',
+        'stateOfOriginCode', 'lgaOriginCode',
         'maritalStatus', 'residentialAddress', 'residentialStateCode',
         'residentialLgaCode',
         ...(this.isMinor ? ['guardianPin'] : [])

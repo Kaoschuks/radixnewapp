@@ -37,7 +37,7 @@ export class RegisterService {
         phoneNumber: form.phoneNumber,
         guardianPin: form.guardianPin || undefined,
         emailAddress: form.emailAddress,
-        nationality: form.nationality,
+        nationality: 'NG',
         stateOfOriginCode: form.stateOfOriginCode,
         lgaOriginCode: form.lgaOriginCode,
         maritalStatus: form.maritalStatus,

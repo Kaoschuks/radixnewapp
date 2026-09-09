@@ -19,23 +19,14 @@
   <div *ngIf="currentStep === 1">
     <ion-row>
       <ion-col size="12">
-        <p class="fs-14 text-medium">Enter your NIN or BVN and upload your evidence of payment to begin registration.</p>
-        <ion-label class="fs-12 text-dark">Identification type</ion-label>
+        <p class="fs-14 text-medium">Enter your NIN and upload your evidence of payment to begin registration.</p>
+        <ion-label class="fs-12 text-dark">NIN <span class="text-danger">*</span></ion-label>
         <ion-item color="light" class="ion-no-padding ion-item-border-radius">
-          <ion-select formControlName="identityType" interface="popover">
-            <ion-select-option value="nin">NIN</ion-select-option>
-            <ion-select-option value="bvn">BVN</ion-select-option>
-          </ion-select>
+          <ion-input formControlName="nin" type="text" inputmode="numeric" maxlength="11" placeholder="Enter 11 digits"></ion-input>
         </ion-item>
+        <div class="validation-errors fs-12 text-danger" *ngIf="registerForm.get('nin')?.touched && registerForm.get('nin')?.invalid">Enter a valid 11-digit NIN.</div>
       </ion-col>
-      <ion-col size="12" *ngFor="let field of ['nin', 'bvn']" [hidden]="registerForm.get('identityType')?.value !== field">
-        <ion-label class="fs-12 text-dark">{{field === 'nin' ? 'NIN' : 'BVN'}} <span class="text-danger">*</span></ion-label>
-        <ion-item color="light" class="ion-no-padding ion-item-border-radius">
-          <ion-input [formControlName]="field" type="text" inputmode="numeric" maxlength="11" placeholder="Enter 11 digits"></ion-input>
-        </ion-item>
-        <div class="validation-errors fs-12 text-danger" *ngIf="registerForm.get(field)?.touched && registerForm.get(field)?.invalid">Enter a valid 11-digit {{field === 'nin' ? 'NIN' : 'BVN'}}.</div>
-      </ion-col>
-      <ion-col size="12" *ngIf="registerForm.get('identityType')?.value === 'nin'">
+      <ion-col size="12">
         <ion-button type="button" fill="outline" (click)="verifyNin()" [disabled]="ninVerifying || registerForm.get('nin')?.invalid">{{ninVerifying ? 'Verifying...' : 'Verify NIN'}}</ion-button>
         <p class="fs-12 text-success" *ngIf="ninVerified">NIN verified. Your personal details will be prefilled.</p>
         <p class="fs-12 text-danger" *ngIf="ninVerifyError">{{ninVerifyError}}</p>
@@ -256,14 +247,6 @@
         </div>
       </ion-col>
 
-      <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Nationality <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="nationality" interface="action-sheet" mode="md">
-            <ion-select-option *ngFor="let o of nationalityOptions" [value]="o.value">{{o.label}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
 
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">State of Origin <span class="text-danger">*</span></ion-label>

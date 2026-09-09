@@ -22,16 +22,16 @@ describe('Registration Subscribe step', () => {
     void component.ngOnInit();
   });
 
-  it('requires a payslip before continuing with BVN', async () => {
-    component.registerForm.patchValue({ identityType: 'bvn', bvn: '12345678901' });
+  it('requires evidence of payment before continuing with verified NIN', async () => {
+    component.registerForm.patchValue({ nin: '12345678901' });
     await component.nextStep();
     expect(component.currentStep).toBe(1);
     component.registerForm.patchValue({ payslip: 'data:application/pdf;base64,cGF5' });
     await component.nextStep();
     expect(component.currentStep).toBe(2);
-    expect(component.registerForm.get('bvn')?.value).toBe('12345678901');
+    expect(component.registerForm.get('nin')?.value).toBe('12345678901');
     expect(component.canProceed).toBeFalse();
-    expect(verifyNin).not.toHaveBeenCalled();
+    expect(verifyNin).toHaveBeenCalledTimes(1);
   });
 
   it('verifies NIN and preloads personal details', async () => {
