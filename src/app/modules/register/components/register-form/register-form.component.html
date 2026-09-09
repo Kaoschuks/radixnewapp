@@ -19,7 +19,7 @@
   <div *ngIf="currentStep === 1">
     <ion-row>
       <ion-col size="12">
-        <p class="fs-14 text-medium">Enter your NIN or BVN and upload your payslip to begin registration.</p>
+        <p class="fs-14 text-medium">Enter your NIN or BVN and upload your evidence of payment to begin registration.</p>
         <ion-label class="fs-12 text-dark">Identification type</ion-label>
         <ion-item color="light" class="ion-no-padding ion-item-border-radius">
           <ion-select formControlName="identityType" interface="popover">
@@ -41,17 +41,30 @@
         <p class="fs-12 text-danger" *ngIf="ninVerifyError">{{ninVerifyError}}</p>
       </ion-col>
       <ion-col size="12">
-        <ion-label class="fs-12 text-dark">Payslip <span class="text-danger">*</span></ion-label>
-        <div class="upload-card">
+        <ion-label class="fs-12 text-dark">Evidence of payment <span class="text-danger">*</span></ion-label>
+        <div class="upload-card" [class.uploaded]="registerForm.get('payslip')?.value"
+             [class.upload-error]="registerForm.get('payslip')?.invalid && registerForm.get('payslip')?.touched">
+          <ng-container *ngIf="registerForm.get('payslip')?.value">
+            <img *ngIf="!payslipPdfPreview" class="upload-preview-img"
+                 [src]="registerForm.get('payslip')?.value" alt="Evidence of payment" />
+            <object *ngIf="payslipPdfPreview" class="upload-preview-pdf"
+                    [data]="payslipPdfPreview" type="application/pdf" aria-label="Evidence of payment PDF preview">
+              <p class="fs-12 text-medium">PDF preview is unavailable in this browser.</p>
+            </object>
+            <button type="button" class="clear-btn" aria-label="Remove evidence of payment"
+                    (click)="clearFile('payslip', payslipInput)">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </ng-container>
           <label class="upload-label" for="payslipInput">
             <ion-icon name="document-outline" class="upload-icon"></ion-icon>
-            <span class="fs-12 fw-6 text-dark">{{payslipLoading ? 'Reading payslip...' : (payslipName || 'Choose payslip')}}</span>
+            <span class="fs-12 fw-6 text-dark">{{payslipLoading ? 'Reading evidence of payment...' : (payslipName || 'Choose evidence of payment')}}</span>
             <span class="fs-12 text-medium">PDF, JPG or PNG. Tap to choose or replace.</span>
           </label>
         </div>
-        <input id="payslipInput" type="file" accept="application/pdf,image/jpeg,image/png" [disabled]="payslipLoading" (change)="onFileSelected('payslip', $event)" class="file-input" />
+        <input #payslipInput id="payslipInput" type="file" accept="application/pdf,image/jpeg,image/png" [disabled]="payslipLoading" (change)="onFileSelected('payslip', $event)" class="file-input" />
         <p class="fs-12 text-danger" *ngIf="payslipError">{{payslipError}}</p>
-        <p class="fs-12 text-danger" *ngIf="registerForm.get('payslip')?.touched && registerForm.get('payslip')?.invalid">Upload your payslip to continue.</p>
+        <p class="fs-12 text-danger" *ngIf="registerForm.get('payslip')?.touched && registerForm.get('payslip')?.invalid">Upload your evidence of payment to continue.</p>
       </ion-col>
     </ion-row>
   </div>

@@ -1,4 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output
 } from '@angular/core';
@@ -25,6 +26,7 @@ export class RegisterFormComponent implements OnInit {
   @Output() onsubmit = new EventEmitter();
 
   private cdr = inject(ChangeDetectorRef);
+  private sanitizer = inject(DomSanitizer);
   private api = inject(RequestService);
   private registerService = inject(RegisterService);
 
@@ -38,6 +40,7 @@ export class RegisterFormComponent implements OnInit {
 
   currentStep = 1;
   totalSteps = 5;
+  payslipPdfPreview: SafeResourceUrl | null = null;
   payslipName = '';
   payslipError = '';
   payslipLoading = false;
@@ -853,10 +856,11 @@ export class RegisterFormComponent implements OnInit {
     if (!file) return;
     if (field === 'payslip') {
       this.registerForm.get(field)?.setValue('');
+      this.payslipPdfPreview = null;
       this.payslipName = '';
       this.payslipError = '';
       if (!['application/pdf', 'image/jpeg', 'image/png'].includes(file.type)) {
-        this.payslipError = 'Choose a PDF, JPG or PNG payslip.';
+        this.payslipError = 'Choose a PDF, JPG or PNG as evidence of payment.';
         return;
       }
       this.payslipLoading = true;
@@ -865,12 +869,16 @@ export class RegisterFormComponent implements OnInit {
     reader.onerror = () => {
       if (field === 'payslip') {
         this.payslipLoading = false;
-        this.payslipError = 'Could not read the payslip. Please choose it again.';
+        this.payslipError = 'Could not read the evidence of payment. Please choose it again.';
         this.cdr.markForCheck();
       }
     };
     reader.onload = () => {
       if (field === 'payslip') {
+        // Only trust the data URL generated from the locally selected PDF.
+        this.payslipPdfPreview = file.type === 'application/pdf'
+          ? this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string)
+          : null;
         this.payslipName = file.name;
         this.payslipLoading = false;
       }
@@ -884,6 +892,11 @@ export class RegisterFormComponent implements OnInit {
   clearFile(field: string, inputEl: HTMLInputElement) {
     this.registerForm.get(field)?.setValue('');
     inputEl.value = '';
+    if (field === 'payslip') {
+      this.payslipPdfPreview = null;
+      this.payslipName = '';
+      this.payslipError = '';
+    }
   }
 
   async ngOnInit() {
