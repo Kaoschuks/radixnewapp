@@ -68,6 +68,10 @@ export class RegisterService {
       };
 
       await this.uData.register(payload);
+      await this.globals.toastAlert("Employee created successfully", {
+        cssClass: 'toast-success'
+      });
+      this.globals.loading.hide();
       this.globals.navigate('/login', false);
     } catch (error: any) {
       this.globals.loading.hide();
@@ -90,6 +94,9 @@ export class RegisterService {
       };
 
       await this.uData.registerRSA(payload);
+      await this.globals.toastAlert("Employee created successfully", {
+        cssClass: 'toast-success'
+      });
       this.globals.loading.hide();
       this.globals.navigate('/login', false);
     } catch (error: any) {
