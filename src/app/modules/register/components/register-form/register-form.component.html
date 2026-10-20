@@ -93,7 +93,7 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">User Type <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="userType" interface="action-sheet" mode="md" placeholder="Select">
+          <ion-select formControlName="userType" [interface]="selectInterface" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of userTypeOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -107,7 +107,7 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Title <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="title" interface="action-sheet" mode="md" placeholder="Select">
+          <ion-select formControlName="title" [interface]="selectInterface" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of titleOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -120,7 +120,7 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Last Name <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="lastName" type="text" placeholder="Your last name" [readonly]="ninVerified"></ion-input>
           <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
@@ -133,7 +133,7 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">First Name <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="firstName" type="text" placeholder="Your first name" [readonly]="ninVerified"></ion-input>
           <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
@@ -146,7 +146,7 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Middle Name</ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="middleName" type="text" placeholder="Your middle name" [readonly]="ninVerified"></ion-input>
           <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
@@ -160,7 +160,7 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Gender <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="gender" interface="action-sheet" mode="md" placeholder="Select">
+          <ion-select formControlName="gender" [interface]="selectInterface" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of genderOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -174,7 +174,7 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Marital Status <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="maritalStatus" interface="action-sheet" mode="md" placeholder="Select">
+          <ion-select formControlName="maritalStatus" [interface]="selectInterface" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of maritalStatusOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -187,7 +187,7 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Date of Birth <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
           <ion-input formControlName="dateOfBirth" type="date" [readonly]="ninVerified"></ion-input>
           <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
@@ -200,9 +200,9 @@
 
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Phone Number <span class="text-danger">*</span></ion-label>
-        <ion-item class="ion-no-padding ion-item-border-radius" [color]="ninVerified ? 'medium' : 'light'" mode="ios">
-          <ion-input formControlName="phoneNumber" type="tel" placeholder="08012345678" [readonly]="ninVerified"></ion-input>
-          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
+        <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
+          <ion-input formControlName="phoneNumber" type="tel" inputmode="numeric" maxlength="11" required placeholder="08012345678" [readonly]="ninVerified && ninPhoneLocked" (ionInput)="onPhoneInput('phoneNumber', $event)"></ion-input>
+          <ion-icon *ngIf="ninVerified && ninPhoneLocked" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['phoneNumber']">
@@ -251,10 +251,14 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">State of Origin <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="stateOfOriginCode" interface="action-sheet" mode="md" placeholder="Select state">
+          <ion-select formControlName="stateOfOriginCode" [disabled]="statesLoading || !stateOptions.length" [interface]="selectInterface" mode="md" placeholder="Select state">
             <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div *ngIf="statesLoading" class="fs-12">Loading states...</div>
+        <div *ngIf="statesError" class="fs-12 text-danger">{{statesError}}
+          <ion-button type="button" fill="clear" size="small" (click)="loadStates()">Retry</ion-button>
+        </div>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['stateOfOriginCode']">
             <div *ngIf="registerForm.get('stateOfOriginCode')?.hasError(v.type) && registerForm.get('stateOfOriginCode')?.touched">{{v.message}}</div>
@@ -265,10 +269,14 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">LGA of Origin <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="lgaOriginCode" interface="action-sheet" mode="md" placeholder="Select LGA">
+          <ion-select formControlName="lgaOriginCode" [disabled]="!registerForm.get('stateOfOriginCode')?.value || lgaLoading[registerForm.get('stateOfOriginCode')?.value] || !lgasByState[registerForm.get('stateOfOriginCode')?.value]" [interface]="selectInterface" mode="md" placeholder="Select LGA">
             <ion-select-option *ngFor="let o of filteredOriginLgas" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div *ngIf="lgaLoading[registerForm.get('stateOfOriginCode')?.value]" class="fs-12">Loading LGAs...</div>
+        <div *ngIf="lgaErrors[registerForm.get('stateOfOriginCode')?.value]" class="fs-12 text-danger">{{lgaErrors[registerForm.get('stateOfOriginCode')?.value]}}
+          <ion-button type="button" fill="clear" size="small" (click)="loadLgas(registerForm.get('stateOfOriginCode')?.value)">Retry</ion-button>
+        </div>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['lgaOriginCode']">
             <div *ngIf="registerForm.get('lgaOriginCode')?.hasError(v.type) && registerForm.get('lgaOriginCode')?.touched">{{v.message}}</div>
@@ -291,10 +299,14 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Residential State <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="residentialStateCode" interface="action-sheet" mode="md" placeholder="Select state">
+          <ion-select formControlName="residentialStateCode" [disabled]="statesLoading || !stateOptions.length" [interface]="selectInterface" mode="md" placeholder="Select state">
             <ion-select-option *ngFor="let o of stateOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div *ngIf="statesLoading" class="fs-12">Loading states...</div>
+        <div *ngIf="statesError" class="fs-12 text-danger">{{statesError}}
+          <ion-button type="button" fill="clear" size="small" (click)="loadStates()">Retry</ion-button>
+        </div>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['residentialStateCode']">
             <div *ngIf="registerForm.get('residentialStateCode')?.hasError(v.type) && registerForm.get('residentialStateCode')?.touched">{{v.message}}</div>
@@ -305,10 +317,14 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Residential LGA <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="residentialLgaCode" interface="action-sheet" mode="md" placeholder="Select LGA">
+          <ion-select formControlName="residentialLgaCode" [disabled]="!registerForm.get('residentialStateCode')?.value || lgaLoading[registerForm.get('residentialStateCode')?.value] || !lgasByState[registerForm.get('residentialStateCode')?.value]" [interface]="selectInterface" mode="md" placeholder="Select LGA">
             <ion-select-option *ngFor="let o of filteredResidentialLgas" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <div *ngIf="lgaLoading[registerForm.get('residentialStateCode')?.value]" class="fs-12">Loading LGAs...</div>
+        <div *ngIf="lgaErrors[registerForm.get('residentialStateCode')?.value]" class="fs-12 text-danger">{{lgaErrors[registerForm.get('residentialStateCode')?.value]}}
+          <ion-button type="button" fill="clear" size="small" (click)="loadLgas(registerForm.get('residentialStateCode')?.value)">Retry</ion-button>
+        </div>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['residentialLgaCode']">
             <div *ngIf="registerForm.get('residentialLgaCode')?.hasError(v.type) && registerForm.get('residentialLgaCode')?.touched">{{v.message}}</div>
@@ -328,7 +344,7 @@
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Employer <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="employerCode" interface="action-sheet" mode="md"
+          <ion-select formControlName="employerCode" [interface]="selectInterface" mode="md"
                       [placeholder]="employersLoading ? 'Loading employers...' : 'Select employer'">
             <ion-select-option *ngFor="let o of employers" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
@@ -350,7 +366,7 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Title <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="nextOfKinTitle" interface="action-sheet" mode="md" placeholder="Select">
+          <ion-select formControlName="nextOfKinTitle" [interface]="selectInterface" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of titleOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -364,7 +380,7 @@
       <ion-col size="6">
         <ion-label class="fs-12 text-dark">Gender <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="nextOfKinGender" interface="action-sheet" mode="md" placeholder="Select">
+          <ion-select formControlName="nextOfKinGender" [interface]="selectInterface" mode="md" placeholder="Select">
             <ion-select-option *ngFor="let o of genderOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -402,7 +418,7 @@
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Relationship <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-select formControlName="nextOfRelationship" interface="action-sheet" mode="md" placeholder="Select relationship">
+          <ion-select formControlName="nextOfRelationship" [interface]="selectInterface" mode="md" placeholder="Select relationship">
             <ion-select-option *ngFor="let o of relationshipOptions" [value]="o.value">{{o.label}}</ion-select-option>
           </ion-select>
         </ion-item>
@@ -416,7 +432,7 @@
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Phone Number <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="nextOfKinPhoneNumber" type="tel" placeholder="08012345678"></ion-input>
+          <ion-input formControlName="nextOfKinPhoneNumber" type="tel" inputmode="numeric" maxlength="11" required placeholder="08012345678" (ionInput)="onPhoneInput('nextOfKinPhoneNumber', $event)"></ion-input>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['nextOfKinPhoneNumber']">

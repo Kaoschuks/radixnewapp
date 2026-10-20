@@ -4,7 +4,7 @@ import { RequestService } from 'src/app/core';
 import { RegisterService } from '../../services/register.service';
 import { RegisterFormComponent } from './register-form.component';
 
-describe('Registration Subscribe step', () => {
+describe('Registration KYC step', () => {
   let component: RegisterFormComponent;
   let verifyNin: jasmine.Spy;
 
@@ -64,4 +64,50 @@ describe('Registration Subscribe step', () => {
     component.onSubmit();
     expect(submit).not.toHaveBeenCalled();
   });
+  it('requires exactly eleven digits for both phone numbers', () => {
+    for (const field of ['phoneNumber', 'nextOfKinPhoneNumber']) {
+      const control = component.registerForm.get(field)!;
+      for (const invalid of ['', '0801234567', '080123456789', '0801234567a']) {
+        control.setValue(invalid);
+        expect(control.invalid).withContext(invalid).toBeTrue();
+      }
+      control.setValue('08012345678');
+      expect(control.valid).toBeTrue();
+    }
+    const input = { value: '08012abc3456789' };
+    component.onPhoneInput('phoneNumber', { target: input } as unknown as Event);
+    expect(input.value).toBe('08012345678');
+    expect(component.registerForm.get('phoneNumber')?.value).toBe('08012345678');
+  });
+
+  it('normalizes NIN phone numbers and allows missing numbers to be entered', async () => {
+    component.registerForm.patchValue({ nin: '12345678901' });
+    verifyNin.and.resolveTo({ statusCode: 200, data: { phone_number: '+234 801 234 5678' } });
+    await component.verifyNin();
+    expect(component.registerForm.get('phoneNumber')?.value).toBe('08012345678');
+    expect(component.ninPhoneLocked).toBeTrue();
+    component.registerForm.patchValue({ nin: '12345678902' });
+    verifyNin.and.resolveTo({ statusCode: 200, data: { phone_number: '' } });
+    await component.verifyNin();
+    expect(component.ninPhoneLocked).toBeFalse();
+    expect(component.registerForm.get('phoneNumber')?.invalid).toBeTrue();
+  });
+
+  it('clears an old LGA and keeps late responses scoped to their state', async () => {
+    const api = TestBed.inject(RequestService);
+    let finishLagos!: (value: any) => void;
+    spyOn(api, 'get').and.callFake(async (url: string) => {
+      if (url.endsWith('/LA')) return await new Promise(resolve => finishLagos = resolve);
+      return [{ CODE: 'NEW', DESCRIPTION: 'New LGA' }];
+    });
+    component.registerForm.patchValue({ stateOfOriginCode: 'LA', lgaOriginCode: 'OLD' });
+    const pending = component.loadLgas('LA');
+    component.registerForm.patchValue({ stateOfOriginCode: 'AB' });
+    await component.loadLgas('AB');
+    expect(component.registerForm.get('lgaOriginCode')?.value).toBe('');
+    finishLagos([{ CODE: 'GGE', DESCRIPTION: 'AGEGE' }]);
+    await pending;
+    expect(component.filteredOriginLgas).toEqual([{ value: 'NEW', label: 'New LGA' }]);
+  });
+
 });
