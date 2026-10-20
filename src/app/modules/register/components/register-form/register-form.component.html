@@ -201,8 +201,8 @@
       <ion-col size="12">
         <ion-label class="fs-12 text-dark">Phone Number <span class="text-danger">*</span></ion-label>
         <ion-item class="ion-no-padding ion-item-border-radius" color="light" mode="ios">
-          <ion-input formControlName="phoneNumber" type="tel" inputmode="numeric" maxlength="11" required placeholder="08012345678" [readonly]="ninVerified && ninPhoneLocked" (ionInput)="onPhoneInput('phoneNumber', $event)"></ion-input>
-          <ion-icon *ngIf="ninVerified && ninPhoneLocked" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
+          <ion-input formControlName="phoneNumber" type="tel" inputmode="numeric" maxlength="11" required placeholder="XXXXXXXXX" [readonly]="ninVerified" (ionInput)="onPhoneInput('phoneNumber', $event)"></ion-input>
+          <ion-icon *ngIf="ninVerified" name="lock-closed-outline" slot="end" color="medium" class="lock-icon"></ion-icon>
         </ion-item>
         <div class="validation-errors fs-12 text-danger">
           <ng-container *ngFor="let v of validation_messages['phoneNumber']">

@@ -121,7 +121,6 @@ export class RegisterFormComponent implements OnInit {
     dateOfBirth: [{ type: 'required', message: 'Date of birth is required.' }],
     phoneNumber: [
       { type: 'required', message: 'Phone number is required.' },
-      { type: 'minlength', message: 'Phone number must be exactly 11 digits.' },
       { type: 'maxlength', message: 'Phone number must be exactly 11 digits.' },
       { type: 'pattern', message: 'Phone number must contain digits only.' },
     ],
